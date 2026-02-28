@@ -144,8 +144,12 @@ function commander(cmd) {
       );
       break;
   }
-  addLine(helpHintText, "tertiary", (outputLines + 1) * commandLineDelay);
-  addLine("<br>", "", (outputLines + 2) * commandLineDelay);
+  if (cmd === "help") {
+    addLine("<br>", "", (outputLines + 1) * commandLineDelay);
+  } else {
+    addLine(helpHintText, "tertiary", (outputLines + 1) * commandLineDelay);
+    addLine("<br>", "", (outputLines + 2) * commandLineDelay);
+  }
   scrollToBottom();
 }
 
