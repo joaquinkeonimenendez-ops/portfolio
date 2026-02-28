@@ -14,7 +14,7 @@ let aboutme = [
   `<span class='underline output-blue'>Who I am</span>`,
   `<pre class="about-body indent-8 whitespace-pre-wrap break-words overflow-x-auto">I'm Joaquin Keoni Menendez, a CS student at UC Irvine. In my spare time I build AI systems. I've coded since childhood and use AI tools to accelerate my workflow.</pre>`,
   `<span class="command">What I do</span>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">Currently building Magnum, a CLI tool to sell websites to small businesses, and Charcoal, a webapp alternative to Obsidian.md. Formerly active in the bug bounty scene.</pre>`,
+  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">Building Magnum a CLI tool for selling websites to small businesses and Charcoal a web alternative to Obsidian.md. Formerly active in bug bounty.</pre>`,
   "</div>",
   "<br>",
 ];
