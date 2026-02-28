@@ -326,7 +326,7 @@ hr {
 }
 
 .help-desc {
-  color: #8285c1f0;
+  color: var(--color-tertiary);
 }
 
 .command {
