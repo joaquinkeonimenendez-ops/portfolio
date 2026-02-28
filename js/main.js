@@ -69,7 +69,7 @@ function enterKey(e) {
 
   if (e.keyCode === 13) {
     const input = command.innerHTML.trim().toLowerCase();
-    addLine("[prithvi@archrx5500m]~$" + command.innerHTML, "no-animation", 0);
+    addLine("[keoni@me]~$" + command.innerHTML, "no-animation", 0);
 
     if (awaitingConfirmation && suggestedCommand) {
       if (input === "y") {
