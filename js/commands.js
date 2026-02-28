@@ -5,7 +5,11 @@ var instagram = "https://www.instagram.com/prithvi_yewale/";
 var github = "https://github.com/cosmicwanderer7";
 var email = "mailto:yewaleprithvi2003@gmail.com";
 
-let banner = [];
+let banner = [
+  `<div id="banner-section" class="banner">
+Type <span class="command">begin</span> to view my projects.
+  </div>`,
+];
 
 let aboutme = [
   "<br>",
@@ -48,6 +52,8 @@ let help = [
 ↳ Lists social networks.
 <span class="command">projects</span>
 ↳ View coding projects.
+<span class="command">begin</span>
+↳ Shortcut to view projects.
 <span class="command">email</span>
 ↳ To send me an email.
 <span class="command">history</span>

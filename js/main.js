@@ -21,6 +21,7 @@ const commandMap = {
   help: "help",
   aboutme: "aboutme",
   projects: "projects",
+  begin: "begin",
   social: "social",
   email: "email",
   history: "history",
@@ -114,6 +115,9 @@ function commander(cmd) {
       loopLines(aboutme, "color2 margin", 80);
       break;
     case "projects":
+      loopLines(projects, "color2 margin", 80);
+      break;
+    case "begin":
       loopLines(projects, "color2 margin", 80);
       break;
     case "social":
