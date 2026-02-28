@@ -5,6 +5,7 @@ const textarea = document.getElementById("texter");
 const terminal = document.getElementById("terminal");
 const contentscroll = document.getElementById("contentscroll");
 const asciiCatFrame = document.getElementById("ascii-cat-frame");
+const navCommandLinks = document.querySelectorAll(".top-nav a[data-command]");
 
 let git = 0;
 let pw = false;
@@ -23,7 +24,7 @@ setTimeout(function () {
   scrollToBottom();
 
   setTimeout(function () {
-    autoTypeAndSubmitHelp();
+    autoTypeAndSubmitCommand("help");
   }, banner.length * 80 + 250);
 }, 100);
 
@@ -47,6 +48,15 @@ document.addEventListener("click", function () {
 terminal.addEventListener("click", function () {
   textarea.focus();
   scrollToBottom();
+});
+
+navCommandLinks.forEach(function (link) {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    const cmd = link.getAttribute("data-command");
+    if (!cmd) return;
+    autoTypeAndSubmitCommand(cmd);
+  });
 });
 
 textarea.addEventListener("input", scrollToBottom);
@@ -90,16 +100,29 @@ function commander(cmd) {
   if (!cmd) {
     return;
   }
-  if (cmd === "help") {
-    loopLines(help, "", 80);
-    return;
+  switch (cmd) {
+    case "help":
+      loopLines(help, "", 80);
+      break;
+    case "about":
+    case "aboutme":
+      loopLines(aboutme, "", 80);
+      break;
+    case "projects":
+      loopLines(projects, "", 80);
+      break;
+    case "contact":
+    case "social":
+      loopLines(social, "", 80);
+      break;
+    default:
+      addLine(
+        "Unknown command - Type help to see a list of supported commands",
+        "output-blue",
+        80,
+      );
+      break;
   }
-
-  addLine(
-    "Unknown command - Type help to see a list of supported commands",
-    "output-blue",
-    80,
-  );
   scrollToBottom();
 }
 
@@ -152,11 +175,12 @@ function loopLines(name, style, time) {
   );
 }
 
-function autoTypeAndSubmitHelp() {
-  if (hasAutoHelpRun) return;
-  hasAutoHelpRun = true;
+function autoTypeAndSubmitCommand(autoCommand) {
+  if (autoCommand === "help" && hasAutoHelpRun) return;
+  if (autoCommand === "help") {
+    hasAutoHelpRun = true;
+  }
 
-  const autoCommand = "help";
   let index = 0;
   textarea.value = "";
   command.innerHTML = "";

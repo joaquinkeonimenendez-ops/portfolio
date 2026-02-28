@@ -1,9 +1,6 @@
-var dev = "https://dev.to/cosmicwanderer7";
-var twitter = "https://twitter.com/PrithviYewale";
-var linkedin = "https://www.linkedin.com/in/prithvi-yewale-a77275228/";
-var instagram = "https://www.instagram.com/prithvi_yewale/";
-var github = "https://github.com/cosmicwanderer7";
-var email = "mailto:yewaleprithvi2003@gmail.com";
+var twitter = "https://twitter.com/joaquinkmenend";
+var instagram = "https://www.instagram.com/joaquinkmenendez/";
+var github = "https://github.com/joaquinkeonimenendez-ops";
 
 let banner = [
   `<div id="banner-section" class="banner">
@@ -14,33 +11,23 @@ let banner = [
 let aboutme = [
   "<br>",
   `<div id="aboutme-section">`,
-  `<span class='underline'>Hey, I'm Prithvi! 👋</span>`,
-  "<br>",
-  `<li>🔧 I'm a Desktop Engineer passionate about fullstack development and UI/UX design.</li>`,
-  `<li>💡 Always eager to learn new technologies and build meaningful digital products.</li>`,
-  `<li>🧠 Experienced in building responsive websites using Next.js and Tailwind CSS.</li>`,
-  `<li>📂 Use the <span class="command">projects</span> command to check out what I’ve built!</li>`,
-  `<li>👥 Looking to collaborate on exciting frontend/backend projects.</li>`,
-  `<li>📫 Contact: <a href="mailto:yewaleprithvi2003@gmail.com">yewaleprithvi2003@gmail.com</a></li>`,
+  `<span class='underline'>Joaquin Keoni Menendez</span>`,
+  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">CS student at UC Irvine building AI projects.</pre>`,
   "</div>",
   "<br>",
 ];
 
 let social = [
   "<br>",
-  'dev        <a href="' + dev + '" target="_blank">dev.to/cosmicwanderer7</a>',
-  'twitter        <a href="' +
-    twitter +
-    '" target="_blank">twitter.com/PrithviYewale</a>',
-  'linkedin       <a href="' +
-    linkedin +
-    '" target="_blank">linkedin/prithviYewale</a>',
-  'instagram      <a href="' +
-    instagram +
-    '" target="_blank">instagram/prithvi_yewale</a>',
-  'github         <a href="' +
+  'github        <a href="' +
     github +
-    '" target="_blank">github/cosmicwanderer7</a>',
+    '" target="_blank">github.com/joaquinkeonimenendez-ops</a>',
+  'instagram     <a href="' +
+    instagram +
+    '" target="_blank">instagram.com/joaquinkmenendez</a>',
+  'twitter       <a href="' +
+    twitter +
+    '" target="_blank">twitter.com/joaquinkmenend</a>',
   "<br>",
 ];
 
@@ -51,11 +38,12 @@ let help = [
   `<span class="command">projects</span>`,
   "&#8627; View coding projects.",
   `<span class="command">contact</span>`,
-  "&#8627; Lists contact links.",
+  "&#8627; Lists contact info.",
   `<span class="command">help</span>`,
   "&#8627; Displays this help message.",
   "<br>",
 ];
+
 let projects = [
   "<br>",
   `<div id="projects-section">`,
@@ -71,5 +59,3 @@ A semi-autonomous web design agency in your command line: autonomous lead genera
   "</div>",
   "<br>",
 ];
-
-
