@@ -211,6 +211,46 @@ hr {
   flex-shrink: 0; /* prevent shrinking */
 }
 
+.cat-panel {
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  padding: var(--step-2);
+}
+
+.ascii-cat-wrapper {
+  position: relative;
+  min-height: 5.5rem;
+}
+
+.cat-frame {
+  margin: 0;
+  white-space: pre;
+  font-size: var(--step-2);
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+
+.cat-frame-wink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation: cat-wink 3.2s infinite;
+}
+
+@keyframes cat-wink {
+  0%,
+  84%,
+  100% {
+    opacity: 0;
+  }
+  88%,
+  96% {
+    opacity: 1;
+  }
+}
+
 .profile-info {
   display: flex;
   flex-direction: column;
@@ -227,6 +267,10 @@ hr {
     gap: 0rem; /* space between ASCII and profile */
   }
   .profile-info {
+    padding-top: var(--step--2);
+  }
+
+  .cat-panel {
     padding-top: var(--step--2);
   }
 
