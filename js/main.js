@@ -15,7 +15,6 @@ const clearBeforeCommands = new Set([
   "about",
   "aboutme",
   "projects",
-  "thoughts",
   "contact",
   "social",
   "help",
@@ -156,13 +155,6 @@ function commander(cmd) {
     case "projects":
       outputLines = projects.length;
       loopLines(projects, "", commandLineDelay);
-      break;
-    case "thoughts":
-      outputLines = thoughts.length;
-      showFooterHint = false;
-      isThoughtsMode = true;
-      setPromptPrefix(thoughtsPrompt);
-      loopLines(thoughts, "", commandLineDelay);
       break;
     case "contact":
     case "social":
