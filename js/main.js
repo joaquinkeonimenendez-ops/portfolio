@@ -66,7 +66,7 @@ setTimeout(function () {
     autoTypeAndSubmitCommand(initialCommand);
     if (initialCommand === "home") {
       // Fallback trigger in case command timing shifts on slower/fast devices.
-      setTimeout(runInitialNavPreviewSequence, 2000);
+      setTimeout(runInitialNavPreviewSequence, 900);
     }
   }, banner.length * 80 + 250);
 }, 100);
@@ -163,7 +163,10 @@ function commander(cmd) {
       loopLines(home, "", commandLineDelay);
       if (shouldRunNavPreviewOnNextHome) {
         shouldRunNavPreviewOnNextHome = false;
-        setTimeout(runInitialNavPreviewSequence, (outputLines + 2) * commandLineDelay);
+        setTimeout(
+          runInitialNavPreviewSequence,
+          Math.max(120, outputLines * commandLineDelay),
+        );
       }
       break;
     case "about":
@@ -225,8 +228,8 @@ function runInitialNavPreviewSequence() {
   if (hasRunNavPreviewSequence) return;
 
   const sequence = ["about", "projects", "contact"];
-  const highlightDuration = 420;
-  const stepDelay = 520;
+  const highlightDuration = 180;
+  const stepDelay = 220;
   let foundAny = false;
 
   sequence.forEach(function (cmd, index) {
@@ -246,9 +249,9 @@ function runInitialNavPreviewSequence() {
     }, startDelay);
   });
 
-  if (!foundAny && cliPreviewRetryCount < 12) {
+  if (!foundAny && cliPreviewRetryCount < 16) {
     cliPreviewRetryCount += 1;
-    setTimeout(runInitialNavPreviewSequence, 160);
+    setTimeout(runInitialNavPreviewSequence, 90);
     return;
   }
   hasRunNavPreviewSequence = true;
