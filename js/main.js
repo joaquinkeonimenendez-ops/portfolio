@@ -144,37 +144,10 @@ function loopLines(name, style, time) {
   );
 }
 
-function addTypedLine(text, style, startDelay, charDelay) {
-  const lineText = text || "";
-  setTimeout(function () {
-    const next = document.createElement("p");
-    next.className = style;
-    next.textContent = "";
-    before.parentNode.insertBefore(next, before);
-    contentscroll.scrollTop = contentscroll.scrollHeight;
-
-    if (lineText.length === 0) {
-      return;
-    }
-
-    let index = 0;
-    const timer = setInterval(function () {
-      index += 1;
-      next.textContent = lineText.slice(0, index);
-      contentscroll.scrollTop = contentscroll.scrollHeight;
-      if (index >= lineText.length) {
-        clearInterval(timer);
-      }
-    }, charDelay);
-  }, startDelay);
-
-  return Math.max(1, lineText.length) * charDelay;
-}
-
 function typeHelpMenu() {
   const lines = [
     { text: "Supported commands:", style: "output-blue" },
-    { text: "", style: "output-blue" },
+    { text: "&nbsp;", style: "output-blue" },
     { text: "about", style: "help-command" },
     { text: "\u21B3 Learn more about me.", style: "help-desc" },
     { text: "projects", style: "help-command" },
@@ -185,12 +158,11 @@ function typeHelpMenu() {
     { text: "\u21B3 Reach out to me.", style: "help-desc" },
   ];
   let delay = 80;
-  const charDelay = 16;
-  const lineGap = 65;
+  const lineGap = 120;
 
   lines.forEach(function (line) {
-    const duration = addTypedLine(line.text, line.style, delay, charDelay);
-    delay += duration + lineGap;
+    addLine(line.text, line.style, delay);
+    delay += lineGap;
   });
 
   setTimeout(function () {
