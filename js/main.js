@@ -74,7 +74,7 @@ navCommandLinks.forEach(function (link) {
 });
 
 textarea.value = "";
-command.innerHTML = textarea.value;
+command.innerHTML = "Loading...";
 
 function enterKey(e) {
   if (e.keyCode === 13) {
