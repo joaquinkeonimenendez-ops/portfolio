@@ -83,12 +83,7 @@ function commander(cmd) {
     return;
   }
   if (cmd === "help") {
-    addLine(
-      "Supported commands:<br><br><span class=\"help-command\">About</span><br><span class=\"help-desc\">&#8627; Learn more about me.</span><br><span class=\"help-command\">projects</span><br><span class=\"help-desc\">&#8627; View my projects.</span><br><span class=\"help-command\">writings</span><br><span class=\"help-desc\">&#8627; Read my writings.</span><br><span class=\"help-command\">contact</span><br><span class=\"help-desc\">&#8627; Reach out to me.</span>",
-      "output-blue",
-      80,
-    );
-    scrollToBottom();
+    typeHelpMenu();
     return;
   }
 
@@ -147,6 +142,60 @@ function loopLines(name, style, time) {
     },
     name.length * time + 50,
   );
+}
+
+function addTypedLine(text, style, startDelay, charDelay) {
+  const lineText = text || "";
+  setTimeout(function () {
+    const next = document.createElement("p");
+    next.className = style;
+    next.textContent = "";
+    before.parentNode.insertBefore(next, before);
+    contentscroll.scrollTop = contentscroll.scrollHeight;
+
+    if (lineText.length === 0) {
+      return;
+    }
+
+    let index = 0;
+    const timer = setInterval(function () {
+      index += 1;
+      next.textContent = lineText.slice(0, index);
+      contentscroll.scrollTop = contentscroll.scrollHeight;
+      if (index >= lineText.length) {
+        clearInterval(timer);
+      }
+    }, charDelay);
+  }, startDelay);
+
+  return Math.max(1, lineText.length) * charDelay;
+}
+
+function typeHelpMenu() {
+  const lines = [
+    { text: "Supported commands:", style: "output-blue" },
+    { text: "", style: "output-blue" },
+    { text: "about", style: "help-command" },
+    { text: "-> Learn more about me.", style: "help-desc" },
+    { text: "projects", style: "help-command" },
+    { text: "-> View my projects.", style: "help-desc" },
+    { text: "writings", style: "help-command" },
+    { text: "-> Read my writings.", style: "help-desc" },
+    { text: "contact", style: "help-command" },
+    { text: "-> Reach out to me.", style: "help-desc" },
+  ];
+  let delay = 80;
+  const charDelay = 16;
+  const lineGap = 65;
+
+  lines.forEach(function (line) {
+    const duration = addTypedLine(line.text, line.style, delay, charDelay);
+    delay += duration + lineGap;
+  });
+
+  setTimeout(function () {
+    scrollToBottom();
+  }, delay + 50);
 }
 
 
