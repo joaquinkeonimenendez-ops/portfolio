@@ -4,6 +4,8 @@ const command = document.getElementById("typer");
 const textarea = document.getElementById("texter");
 const terminal = document.getElementById("terminal");
 const contentscroll = document.getElementById("contentscroll");
+const projectsOverlay = document.getElementById("projects-overlay");
+const projectsOverlayClose = document.getElementById("projects-overlay-close");
 
 let git = 0;
 let pw = false;
@@ -15,6 +17,18 @@ function scrollToBottom() {
   if (contentscroll) {
     contentscroll.scrollTop = contentscroll.scrollHeight;
   }
+}
+
+function openProjectsOverlay() {
+  if (!projectsOverlay) return;
+  projectsOverlay.hidden = false;
+  projectsOverlay.setAttribute("aria-hidden", "false");
+}
+
+function closeProjectsOverlay() {
+  if (!projectsOverlay) return;
+  projectsOverlay.hidden = true;
+  projectsOverlay.setAttribute("aria-hidden", "true");
 }
 
 const commandMap = {
@@ -37,6 +51,12 @@ window.addEventListener("keydown", function () {
   scrollToBottom();
 });
 
+window.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    closeProjectsOverlay();
+  }
+});
+
 document.addEventListener("click", function () {
   textarea.focus();
   scrollToBottom();
@@ -46,6 +66,14 @@ terminal.addEventListener("click", function () {
   textarea.focus();
   scrollToBottom();
 });
+
+if (projectsOverlayClose) {
+  projectsOverlayClose.addEventListener("click", function () {
+    closeProjectsOverlay();
+    textarea.focus();
+    scrollToBottom();
+  });
+}
 
 textarea.addEventListener("input", scrollToBottom);
 
@@ -97,7 +125,7 @@ function enterKey(e) {
 function commander(cmd) {
   switch (cmd.toLowerCase()) {
     case "begin":
-      loopLines(projects, "color2 margin", 80);
+      openProjectsOverlay();
       break;
     default:
       const closest = findClosestCommand(cmd);
