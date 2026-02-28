@@ -27,7 +27,6 @@
   --color-spotify-icon: #1db954;
   --color-spotify-text: #fff;
   --color-spotify-track-info: #7ae0ca;
-  --background-image: url("assets/438198.webp");
 
   /* Typography */
   --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
@@ -38,29 +37,7 @@
   --step-3: clamp(1.944rem, 1.771rem + 0.8651vw, 2.4414rem);
   --step-4: clamp(2.3328rem, 2.0827rem + 1.2504vw, 3.0518rem);
   --step-5: clamp(2.7994rem, 2.4462rem + 1.7658vw, 3.8147rem);
-  --step-ascii: clamp(1.125rem, 0.916rem + 1.4435vw, 3.0518rem);
-}
-
-/* Anime Theme */
-.theme-anime {
-  --color-primary: #9ccfd8;
-  --color-secondary: #907aa9;
-  --color-tertiary: #c9cadd;
-  --color-background: #9ccfd8;
-  --color-background-overlay: rgba(33, 24, 48, 0.7);
-  --color-accent: #b4637a;
-  --color-danger: #eb6f92;
-  --color-hover: #c9cadd;
-  --color-shadow: rgba(33, 24, 48, 0.4);
-  --color-command: #31748f;
-  --color-error: #6d71b9d9;
-  --color-white: #fff;
-  --color-spotify-bg: rgba(33, 24, 48, 0.65);
-  --color-spotify-border: #9ccfd8;
-  --color-spotify-icon: #31748f;
-  --color-spotify-text: #fff;
-  --color-spotify-track-info: #c9cadd;
-  --background-image: url("assets/beautifullanimestreetscenerycherryblossom.webp");
+  --step-ascii: clamp(0.98rem, 0.86rem + 1.05vw, 2.35rem);
 }
 
 a {
@@ -73,9 +50,6 @@ a:hover {
 
 body {
   background-color: var(--color-background);
-  background-image: var(--background-image);
-  background-attachment: scroll;
-  background-size: cover;
   color: var(--color-secondary);
   -moz-text-size-adjust: auto;
   -webkit-text-size-adjust: auto;
@@ -84,7 +58,19 @@ body {
   font-family: "FantasqueSansMono";
 }
 
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .terminal-window {
+  position: relative;
+  z-index: 1;
   border: 1px solid var(--color-primary);
   background-color: var(--color-background-overlay);
   border-radius: 4px;
@@ -390,6 +376,12 @@ pre {
   white-space: pre-wrap !important;
   word-break: break-word;
   overflow-wrap: break-word;
+}
+
+pre.ascii {
+  white-space: pre !important;
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 a {
