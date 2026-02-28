@@ -64,7 +64,7 @@ let thoughts = [
 
 let thoughtsAutomation = [
   "<br>",
-  `<span class='underline'>Brief thoughts on automation</span>`,
+  `<span class='underline'>Brief thoughts on automation - 1/25/26</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
 ai POWERED automation systems are overrated and expensive 
 but ai GENERATED automation systems are so fucking overpowered
