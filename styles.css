@@ -42,7 +42,37 @@
   --step-3: clamp(1.944rem, 1.771rem + 0.8651vw, 2.4414rem);
   --step-4: clamp(2.3328rem, 2.0827rem + 1.2504vw, 3.0518rem);
   --step-5: clamp(2.7994rem, 2.4462rem + 1.7658vw, 3.8147rem);
-  --step-ascii: clamp(0.86rem, 0.78rem + 0.8vw, 1.95rem);
+  --step-ascii: 1.55rem;
+}
+
+@media (max-width: 1600px) {
+  :root {
+    --step-ascii: 1.4rem;
+  }
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --step-ascii: 1.24rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --step-ascii: 1.08rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --step-ascii: 0.95rem;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --step-ascii: 0.82rem;
+  }
 }
 
 a {
@@ -118,7 +148,7 @@ header {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding: 10px 12px 0 12px;
+  padding: 10px 22px 0 22px;
   position: relative;
   font-size: var(--step-0);
   font-family: "FantasqueSansMono";
@@ -132,6 +162,7 @@ hr {
   color: #b7dcff;
   font-weight: 700;
   white-space: nowrap;
+  margin-left: 12px;
 }
 
 .top-nav {
@@ -248,19 +279,28 @@ hr {
 .content-container {
   display: flex;
   flex-direction: row;
-  gap: 9rem; /* space between ASCII and profile */
-  flex-wrap: wrap; /* allows wrapping on small screens */
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  margin-bottom: 0.35rem;
 }
 
 .ascii-Hero {
+  display: flex;
+  align-items: flex-start;
   flex-shrink: 0; /* prevent shrinking */
+  margin-top: 2rem;
 }
 
 .cat-panel {
   display: flex;
   align-items: center;
-  max-width: 400px;
-  padding: var(--step-2);
+  max-width: none;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0.55rem;
+  margin-left: 0.35rem;
+  transform: none;
 }
 
 .ascii-cat-wrapper {
@@ -289,17 +329,27 @@ hr {
   .content-container {
     flex-direction: column;
     gap: 0rem; /* space between ASCII and profile */
+    flex-wrap: wrap;
+    margin-bottom: 0.9rem;
   }
   .profile-info {
     padding-top: var(--step--2);
   }
 
   .cat-panel {
-    padding-top: var(--step--2);
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: 0.4rem;
+    margin-left: 0;
+    transform: translateY(-1rem);
   }
 
   .spotify-panel {
     float: left;
+  }
+
+  #terminal {
+    margin-top: 0.55rem;
   }
 }
 
@@ -307,9 +357,10 @@ hr {
 #terminal {
   height: 55vh;
   width: 60%;
-  padding-left: var(--step-0);
+  padding-left: var(--step-2);
   font-size: var(--step-0);
   position: relative;
+  margin-top: -0.35rem;
 }
 
 #terminal p {
@@ -324,6 +375,7 @@ hr {
   #terminal {
     height: 38vh;
     width: 100%;
+    margin-top: 0rem;
   }
 }
 
@@ -489,7 +541,7 @@ hr {
 
 .bottom-bar .spotify-panel {
   pointer-events: auto;
-  margin: 15px;
+  margin: 15px 24px 15px 15px;
 }
 
 #cursor-cat-gif {
