@@ -193,8 +193,9 @@ function commander(cmd) {
 function handleThoughtsInput(cmd) {
   switch (cmd) {
     case "1":
-      loopLines(thoughtsAutomation, "", commandLineDelay);
-      addLine("<br>", "", (thoughtsAutomation.length + 1) * commandLineDelay);
+      const automationWithMenu = thoughtsAutomation.concat(thoughts);
+      loopLines(automationWithMenu, "", commandLineDelay);
+      addLine("<br>", "", (automationWithMenu.length + 1) * commandLineDelay);
       break;
     case "q":
       isThoughtsMode = false;
