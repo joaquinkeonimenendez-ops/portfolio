@@ -4,6 +4,7 @@ const command = document.getElementById("typer");
 const textarea = document.getElementById("texter");
 const terminal = document.getElementById("terminal");
 const contentscroll = document.getElementById("contentscroll");
+const asciiCatFrame = document.getElementById("ascii-cat-frame");
 
 let git = 0;
 let pw = false;
@@ -20,6 +21,8 @@ setTimeout(function () {
   textarea.focus();
   scrollToBottom();
 }, 100);
+
+startAsciiCatBlinkAnimation();
 
 window.addEventListener("keyup", function (e) {
   enterKey(e);
@@ -142,4 +145,43 @@ function loopLines(name, style, time) {
     },
     name.length * time + 50,
   );
+}
+
+function startAsciiCatBlinkAnimation() {
+  if (!asciiCatFrame) return;
+
+  const catEyesClosed = `             ＿＿
+　　　　 　＞　 　フ  
+　　　　　| 　_　 _| 
+　 　　　／\` ミ_wノ
+　　 　 /　　　 　 |
+　　　 /　 ヽ　　 ﾉ
+　 　 │　　|　|　|
+　／￣|　　 |　|　|
+　| (￣ヽ＿_ヽ_)__)
+　＼二つ`;
+
+  const catEyesOpen = `             ＿＿
+　　　　 　＞　 　フ  
+　　　　　| 　o　 o| 
+　 　　　／\` ミ_wノ
+　　 　 /　　　 　 |
+　　　 /　 ヽ　　 ﾉ
+　 　 │　　|　|　|
+　／￣|　　 |　|　|
+　| (￣ヽ＿_ヽ_)__)
+　＼二つ`;
+
+  asciiCatFrame.textContent = catEyesClosed;
+
+  const animateBlink = function () {
+    asciiCatFrame.textContent = catEyesOpen;
+    setTimeout(function () {
+      asciiCatFrame.textContent = catEyesClosed;
+      const nextPause = 2200 + Math.floor(Math.random() * 1800);
+      setTimeout(animateBlink, nextPause);
+    }, 260);
+  };
+
+  setTimeout(animateBlink, 1800);
 }
