@@ -321,6 +321,14 @@ hr {
   color: var(--color-command);
 }
 
+.help-command {
+  color: var(--color-command);
+}
+
+.help-desc {
+  color: #8285c1f0;
+}
+
 .command {
   color: var(--color-command);
   text-shadow: 0 0 5px var(--color-command);
