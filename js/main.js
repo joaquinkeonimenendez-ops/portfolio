@@ -17,11 +17,11 @@ const clearBeforeCommands = new Set([
   "projects",
   "contact",
   "social",
-  "help",
+  "home",
 ]);
 const commandLineDelay = 80;
-const helpHintText =
-  '<span class="cli-run-command cli-run-item" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
+const homeHintText =
+  '<span class="cli-run-command cli-run-item" data-run-command="home">← Back<br>(Type <u>home</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = ">";
 
@@ -57,7 +57,7 @@ setTimeout(function () {
   scrollToBottom();
 
   setTimeout(function () {
-    autoTypeAndSubmitCommand("help");
+    autoTypeAndSubmitCommand("home");
   }, banner.length * 80 + 250);
 }, 100);
 
@@ -154,10 +154,10 @@ function commander(cmd) {
     clearTerminalLines();
   }
   switch (cmd) {
-    case "help":
-      outputLines = help.length;
+    case "home":
+      outputLines = home.length;
       showFooterHint = false;
-      loopLines(help, "", commandLineDelay);
+      loopLines(home, "", commandLineDelay);
       break;
     case "about":
     case "aboutme":
@@ -178,7 +178,7 @@ function commander(cmd) {
       showFooterHint = false;
       addLine("<br>", "", commandLineDelay);
       addLine(
-        "Unknown command - Type <u>help</u> to see a list of supported commands",
+        "Unknown command - Type <u>home</u> to see a list of supported commands",
         "output-blue",
         commandLineDelay * 2,
       );
@@ -186,7 +186,7 @@ function commander(cmd) {
   }
   if (showFooterHint) {
     addLine("<br>", "", (outputLines + 1) * commandLineDelay);
-    addLine(helpHintText, "tertiary", (outputLines + 2) * commandLineDelay);
+    addLine(homeHintText, "tertiary", (outputLines + 2) * commandLineDelay);
     addLine("<br>", "", (outputLines + 3) * commandLineDelay);
   } else {
     addLine("<br>", "", (outputLines + 1) * commandLineDelay);
@@ -207,7 +207,7 @@ function handleThoughtsInput(cmd) {
       addLine("Exited thoughts.", "output-blue", commandLineDelay);
       addLine("<br>", "", commandLineDelay * 2);
       setTimeout(function () {
-        autoTypeAndSubmitCommand("help");
+        autoTypeAndSubmitCommand("home");
       }, commandLineDelay * 3);
       break;
     default:

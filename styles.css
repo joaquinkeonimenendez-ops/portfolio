@@ -371,15 +371,15 @@ hr {
   color: var(--color-secondary);
 }
 
-.help-command {
+.home-command {
   color: var(--color-command);
 }
 
-.help-desc {
+.home-desc {
   color: var(--color-command);
 }
 
-.help-white {
+.home-white {
   color: var(--color-command);
 }
 
@@ -407,8 +407,8 @@ hr {
 
 .cli-run-command:hover .command,
 .cli-run-command:focus-visible .command,
-.cli-run-command:hover .help-item-desc,
-.cli-run-command:focus-visible .help-item-desc {
+.cli-run-command:hover .home-item-desc,
+.cli-run-command:focus-visible .home-item-desc {
   color: var(--color-primary);
 }
 
@@ -419,7 +419,7 @@ hr {
   padding: 0 2px;
 }
 
-.help-item-desc {
+.home-item-desc {
   color: var(--color-command);
 }
 
