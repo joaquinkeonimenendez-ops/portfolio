@@ -14,7 +14,7 @@
   --color-secondary: #84bfff;
   --color-tertiary: #9abfe3;
   --color-background: #344668;
-  --color-background-overlay: #0f27405f;
+  --color-background-overlay: #0f274045;
   --color-accent: #ff786d;
   --color-danger: #d64b83;
   --color-hover: #c4e0ffcc;
@@ -145,12 +145,6 @@ hr {
 .top-nav a:focus-visible {
   color: var(--color-primary);
   background-color: rgba(157, 208, 255, 0.12);
-}
-
-.top-nav a.hover-preview {
-  color: var(--color-primary);
-  background-color: rgba(157, 208, 255, 0.35) !important;
-  box-shadow: inset 0 0 0 1px rgba(157, 208, 255, 0.5);
 }
 
 .top-nav a.active {
@@ -428,17 +422,10 @@ hr {
   background-color: rgba(157, 208, 255, 0.12);
 }
 
-.cli-run-command.hover-preview {
-  color: var(--color-primary);
-  background-color: rgba(157, 208, 255, 0.12);
-}
-
 .cli-run-command:hover .command,
 .cli-run-command:focus-visible .command,
-.cli-run-command.hover-preview .command,
 .cli-run-command:hover .home-item-desc,
-.cli-run-command:focus-visible .home-item-desc,
-.cli-run-command.hover-preview .home-item-desc {
+.cli-run-command:focus-visible .home-item-desc {
   color: var(--color-primary);
 }
 
