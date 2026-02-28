@@ -12,7 +12,6 @@ let aboutme = [
   `<span class="command">What I do</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">I'm currently building Magnum a CLI tool for selling websites to small businesses and Charcoal a web alternative for Obsidian.md out of personal necessity. Use the projects command to explore further.</pre>`,
   "</div>",
-  "<br>",
 ];
 
 let social = [
@@ -28,7 +27,6 @@ let social = [
     '" target="_blank">twitter.com/joaquinkmenend</a>',
   'phone         <a href="tel:+19256832581">+1 925-683-2581</a>',
   'email         <a href="mailto:joaquinkeonimenendez@gmail.com">joaquinkeonimenendez@gmail.com</a>',
-  "<br>",
 ];
 
 let help = [
@@ -39,7 +37,6 @@ let help = [
   "&#8627; View coding projects.",
   `<span class="command">contact</span>`,
   "&#8627; Lists contact info.",
-  "<br>",
 ];
 
 let projects = [
@@ -55,5 +52,4 @@ Charcoal.md is a markdown-first note-taking web app inspired by Obsidian: simple
 A semi-autonomous web design agency in your command line: autonomous lead generation, lead prequalification, cost-efficient website generation, all funneled into a CRM for AI-assisted outreach, sales calls, and Stripe payments.
 </pre>`,
   "</div>",
-  "<br>",
 ];

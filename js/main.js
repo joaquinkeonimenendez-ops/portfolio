@@ -144,6 +144,7 @@ function commander(cmd) {
       break;
   }
   addLine(helpHintText, "tertiary", (outputLines + 1) * commandLineDelay);
+  addLine("<br>", "", (outputLines + 2) * commandLineDelay);
   scrollToBottom();
 }
 
