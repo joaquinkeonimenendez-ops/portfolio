@@ -7,7 +7,7 @@ var email = "mailto:yewaleprithvi2003@gmail.com";
 
 let banner = [
   `<div id="banner-section" class="banner">
- Ready.
+ Welcome to my portfolio. Type __help__ to get started.
   </div>`,
 ];
 
