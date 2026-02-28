@@ -246,9 +246,8 @@ hr {
 
 #liner {
   line-height: 1.3em;
-  animation: show 0.5s ease forwards;
-  animation-delay: 1.2s;
-  opacity: 0;
+  animation: none;
+  opacity: 1;
 }
 
 #liner::before {
