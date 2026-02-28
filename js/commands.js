@@ -2,11 +2,7 @@ var twitter = "https://twitter.com/joaquinkmenend";
 var instagram = "https://www.instagram.com/joaquinkmenendez/";
 var github = "https://github.com/joaquinkeonimenendez-ops";
 
-let banner = [
-  `<div id="banner-section" class="banner">
- <span class="output-blue">Type help to see a list of supported commands</span>
-  </div>`,
-];
+let banner = [];
 
 let aboutme = [
   "<br>",
