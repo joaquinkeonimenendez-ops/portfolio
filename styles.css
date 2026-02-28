@@ -470,6 +470,17 @@ hr {
 }
 
 @media (max-width: 726px) {
+  #contentscroll {
+    height: auto;
+    max-height: none;
+    overflow-y: visible;
+    overflow-x: hidden;
+  }
+
+  #cursor-cat-gif {
+    display: none !important;
+  }
+
   #terminal {
     height: 38vh;
     width: 100%;

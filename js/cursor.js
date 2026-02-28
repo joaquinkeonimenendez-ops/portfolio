@@ -1,7 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const gif = document.getElementById("cursor-cat-gif");
+  const isMobileWidth = window.matchMedia("(max-width: 726px)").matches;
 
   if (gif) {
+    if (isMobileWidth) {
+      gif.remove();
+      return;
+    }
+
     gif.style.position = "fixed";
     gif.style.pointerEvents = "none";
     gif.style.zIndex = "9999";
