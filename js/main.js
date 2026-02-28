@@ -83,7 +83,7 @@ function commander(cmd) {
     return;
   }
   if (cmd === "help") {
-    typeHelpMenu();
+    loopLines(help, "", 80);
     return;
   }
 
@@ -143,30 +143,3 @@ function loopLines(name, style, time) {
     name.length * time + 50,
   );
 }
-
-function typeHelpMenu() {
-  const lines = [
-    { text: "Supported commands:", style: "help-white" },
-    { text: "about", style: "help-command" },
-    { text: "\u21B3 Learn more about me.", style: "help-desc" },
-    { text: "projects", style: "help-command" },
-    { text: "\u21B3 View my projects.", style: "help-desc" },
-    { text: "contact", style: "help-command" },
-    { text: "\u21B3 Reach out to me.", style: "help-desc" },
-  ];
-  let delay = 80;
-  const lineGap = 120;
-
-  lines.forEach(function (line) {
-    addLine(line.text, line.style, delay);
-    delay += lineGap;
-  });
-
-  setTimeout(function () {
-    scrollToBottom();
-  }, delay + 50);
-}
-
-
-
-

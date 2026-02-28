@@ -11,21 +11,21 @@
   /* Theme variables */
   /* Default theme (Cyber) */
   --color-primary: #79b7ff;
-  --color-secondary: #79b7ff;
-  --color-tertiary: #79b7ff;
+  --color-secondary: #5d91cb;
+  --color-tertiary: #6f86a3;
   --color-background: #2d3955;
   --color-background-overlay: #071a2b6c;
-  --color-accent: #79b7ff;
-  --color-danger: #79b7ff;
-  --color-hover: #79b7ff;
+  --color-accent: #ef4b44;
+  --color-danger: #9d174d;
+  --color-hover: #9fc8ffb3;
   --color-shadow: #1d1e1fb4;
-  --color-command: #79b7ff;
-  --color-output: #b7dcff;
-  --color-error: #79b7ff;
+  --color-command: #78b4ff;
+  --color-output: #78b4ff;
+  --color-error: #6d71b9d9;
   --color-white: #fff;
   --color-spotify-bg: #061826a7;
   --color-spotify-border: #79b7ff;
-  --color-spotify-icon: #79b7ff;
+  --color-spotify-icon: #5da9ff;
   --color-spotify-text: #fff;
   --color-spotify-track-info: #79b7ff;
 
@@ -319,11 +319,11 @@ hr {
 
 /* Colors */
 .index {
-  color: var(--color-command);
+  color: #dcdccc;
 }
 
 .color2 {
-  color: var(--color-command);
+  color: #8285c1f0;
 }
 
 .output-blue {
