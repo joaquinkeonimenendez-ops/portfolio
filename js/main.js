@@ -40,6 +40,7 @@ const commandByHash = {
   "#terminal": "home",
 };
 let isHashSyncing = false;
+let hasRunNavPreviewSequence = false;
 
 function setPromptPrefix(prefix) {
   if (!liner) return;
@@ -76,6 +77,10 @@ setTimeout(function () {
     const initialCommand = getCommandFromHash(window.location.hash) || "home";
     setHashForCommand(initialCommand);
     autoTypeAndSubmitCommand(initialCommand);
+    if (initialCommand === "home") {
+      const autoTypeDuration = initialCommand.length * 110 + 260;
+      setTimeout(runInitialNavPreviewSequence, autoTypeDuration);
+    }
   }, banner.length * 80 + 250);
 }, 100);
 
@@ -246,6 +251,28 @@ function runCommandFromNavigation(cmd) {
   }
   setHashForCommand(cmd);
   autoTypeAndSubmitCommand(cmd);
+}
+
+function runInitialNavPreviewSequence() {
+  if (hasRunNavPreviewSequence) return;
+  hasRunNavPreviewSequence = true;
+
+  const sequence = ["about", "projects", "contact"];
+  const highlightDuration = 170;
+  const stepDelay = 240;
+
+  sequence.forEach(function (cmd, index) {
+    const link = document.querySelector(`.top-nav a[data-command="${cmd}"]`);
+    if (!link) return;
+
+    const startDelay = index * stepDelay;
+    setTimeout(function () {
+      link.classList.add("hover-preview");
+      setTimeout(function () {
+        link.classList.remove("hover-preview");
+      }, highlightDuration);
+    }, startDelay);
+  });
 }
 
 function handleThoughtsInput(cmd) {
