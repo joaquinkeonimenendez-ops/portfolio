@@ -24,6 +24,22 @@ const homeHintText =
   '<span class="cli-run-command cli-run-item" data-run-command="home">← Back<br>(Type <u>home</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = ">";
+const hashByCommand = {
+  home: "#home",
+  about: "#about",
+  aboutme: "#about",
+  projects: "#projects",
+  contact: "#contact",
+  social: "#contact",
+};
+const commandByHash = {
+  "#home": "home",
+  "#about": "about",
+  "#projects": "projects",
+  "#contact": "contact",
+  "#terminal": "home",
+};
+let isHashSyncing = false;
 
 function setPromptPrefix(prefix) {
   if (!liner) return;
@@ -57,7 +73,9 @@ setTimeout(function () {
   scrollToBottom();
 
   setTimeout(function () {
-    autoTypeAndSubmitCommand("home");
+    const initialCommand = getCommandFromHash(window.location.hash) || "home";
+    setHashForCommand(initialCommand);
+    autoTypeAndSubmitCommand(initialCommand);
   }, banner.length * 80 + 250);
 }, 100);
 
@@ -77,11 +95,7 @@ terminal.addEventListener("click", function (e) {
     e.preventDefault();
     const cmd = runCommandElement.getAttribute("data-run-command");
     if (!cmd) return;
-    if (isThoughtsMode) {
-      isThoughtsMode = false;
-      setPromptPrefix(defaultPrompt);
-    }
-    autoTypeAndSubmitCommand(cmd);
+    runCommandFromNavigation(cmd);
     return;
   }
   focusInput();
@@ -92,12 +106,15 @@ navCommandLinks.forEach(function (link) {
     e.preventDefault();
     const cmd = link.getAttribute("data-command");
     if (!cmd) return;
-    if (isThoughtsMode) {
-      isThoughtsMode = false;
-      setPromptPrefix(defaultPrompt);
-    }
-    autoTypeAndSubmitCommand(cmd);
+    runCommandFromNavigation(cmd);
   });
+});
+
+window.addEventListener("hashchange", function () {
+  if (isHashSyncing) return;
+  const cmd = getCommandFromHash(window.location.hash);
+  if (!cmd) return;
+  runCommandFromNavigation(cmd);
 });
 
 textarea.value = "";
@@ -155,21 +172,25 @@ function commander(cmd) {
   }
   switch (cmd) {
     case "home":
+      setHashForCommand("home");
       outputLines = home.length;
       showFooterHint = false;
       loopLines(home, "", commandLineDelay);
       break;
     case "about":
     case "aboutme":
+      setHashForCommand("about");
       outputLines = aboutme.length;
       loopLines(aboutme, "", commandLineDelay);
       break;
     case "projects":
+      setHashForCommand("projects");
       outputLines = projects.length;
       loopLines(projects, "", commandLineDelay);
       break;
     case "contact":
     case "social":
+      setHashForCommand("contact");
       outputLines = social.length;
       loopLines(social, "", commandLineDelay);
       break;
@@ -192,6 +213,39 @@ function commander(cmd) {
     addLine("<br>", "", (outputLines + 1) * commandLineDelay);
   }
   scrollToBottom();
+}
+
+function getCommandFromHash(hashValue) {
+  return commandByHash[(hashValue || "").toLowerCase()] || null;
+}
+
+function setActiveNavCommand(cmd) {
+  navCommandLinks.forEach(function (link) {
+    const linkCommand = link.getAttribute("data-command");
+    link.classList.toggle("active", linkCommand === cmd);
+  });
+}
+
+function setHashForCommand(cmd) {
+  const nextHash = hashByCommand[cmd];
+  if (!nextHash) return;
+  setActiveNavCommand(cmd);
+  if (window.location.hash === nextHash) return;
+  isHashSyncing = true;
+  window.location.hash = nextHash;
+  setTimeout(function () {
+    isHashSyncing = false;
+  }, 0);
+}
+
+function runCommandFromNavigation(cmd) {
+  if (!cmd) return;
+  if (isThoughtsMode) {
+    isThoughtsMode = false;
+    setPromptPrefix(defaultPrompt);
+  }
+  setHashForCommand(cmd);
+  autoTypeAndSubmitCommand(cmd);
 }
 
 function handleThoughtsInput(cmd) {

@@ -147,6 +147,11 @@ hr {
   background-color: rgba(157, 208, 255, 0.12);
 }
 
+.top-nav a.active {
+  color: var(--color-primary);
+  background-color: rgba(157, 208, 255, 0.18);
+}
+
 @media (max-width: 726px) {
   header {
     flex-wrap: wrap;
