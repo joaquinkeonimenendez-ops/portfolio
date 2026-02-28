@@ -43,10 +43,6 @@ window.addEventListener("keyup", function (e) {
   enterKey(e);
 });
 
-window.addEventListener("keydown", function () {
-  focusInput();
-});
-
 document.addEventListener("click", function () {
   focusInput();
 });
@@ -68,8 +64,6 @@ textarea.value = "";
 command.innerHTML = textarea.value;
 
 function enterKey(e) {
-  focusInput();
-
   if (e.keyCode === 13) {
     const input = command.innerHTML.trim().toLowerCase();
     addLine("[keoni@me]~$ " + command.innerHTML, "no-animation", 0);
