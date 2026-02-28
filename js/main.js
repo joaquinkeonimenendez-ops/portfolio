@@ -22,7 +22,7 @@ const clearBeforeCommands = new Set([
 ]);
 const commandLineDelay = 80;
 const helpHintText =
-  "(Type <u>help</u> to see a list of supported commands)";
+  "(Type <u>help</u> to return to the list of supported commands)";
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = ">";
 
@@ -174,7 +174,7 @@ function commander(cmd) {
       showFooterHint = false;
       addLine("<br>", "", commandLineDelay);
       addLine(
-        "Unknown command - Type <u>help</u> to see a list of supported commands",
+        "Unknown command - Type <u>help</u> to return to the list of supported commands",
         "output-blue",
         commandLineDelay * 2,
       );
