@@ -30,6 +30,8 @@ let social = [
   'twitter       <a href="' +
     twitter +
     '" target="_blank">twitter.com/joaquinkmenend</a>',
+  'phone         <a href="tel:+19256832581">+1 925-683-2581</a>',
+  'email         <a href="mailto:joaquinkeonimenendez@gmail.com">joaquinkeonimenendez@gmail.com</a>',
   "<br>",
 ];
 
