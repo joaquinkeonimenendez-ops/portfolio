@@ -46,20 +46,14 @@ let social = [
 
 let help = [
   `<br><div id="help-section"><pre class="whitespace-pre-wrap">
-<span class="command">aboutme</span>
-↳ Displays who I am?
-<span class="command">social</span>
-↳ Lists social networks.
+<span class="command">about</span>
+&#8627; Displays who I am.
 <span class="command">projects</span>
-↳ View coding projects.
-<span class="command">email</span>
-↳ To send me an email.
-<span class="command">history</span>
-↳ View command history.
+&#8627; View coding projects.
+<span class="command">contact</span>
+&#8627; Lists contact links.
 <span class="command">help</span>
-↳ Displays this help message.
-<span class="command">clear</span>
-↳ Clear the terminal.
+&#8627; Displays this help message.
 </pre></div><br>`,
 ];
 let projects = [
@@ -77,4 +71,5 @@ A semi-autonomous web design agency in your command line: autonomous lead genera
   "</div>",
   "<br>",
 ];
+
 
