@@ -43,7 +43,7 @@ let projects = [
   "<br>",
   `<div id="projects-section">`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Charcoal.md - A markdown based note taking webapp inspired by Obsidian. Built for people who can't install desktop apps on work/school devices or don't want to pay for Obsidian sync.
+Charcoal.md - A markdown based note-taking webapp inspired by Obsidian. Built for people who can't install desktop apps on work/school devices or don't want to pay for Obsidian sync.
 </pre>`,
 
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
