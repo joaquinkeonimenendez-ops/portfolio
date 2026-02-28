@@ -422,10 +422,20 @@ hr {
   background-color: rgba(157, 208, 255, 0.12);
 }
 
+.cli-run-command.cli-preview-active {
+  color: var(--color-primary);
+  background-color: rgba(157, 208, 255, 0.12);
+}
+
 .cli-run-command:hover .command,
 .cli-run-command:focus-visible .command,
 .cli-run-command:hover .home-item-desc,
 .cli-run-command:focus-visible .home-item-desc {
+  color: var(--color-primary);
+}
+
+.cli-run-command.cli-preview-active .command,
+.cli-run-command.cli-preview-active .home-item-desc {
   color: var(--color-primary);
 }
 
