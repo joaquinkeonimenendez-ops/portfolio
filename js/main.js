@@ -24,15 +24,12 @@ const commandMap = {
   social: "social",
   email: "email",
   history: "history",
-  sudo: "sudo",
   clear: "clear",
   dev: "dev",
   twitter: "twitter",
   linkedin: "linkedin",
   instagram: "instagram",
   github: "github",
-  snake: "snake",
-  exit: "exit",
 };
 
 setTimeout(function () {
@@ -69,28 +66,6 @@ command.innerHTML = textarea.value;
 function enterKey(e) {
   textarea.focus();
   scrollToBottom();
-
-  if (e.keyCode === 181) {
-    document.location.reload(true);
-  }
-
-  if (e.key === "Tab") {
-    e.preventDefault();
-    const partial = textarea.value.toLowerCase();
-    const matches = Object.keys(commandMap).filter((cmd) =>
-      cmd.startsWith(partial),
-    );
-    if (matches.length === 1) {
-      textarea.value = matches[0];
-      command.innerHTML = matches[0];
-    } else if (matches.length > 1) {
-      addLine("<br>", "", 0);
-      loopLines(matches, "color2", 80);
-      addLine("<br>", "", matches.length * 80 + 100);
-    }
-    scrollToBottom();
-    return;
-  }
 
   if (e.keyCode === 13) {
     const input = command.innerHTML.trim().toLowerCase();
@@ -194,13 +169,6 @@ function commander(cmd) {
       addLine("Opening GitHub...", "color2", 0);
       newTab(github);
       break;
-    case "sudo":
-      addLine("Oh no, you're not an admin...", "color2", 0);
-      newTab(sudo);
-      break;
-    case "snake":
-      runSnakeGame();
-      break;
     default:
       const closest = findClosestCommand(cmd);
       if (closest) {
@@ -218,14 +186,7 @@ function commander(cmd) {
           100,
         );
       }
-      break;
-
-    case "quit":
-    case "logout":
-    case "exit":
-      addLine("👋 Session terminated.", "color2", 0);
-      setTimeout(close_window, 500);
-      break;
+      break;
   }
   scrollToBottom();
 }
@@ -311,114 +272,5 @@ function levenshtein(a, b) {
   }
   return matrix[a.length][b.length];
 }
+
 
-function runSnakeGame() {
-  const width = 20,
-    height = 10;
-  let snake = [{ x: 5, y: 5 }];
-  let food = { x: 10, y: 5 };
-  let dir = "right";
-  let score = 0;
-  let interval;
-  let gameElement;
-
-  function draw() {
-    let screen = `Score: ${score}\n`;
-    for (let y = 0; y < height; y++) {
-      let row = "";
-      for (let x = 0; x < width; x++) {
-        if (x === food.x && y === food.y) row += "*";
-        else if (snake.some((s) => s.x === x && s.y === y)) row += "O";
-        else row += ".";
-      }
-      screen += row + "\n";
-    }
-
-    if (!gameElement) {
-      gameElement = document.createElement("p");
-      gameElement.className = "color2";
-      gameElement.innerHTML = `<pre>${screen}</pre>`;
-      before.parentNode.insertBefore(gameElement, before);
-    } else {
-      gameElement.innerHTML = `<pre>${screen}</pre>`;
-    }
-
-    contentscroll.scrollTop = contentscroll.scrollHeight;
-  }
-
-  function move() {
-    const head = { ...snake[0] };
-    switch (dir) {
-      case "up":
-        head.y--;
-        break;
-      case "down":
-        head.y++;
-        break;
-      case "left":
-        head.x--;
-        break;
-      case "right":
-        head.x++;
-        break;
-    }
-
-    if (
-      head.x < 0 ||
-      head.x >= width ||
-      head.y < 0 ||
-      head.y >= height ||
-      snake.some((s) => s.x === head.x && s.y === head.y)
-    ) {
-      clearInterval(interval);
-      gameElement.innerHTML += `<br><span class="error">💀 Game Over! Final Score: ${score}</span>`;
-      window.removeEventListener("keydown", keyHandler);
-      return;
-    }
-
-    snake.unshift(head);
-    if (head.x === food.x && head.y === food.y) {
-      score++;
-      food = {
-        x: Math.floor(Math.random() * width),
-        y: Math.floor(Math.random() * height),
-      };
-    } else {
-      snake.pop();
-    }
-
-    draw();
-  }
-
-  function keyHandler(e) {
-    switch (e.key) {
-      case "ArrowUp":
-        if (dir !== "down") dir = "up";
-        break;
-      case "ArrowDown":
-        if (dir !== "up") dir = "down";
-        break;
-      case "ArrowLeft":
-        if (dir !== "right") dir = "left";
-        break;
-      case "ArrowRight":
-        if (dir !== "left") dir = "right";
-        break;
-      case "Escape":
-      case "q":
-        clearInterval(interval);
-        window.removeEventListener("keydown", keyHandler);
-        gameElement.innerHTML += `<br><span class="color2">🛑 Snake game exited.</span>`;
-        break;
-    }
-  }
-
-  window.addEventListener("keydown", keyHandler);
-  addLine(
-    "🎮 Starting Snake game... Use arrow keys to move. 'q' or Esc to quit.",
-    "color2",
-    0,
-  );
-  draw();
-  interval = setInterval(move, 250);
-}

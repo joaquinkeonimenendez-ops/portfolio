@@ -3,7 +3,6 @@ var twitter = "https://twitter.com/PrithviYewale";
 var linkedin = "https://www.linkedin.com/in/prithvi-yewale-a77275228/";
 var instagram = "https://www.instagram.com/prithvi_yewale/";
 var github = "https://github.com/cosmicwanderer7";
-var sudo = "https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1";
 var email = "mailto:yewaleprithvi2003@gmail.com";
 
 let banner = [
@@ -59,14 +58,8 @@ let help = [
 ↳ View command history.
 <span class="command">help</span>
 ↳ Displays this help message.
-<span class="command">sudo</span>
-↳ Try it out for yourself.
-<span class="command">snake</span>
-↳ Run Snake Game.
 <span class="command">clear</span>
 ↳ Clear the terminal.
-<span class="command">exit</span>
-↳ Close the terminal tab.
 </pre></div><br>`,
 ];
 let projects = [
@@ -130,3 +123,4 @@ Built With:
   "</div>",
   "<br>",
 ];
+
