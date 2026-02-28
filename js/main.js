@@ -92,22 +92,6 @@ function enterKey(e) {
     return;
   }
 
-  if (e.ctrlKey && e.key === "r") {
-    e.preventDefault();
-    const search = prompt("Reverse search:");
-    const match = commands
-      .slice()
-      .reverse()
-      .find((cmd) => cmd.includes(search));
-    if (match) {
-      textarea.value = match;
-      command.innerHTML = match;
-    } else {
-      addLine("No match found in history.", "error", 100);
-    }
-    scrollToBottom();
-  }
-
   if (e.keyCode === 13) {
     const input = command.innerHTML.trim().toLowerCase();
     addLine("[prithvi@archrx5500m]~$" + command.innerHTML, "no-animation", 0);
