@@ -124,11 +124,11 @@ function commander(cmd) {
   if (!cmd) {
     return;
   }
-  if (isThoughtsMode && ["1", "2", "q"].includes(cmd)) {
+  if (isThoughtsMode && ["1", "q"].includes(cmd)) {
     handleThoughtsInput(cmd);
     return;
   }
-  if (isThoughtsMode && !["1", "2", "q"].includes(cmd)) {
+  if (isThoughtsMode && !["1", "q"].includes(cmd)) {
     if (!topLevelCommands.has(cmd)) {
       handleThoughtsInput(cmd);
       return;
@@ -196,10 +196,6 @@ function handleThoughtsInput(cmd) {
       loopLines(thoughtsAutomation, "", commandLineDelay);
       addLine("<br>", "", (thoughtsAutomation.length + 1) * commandLineDelay);
       break;
-    case "2":
-      loopLines(thoughtsAI, "", commandLineDelay);
-      addLine("<br>", "", (thoughtsAI.length + 1) * commandLineDelay);
-      break;
     case "q":
       isThoughtsMode = false;
       setPromptPrefix(defaultPrompt);
@@ -207,7 +203,7 @@ function handleThoughtsInput(cmd) {
       addLine("<br>", "", commandLineDelay * 2);
       break;
     default:
-      addLine("Invalid choice. Enter 1, 2, or q.", "output-blue", commandLineDelay);
+      addLine("Invalid choice. Enter 1 or q.", "output-blue", commandLineDelay);
       addLine("<br>", "", commandLineDelay * 2);
       break;
   }
