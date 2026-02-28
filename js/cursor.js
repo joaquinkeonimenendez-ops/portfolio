@@ -7,9 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
     gif.style.zIndex = "9999";
     gif.style.width = "64px";
     gif.style.height = "auto";
+    gif.style.opacity = "0";
+    let isCursorVisible = false;
 
     // Move handler
     const moveGif = (x, y) => {
+      if (!isCursorVisible) {
+        gif.style.opacity = "1";
+        isCursorVisible = true;
+      }
       gif.style.left = `${x + 10}px`;
       gif.style.top = `${y + 10}px`;
     };
