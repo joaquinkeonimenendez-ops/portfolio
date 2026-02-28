@@ -27,6 +27,7 @@ const thoughtsPrompt = ">";
 let hasRunNavPreviewSequence = false;
 let shouldRunNavPreviewOnNextHome = false;
 let cliPreviewRetryCount = 0;
+const cliPreviewStartDelayExtra = 260;
 
 function setPromptPrefix(prefix) {
   if (!liner) return;
@@ -66,7 +67,10 @@ setTimeout(function () {
     autoTypeAndSubmitCommand(initialCommand);
     if (initialCommand === "home") {
       // Fallback trigger in case command timing shifts on slower/fast devices.
-      setTimeout(runInitialNavPreviewSequence, 900);
+      setTimeout(
+        runInitialNavPreviewSequence,
+        900 + cliPreviewStartDelayExtra,
+      );
     }
   }, banner.length * 80 + 250);
 }, 100);
@@ -165,7 +169,8 @@ function commander(cmd) {
         shouldRunNavPreviewOnNextHome = false;
         setTimeout(
           runInitialNavPreviewSequence,
-          Math.max(120, outputLines * commandLineDelay),
+          Math.max(120, outputLines * commandLineDelay) +
+            cliPreviewStartDelayExtra,
         );
       }
       break;
