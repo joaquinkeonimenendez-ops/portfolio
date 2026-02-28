@@ -21,8 +21,7 @@ const clearBeforeCommands = new Set([
 ]);
 const commandLineDelay = 80;
 const helpHintText =
-  '<span class="cli-run-command cli-run-item" data-run-command="help">(Type <u>help</u> to return to the list of supported commands)</span>';
-const helpBackText = "← back";
+  '<span class="cli-run-command cli-run-item" data-run-command="help">← back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = ">";
 
@@ -187,9 +186,8 @@ function commander(cmd) {
   }
   if (showFooterHint) {
     addLine("<br>", "", (outputLines + 1) * commandLineDelay);
-    addLine(helpBackText, "tertiary", (outputLines + 2) * commandLineDelay);
-    addLine(helpHintText, "tertiary", (outputLines + 3) * commandLineDelay);
-    addLine("<br>", "", (outputLines + 4) * commandLineDelay);
+    addLine(helpHintText, "tertiary", (outputLines + 2) * commandLineDelay);
+    addLine("<br>", "", (outputLines + 3) * commandLineDelay);
   } else {
     addLine("<br>", "", (outputLines + 1) * commandLineDelay);
   }
