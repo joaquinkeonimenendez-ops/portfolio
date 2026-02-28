@@ -228,8 +228,8 @@ function runInitialNavPreviewSequence() {
   if (hasRunNavPreviewSequence) return;
 
   const sequence = ["about", "projects", "contact"];
-  const highlightDuration = 180;
-  const stepDelay = 220;
+  const highlightDuration = 60;
+  const stepDelay = 75;
   let foundAny = false;
 
   sequence.forEach(function (cmd, index) {
