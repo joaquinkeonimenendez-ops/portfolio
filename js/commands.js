@@ -69,12 +69,12 @@ let projects = [
   `<div id="projects-section">`,
   `<span class='underline'>Charcoal.md</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-A web based alternative to the markdown notes app Obsidian. For those who can't install desktop apps on work/school devices and want a cleaner, faster option than notion.
+Charcoal.md is a markdown-first note-taking web app inspired by Obsidian: simple, fast, and file-first. Built for people who can't install desktop apps on work/school devices and want a cleaner, faster alternative to Notion.
 </pre>`,
 
-  `<span class='underline'>Website Sales CLI</span>`,
+  `<span class='underline'>Magnum CLI Tool</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Finds thousands of businesses that lack a website and generates one for them complete with real contact info, hours, photos, and reviews. Funnels them all into an easy to use CRM to call each business with one click, text them the website link, and recieve payments via Stripe.
+A semi-autonomous web design agency in your command line: autonomous lead generation, lead prequalification, cost-efficient website generation, all funneled into a CRM for AI-assisted outreach, sales calls, and Stripe payments.
 </pre>`,
   "</div>",
   "<br>",
