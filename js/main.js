@@ -92,7 +92,11 @@ function commander(cmd) {
     return;
   }
 
-  addLine("HI", "output-blue", 80);
+  addLine(
+    "Unknown command - Type help to see a list of supported commands",
+    "output-blue",
+    80,
+  );
   scrollToBottom();
 }
 
