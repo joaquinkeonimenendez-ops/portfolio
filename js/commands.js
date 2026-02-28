@@ -49,7 +49,7 @@ Charcoal.md - A markdown based note taking webapp inspired by Obsidian. Built fo
 </pre>`,
 
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Magnum - A semi autonomous web design agency in your command line: autonomous lead generation, lead prequalification, cost efficient website generation, all funneled into a CRM for AI-assisted outreach, sales calls, and Stripe payments.
+Magnum - Scrapes thousands of businesses on google maps that lack websites, researches and generates websites talored to each business, funnels it into a CRM with one click deployment, calls, and Stripe payments. Website templates are recycled so no cost is associated with failling to make a sale.
 </pre>`,
   "</div>",
 ];
