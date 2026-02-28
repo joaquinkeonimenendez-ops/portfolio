@@ -19,7 +19,8 @@ const clearBeforeCommands = new Set([
   "help",
 ]);
 const commandLineDelay = 80;
-const helpHintText = "(Type help to see a list of supported commands)";
+const helpHintText =
+  '(Type <span class="underline">help</span> to see a list of supported commands)';
 
 function focusInput() {
   if (!textarea) return;
@@ -137,7 +138,7 @@ function commander(cmd) {
     default:
       outputLines = 1;
       addLine(
-        "Unknown command - Type help to see a list of supported commands",
+        'Unknown command - Type <span class="underline">help</span> to see a list of supported commands',
         "output-blue",
         commandLineDelay,
       );
