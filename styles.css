@@ -20,6 +20,7 @@
   --color-hover: #79b7ff;
   --color-shadow: #1d1e1fb4;
   --color-command: #79b7ff;
+  --color-output: #b7dcff;
   --color-error: #79b7ff;
   --color-white: #fff;
   --color-spotify-bg: #061826a7;
@@ -326,19 +327,19 @@ hr {
 }
 
 .output-blue {
-  color: var(--color-command);
+  color: var(--color-output);
 }
 
 .help-command {
-  color: var(--color-command);
+  color: var(--color-output);
 }
 
 .help-desc {
-  color: var(--color-command);
+  color: var(--color-output);
 }
 
 .help-white {
-  color: var(--color-command);
+  color: var(--color-output);
 }
 
 .command {
