@@ -173,8 +173,12 @@ hr {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer and Edge */
   overflow-y: scroll;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-content: start;
 }
 .content-container {
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: start;
@@ -199,6 +203,9 @@ hr {
 
 /* Responsive: stack on smaller screens */
 @media (max-width: 1015px) {
+  #contentscroll {
+    grid-template-columns: 1fr;
+  }
   .content-container {
     grid-template-columns: 1fr;
     row-gap: 0;
@@ -206,6 +213,11 @@ hr {
   .profile-info {
     justify-self: start;
     padding-top: var(--step--2);
+  }
+  #terminal {
+    grid-column: 1;
+    justify-self: start;
+    width: 100%;
   }
 
   .spotify-panel {
@@ -215,8 +227,11 @@ hr {
 
 /* Terminal input */
 #terminal {
+  grid-column: 1;
+  justify-self: center;
   height: 55vh;
-  padding-left: var(--step-0);
+  width: min(100%, 680px);
+  padding-inline: var(--step-0);
   font-size: var(--step-0);
 }
 
