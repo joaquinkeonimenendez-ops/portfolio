@@ -393,6 +393,22 @@ hr {
 
 .cli-run-command {
   cursor: pointer;
+  border-radius: 2px;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.cli-run-command:hover,
+.cli-run-command:focus-visible {
+  color: var(--color-primary);
+  background-color: rgba(157, 208, 255, 0.12);
+}
+
+.cli-run-block {
+  display: inline-block;
+  width: 100%;
+  padding: 0 2px;
 }
 
 .error {

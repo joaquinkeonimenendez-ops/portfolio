@@ -31,12 +31,12 @@ let social = [
 
 let help = [
   "<br>",
-  `<span class="command cli-run-command" data-run-command="about">about</span>`,
-  `<span class="cli-run-command" data-run-command="about">&#8627; Displays who I am.</span>`,
-  `<span class="command cli-run-command" data-run-command="projects">projects</span>`,
-  `<span class="cli-run-command" data-run-command="projects">&#8627; View coding projects.</span>`,
-  `<span class="command cli-run-command" data-run-command="contact">contact</span>`,
-  `<span class="cli-run-command" data-run-command="contact">&#8627; Lists contact info.</span>`,
+  `<span class="command cli-run-command cli-run-block" data-run-command="about">about</span>`,
+  `<span class="cli-run-command cli-run-block" data-run-command="about">&#8627; Displays who I am.</span>`,
+  `<span class="command cli-run-command cli-run-block" data-run-command="projects">projects</span>`,
+  `<span class="cli-run-command cli-run-block" data-run-command="projects">&#8627; View coding projects.</span>`,
+  `<span class="command cli-run-command cli-run-block" data-run-command="contact">contact</span>`,
+  `<span class="cli-run-command cli-run-block" data-run-command="contact">&#8627; Lists contact info.</span>`,
 ];
 
 let projects = [
