@@ -178,18 +178,18 @@ hr {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: start;
-  column-gap: clamp(1.5rem, 7vw, 9rem);
+  column-gap: clamp(0.5rem, 3vw, 2.5rem);
 }
 
 .ascii-Hero {
-  justify-self: start;
+  justify-self: center;
   min-width: 0;
 }
 
 .profile-info {
   display: flex;
   flex-direction: column;
-  justify-self: end;
+  justify-self: center;
   width: min(100%, 420px);
   max-width: 400px;
   text-align: left;
