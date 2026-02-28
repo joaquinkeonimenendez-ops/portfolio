@@ -371,6 +371,10 @@ hr {
   color: var(--color-command);
 }
 
+.tertiary {
+  color: var(--color-tertiary);
+}
+
 .command {
   color: var(--color-command);
 }

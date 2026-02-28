@@ -18,6 +18,8 @@ const clearBeforeCommands = new Set([
   "social",
   "help",
 ]);
+const commandLineDelay = 80;
+const helpHintText = "(Type help to see a list of supported commands)";
 
 function focusInput() {
   if (!textarea) return;
@@ -109,32 +111,39 @@ function commander(cmd) {
   if (!cmd) {
     return;
   }
+  let outputLines = 0;
   if (clearBeforeCommands.has(cmd)) {
     clearTerminalLines();
   }
   switch (cmd) {
     case "help":
-      loopLines(help, "", 80);
+      outputLines = help.length;
+      loopLines(help, "", commandLineDelay);
       break;
     case "about":
     case "aboutme":
-      loopLines(aboutme, "", 80);
+      outputLines = aboutme.length;
+      loopLines(aboutme, "", commandLineDelay);
       break;
     case "projects":
-      loopLines(projects, "", 80);
+      outputLines = projects.length;
+      loopLines(projects, "", commandLineDelay);
       break;
     case "contact":
     case "social":
-      loopLines(social, "", 80);
+      outputLines = social.length;
+      loopLines(social, "", commandLineDelay);
       break;
     default:
+      outputLines = 1;
       addLine(
         "Unknown command - Type help to see a list of supported commands",
         "output-blue",
-        80,
+        commandLineDelay,
       );
       break;
   }
+  addLine(helpHintText, "tertiary", (outputLines + 1) * commandLineDelay);
   scrollToBottom();
 }
 
