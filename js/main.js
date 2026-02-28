@@ -31,6 +31,14 @@ const cliPreviewStartDelayExtra = 260;
 const oneTimeButtonPreviewSeen = new Set();
 const buttonPreviewDuration = 260;
 const backButtonPreviewDelayExtra = 420;
+const previewStartTimers = new Map();
+const previewEndTimers = new Map();
+const previewElements = new Map();
+const homeOptionPreviewKeys = {
+  about: "home-option:about",
+  projects: "home-option:projects",
+  contact: "home-option:contact",
+};
 
 function setPromptPrefix(prefix) {
   if (!liner) return;
@@ -98,6 +106,16 @@ terminal.addEventListener("click", function (e) {
     return;
   }
   focusInput();
+});
+
+terminal.addEventListener("mouseover", function (e) {
+  const previewElement = e.target.closest(".cli-run-item[data-preview-key]");
+  if (!previewElement) return;
+  const previewKey = previewElement.getAttribute("data-preview-key");
+  if (!previewKey) return;
+  if (oneTimeButtonPreviewSeen.has(previewKey)) return;
+  oneTimeButtonPreviewSeen.add(previewKey);
+  cancelPreviewByKey(previewKey);
 });
 
 navCommandLinks.forEach(function (link) {
@@ -256,20 +274,17 @@ function runInitialNavPreviewSequence() {
   let foundAny = false;
 
   sequence.forEach(function (cmd, index) {
+    const previewKey = homeOptionPreviewKeys[cmd];
+    if (oneTimeButtonPreviewSeen.has(previewKey)) return;
     const matches = terminal.querySelectorAll(
-      `p .cli-run-item[data-run-command="${cmd}"]`,
+      `p .cli-run-item[data-preview-key="${previewKey}"]`,
     );
     const item = matches[matches.length - 1];
     if (!item) return;
     foundAny = true;
 
     const startDelay = index * stepDelay;
-    setTimeout(function () {
-      item.classList.add("hover-preview");
-      setTimeout(function () {
-        item.classList.remove("hover-preview");
-      }, highlightDuration);
-    }, startDelay);
+    schedulePreviewForElement(previewKey, item, startDelay, highlightDuration);
   });
 
   if (!foundAny && cliPreviewRetryCount < 16) {
@@ -301,14 +316,56 @@ function queueOneTimeButtonPreview(previewKey, runCommand, delayMs) {
       return;
     }
 
-    oneTimeButtonPreviewSeen.add(previewKey);
-    item.classList.add("hover-preview");
-    setTimeout(function () {
-      item.classList.remove("hover-preview");
-    }, buttonPreviewDuration);
+    schedulePreviewForElement(previewKey, item, 0, buttonPreviewDuration);
   };
 
   setTimeout(attemptPreview, Math.max(0, delayMs));
+}
+
+function schedulePreviewForElement(previewKey, element, startDelay, duration) {
+  cancelPreviewByKey(previewKey);
+
+  const startTimer = setTimeout(function () {
+    if (oneTimeButtonPreviewSeen.has(previewKey)) {
+      previewStartTimers.delete(previewKey);
+      return;
+    }
+    oneTimeButtonPreviewSeen.add(previewKey);
+    previewElements.set(previewKey, element);
+    element.classList.add("hover-preview");
+
+    const endTimer = setTimeout(function () {
+      element.classList.remove("hover-preview");
+      previewEndTimers.delete(previewKey);
+      if (previewElements.get(previewKey) === element) {
+        previewElements.delete(previewKey);
+      }
+    }, duration);
+    previewEndTimers.set(previewKey, endTimer);
+    previewStartTimers.delete(previewKey);
+  }, startDelay);
+
+  previewStartTimers.set(previewKey, startTimer);
+}
+
+function cancelPreviewByKey(previewKey) {
+  const startTimer = previewStartTimers.get(previewKey);
+  if (startTimer) {
+    clearTimeout(startTimer);
+    previewStartTimers.delete(previewKey);
+  }
+
+  const endTimer = previewEndTimers.get(previewKey);
+  if (endTimer) {
+    clearTimeout(endTimer);
+    previewEndTimers.delete(previewKey);
+  }
+
+  const previewElement = previewElements.get(previewKey);
+  if (previewElement) {
+    previewElement.classList.remove("hover-preview");
+    previewElements.delete(previewKey);
+  }
 }
 
 function handleThoughtsInput(cmd) {
