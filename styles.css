@@ -317,6 +317,10 @@ hr {
   color: #8285c1f0;
 }
 
+.output-blue {
+  color: var(--color-command);
+}
+
 .command {
   color: var(--color-command);
   text-shadow: 0 0 5px var(--color-command);

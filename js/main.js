@@ -84,15 +84,15 @@ function commander(cmd) {
   }
   if (cmd === "help") {
     addLine(
-      "Supported commands:<br>1. <span class=\"command\">about</span><br>2. <span class=\"command\">projects</span><br>3. <span class=\"command\">writings</span><br>4. <span class=\"command\">contact</span>",
-      "color2",
+      "Supported commands:<br>1. about<br>2. projects<br>3. writings<br>4. contact",
+      "output-blue",
       80,
     );
     scrollToBottom();
     return;
   }
 
-  addLine("HI", "color2", 80);
+  addLine("HI", "output-blue", 80);
   scrollToBottom();
 }
 
