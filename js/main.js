@@ -20,10 +20,8 @@ const clearBeforeCommands = new Set([
   "help",
 ]);
 const commandLineDelay = 80;
-const clickableHelpCommand =
-  '<span class="cli-run-command underline" data-run-command="help">help</span>';
 const helpHintText =
-  `(Type ${clickableHelpCommand} to return to the list of supported commands)`;
+  '<span class="cli-run-command cli-run-item" data-run-command="help">(Type <u>help</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = ">";
 
