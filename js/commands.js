@@ -7,6 +7,7 @@ var email = "mailto:yewaleprithvi2003@gmail.com";
 
 let banner = [
   `<div id="banner-section" class="banner">
+ I'm a CS student at UC Irvine. I build AI projects in my free time.<br />
  Type <span class="command">begin</span> to view my projects
   </div>`,
 ];
