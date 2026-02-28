@@ -49,7 +49,7 @@ Charcoal.md - A markdown based note taking webapp inspired by Obsidian. Built fo
 </pre>`,
 
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Magnum - Scrapes thousands of businesses on google maps that lack websites, researches and generates websites talored to each business, funnels it into a CRM with one click deployment, calls, and Stripe payments. Website templates are recycled so no cost is associated with failling to make a sale.
+Magnum - CLI tool to sell websites to small businesses. Scrapes thousands of businesses on google maps that lack websites, researches and generates websites talored to each business, funnels it into a CRM with one click deployment, calls, and Stripe payments. Website templates are recycled so no cost is associated with failling to make a sale.
 </pre>`,
   "</div>",
 ];
