@@ -151,8 +151,6 @@ function typeHelpMenu() {
     { text: "\u21B3 Learn more about me.", style: "help-desc" },
     { text: "projects", style: "help-command" },
     { text: "\u21B3 View my projects.", style: "help-desc" },
-    { text: "writings", style: "help-command" },
-    { text: "\u21B3 Read my writings.", style: "help-desc" },
     { text: "contact", style: "help-command" },
     { text: "\u21B3 Reach out to me.", style: "help-desc" },
   ];
