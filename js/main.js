@@ -84,7 +84,7 @@ function commander(cmd) {
   }
   if (cmd === "help") {
     addLine(
-      "1. About<br>2.Projects<br>3.Writings<br>Contact",
+      "1. About<br>2.Projects<br>3.Writings<br>4.Contact",
       "color2",
       80,
     );
