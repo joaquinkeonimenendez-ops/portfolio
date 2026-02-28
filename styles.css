@@ -169,6 +169,7 @@ hr {
   color: var(--color-primary);
   text-decoration: none;
   transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .link-text:hover {
