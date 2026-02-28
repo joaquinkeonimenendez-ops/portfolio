@@ -243,6 +243,14 @@ hr {
   position: relative;
 }
 
+#terminal p {
+  margin: 0.3rem 0;
+}
+
+#terminal p:first-of-type {
+  margin-top: 0;
+}
+
 @media (max-width: 726px) {
   #terminal {
     height: 38vh;
