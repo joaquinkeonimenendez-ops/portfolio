@@ -21,7 +21,7 @@ const clearBeforeCommands = new Set([
 ]);
 const commandLineDelay = 80;
 const helpHintText =
-  '<span class="cli-run-command cli-run-item" data-run-command="help">← back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
+  '<span class="cli-run-command cli-run-item" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = ">";
 
