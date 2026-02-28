@@ -175,19 +175,22 @@ hr {
   overflow-y: scroll;
 }
 .content-container {
-  display: flex;
-  flex-direction: row;
-  gap: 9rem; /* space between ASCII and profile */
-  flex-wrap: wrap; /* allows wrapping on small screens */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  column-gap: clamp(1.5rem, 7vw, 9rem);
 }
 
 .ascii-Hero {
-  flex-shrink: 0; /* prevent shrinking */
+  justify-self: start;
+  min-width: 0;
 }
 
 .profile-info {
   display: flex;
   flex-direction: column;
+  justify-self: end;
+  width: min(100%, 420px);
   max-width: 400px;
   text-align: left;
   font-size: var(--step--1);
@@ -197,10 +200,11 @@ hr {
 /* Responsive: stack on smaller screens */
 @media (max-width: 1015px) {
   .content-container {
-    flex-direction: column;
-    gap: 0rem; /* space between ASCII and profile */
+    grid-template-columns: 1fr;
+    row-gap: 0;
   }
   .profile-info {
+    justify-self: start;
     padding-top: var(--step--2);
   }
 
