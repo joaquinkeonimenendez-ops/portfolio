@@ -219,6 +219,7 @@ hr {
 /* Terminal input */
 #terminal {
   height: 55vh;
+  width: 60%;
   padding-left: var(--step-0);
   font-size: var(--step-0);
 }
@@ -226,6 +227,7 @@ hr {
 @media (max-width: 726px) {
   #terminal {
     height: 38vh;
+    width: 100%;
   }
 }
 
