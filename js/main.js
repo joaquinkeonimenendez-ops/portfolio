@@ -11,6 +11,14 @@ let git = 0;
 let pw = false;
 const commands = [];
 let hasAutoHelpRun = false;
+const clearBeforeCommands = new Set([
+  "about",
+  "aboutme",
+  "projects",
+  "contact",
+  "social",
+  "help",
+]);
 
 function focusInput() {
   if (!textarea) return;
@@ -25,6 +33,12 @@ function scrollToBottom() {
   if (contentscroll) {
     contentscroll.scrollTop = contentscroll.scrollHeight;
   }
+}
+
+function clearTerminalLines() {
+  if (!terminal) return;
+  const lines = terminal.querySelectorAll(":scope > p");
+  lines.forEach((line) => line.remove());
 }
 
 setTimeout(function () {
@@ -95,6 +109,9 @@ function enterKey(e) {
 function commander(cmd) {
   if (!cmd) {
     return;
+  }
+  if (clearBeforeCommands.has(cmd)) {
+    clearTerminalLines();
   }
   switch (cmd) {
     case "help":
