@@ -48,9 +48,8 @@ let projects = [
 Charcoal.md - A markdown based note taking webapp inspired by Obsidian. Built for people who can't install desktop apps on work/school devices or don't want to pay for Obsidian sync.
 </pre>`,
 
-  `<span class='underline'>Magnum CLI Tool</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-A semi-autonomous web design agency in your command line: autonomous lead generation, lead prequalification, cost-efficient website generation, all funneled into a CRM for AI-assisted outreach, sales calls, and Stripe payments.
+Magnum - A semi autonomous web design agency in your command line: autonomous lead generation, lead prequalification, cost efficient website generation, all funneled into a CRM for AI-assisted outreach, sales calls, and Stripe payments.
 </pre>`,
   "</div>",
 ];
