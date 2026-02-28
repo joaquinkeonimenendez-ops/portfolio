@@ -7,7 +7,7 @@ var email = "mailto:yewaleprithvi2003@gmail.com";
 
 let banner = [
   `<div id="banner-section" class="banner">
- Type help to see a list of supported commands
+ <span class="output-blue">Type help to see a list of supported commands</span>
   </div>`,
 ];
 
