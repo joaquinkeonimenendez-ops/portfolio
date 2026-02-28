@@ -9,6 +9,7 @@ const asciiCatFrame = document.getElementById("ascii-cat-frame");
 let git = 0;
 let pw = false;
 const commands = [];
+let hasAutoHelpRun = false;
 
 function scrollToBottom() {
   if (contentscroll) {
@@ -20,6 +21,10 @@ setTimeout(function () {
   loopLines(banner, "", 80);
   textarea.focus();
   scrollToBottom();
+
+  setTimeout(function () {
+    autoTypeAndSubmitHelp();
+  }, banner.length * 80 + 250);
 }, 100);
 
 startAsciiCatBlinkAnimation();
@@ -145,6 +150,34 @@ function loopLines(name, style, time) {
     },
     name.length * time + 50,
   );
+}
+
+function autoTypeAndSubmitHelp() {
+  if (hasAutoHelpRun) return;
+  hasAutoHelpRun = true;
+
+  const autoCommand = "help";
+  let index = 0;
+  textarea.value = "";
+  command.innerHTML = "";
+
+  const typeNext = function () {
+    if (index < autoCommand.length) {
+      index += 1;
+      const current = autoCommand.slice(0, index);
+      textarea.value = current;
+      command.innerHTML = current;
+      scrollToBottom();
+      setTimeout(typeNext, 110);
+      return;
+    }
+
+    setTimeout(function () {
+      enterKey({ keyCode: 13 });
+    }, 140);
+  };
+
+  typeNext();
 }
 
 function startAsciiCatBlinkAnimation() {
