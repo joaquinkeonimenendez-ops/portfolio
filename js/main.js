@@ -343,9 +343,18 @@ function bindPreviewCancelHandlers(scopeElement) {
 }
 
 function schedulePreviewForElement(previewKey, element, startDelay, duration) {
+  if (element.matches(":hover")) {
+    markPreviewSeen(previewKey);
+    return;
+  }
   cancelPreviewByKey(previewKey);
 
   const startTimer = setTimeout(function () {
+    if (element.matches(":hover")) {
+      markPreviewSeen(previewKey);
+      previewStartTimers.delete(previewKey);
+      return;
+    }
     if (oneTimeButtonPreviewSeen.has(previewKey)) {
       previewStartTimers.delete(previewKey);
       return;
