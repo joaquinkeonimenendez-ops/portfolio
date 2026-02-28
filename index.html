@@ -45,10 +45,15 @@
     <!-- JS: Spotify API Fetch -->
     <script>
       async function fetchLatestTrack() {
+        const lastFmProfileUrl = "https://www.last.fm/user/node13";
+        const lastFmApiUrl =
+          "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=node13&api_key=88014e31fee3feab453dcef4f428e4dc&format=json";
+        const spotifyLink = document.querySelector(".spotify-panel a");
+        if (spotifyLink) {
+          spotifyLink.href = lastFmProfileUrl;
+        }
         try {
-          const response = await fetch(
-            "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=node13&api_key=88014e31fee3feab453dcef4f428e4dc&format=json",
-          );
+          const response = await fetch(lastFmApiUrl);
           const data = await response.json();
           const track = data.recenttracks.track?.[0];
 
@@ -57,7 +62,6 @@
               track.name || "N/A";
             document.getElementById("artist-name").textContent =
               track.artist["#text"] || "N/A";
-            document.querySelector(".spotify-panel a").href = track.url || "#";
           } else {
             document.getElementById("track-name").textContent =
               "No track playing";
