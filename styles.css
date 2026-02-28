@@ -93,15 +93,11 @@ body {
 
 .terminal-window {
   position: fixed;
-  inset: 0;
+  inset: 3px;
   z-index: 1;
   border: 1px solid var(--color-primary);
   background-color: var(--color-background-overlay);
   border-radius: 4px;
-  width: 100vw;
-  height: 100vh;
-  min-height: 100vh;
-  max-height: 100vh;
   box-sizing: border-box;
 
   box-shadow:
