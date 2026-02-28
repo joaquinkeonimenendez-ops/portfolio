@@ -20,8 +20,10 @@ const clearBeforeCommands = new Set([
   "help",
 ]);
 const commandLineDelay = 80;
+const clickableHelpCommand =
+  '<span class="cli-run-command underline" data-run-command="help">help</span>';
 const helpHintText =
-  "(Type <u>help</u> to return to the list of supported commands)";
+  `(Type ${clickableHelpCommand} to return to the list of supported commands)`;
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = ">";
 
@@ -71,7 +73,19 @@ document.addEventListener("click", function () {
   focusInput();
 });
 
-terminal.addEventListener("click", function () {
+terminal.addEventListener("click", function (e) {
+  const runCommandElement = e.target.closest("[data-run-command]");
+  if (runCommandElement) {
+    e.preventDefault();
+    const cmd = runCommandElement.getAttribute("data-run-command");
+    if (!cmd) return;
+    if (isThoughtsMode) {
+      isThoughtsMode = false;
+      setPromptPrefix(defaultPrompt);
+    }
+    autoTypeAndSubmitCommand(cmd);
+    return;
+  }
   focusInput();
 });
 
@@ -166,7 +180,7 @@ function commander(cmd) {
       showFooterHint = false;
       addLine("<br>", "", commandLineDelay);
       addLine(
-        "Unknown command - Type <u>help</u> to return to the list of supported commands",
+        `Unknown command - Type ${clickableHelpCommand} to see a list of supported commands`,
         "output-blue",
         commandLineDelay * 2,
       );

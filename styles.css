@@ -391,6 +391,10 @@ hr {
   color: var(--color-command);
 }
 
+.cli-run-command {
+  cursor: pointer;
+}
+
 .error {
   color: var(--color-error);
 }
