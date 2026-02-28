@@ -113,12 +113,14 @@ function commander(cmd) {
     return;
   }
   let outputLines = 0;
+  let showFooterHint = true;
   if (clearBeforeCommands.has(cmd)) {
     clearTerminalLines();
   }
   switch (cmd) {
     case "help":
       outputLines = help.length;
+      showFooterHint = false;
       loopLines(help, "", commandLineDelay);
       break;
     case "about":
@@ -137,6 +139,7 @@ function commander(cmd) {
       break;
     default:
       outputLines = 2;
+      showFooterHint = false;
       addLine("<br>", "", commandLineDelay);
       addLine(
         "Unknown command - Type <u>help</u> to see a list of supported commands",
@@ -145,11 +148,11 @@ function commander(cmd) {
       );
       break;
   }
-  if (cmd === "help") {
-    addLine("<br>", "", (outputLines + 1) * commandLineDelay);
-  } else {
+  if (showFooterHint) {
     addLine(helpHintText, "tertiary", (outputLines + 1) * commandLineDelay);
     addLine("<br>", "", (outputLines + 2) * commandLineDelay);
+  } else {
+    addLine("<br>", "", (outputLines + 1) * commandLineDelay);
   }
   scrollToBottom();
 }
