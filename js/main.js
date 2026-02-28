@@ -84,7 +84,7 @@ function commander(cmd) {
   }
   if (cmd === "help") {
     addLine(
-      "1. About<br>2.Projects<br>3.Writings<br>4.Contact",
+      "Supported commands:<br>1. <span class=\"command\">about</span><br>2. <span class=\"command\">projects</span><br>3. <span class=\"command\">writings</span><br>4. <span class=\"command\">contact</span>",
       "color2",
       80,
     );
