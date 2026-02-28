@@ -318,7 +318,7 @@ hr {
 }
 
 #liner::before {
-  content: "[keoni@me]~$";
+  content: attr(data-prompt);
 }
 
 .cursor {

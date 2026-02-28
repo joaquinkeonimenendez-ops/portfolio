@@ -58,11 +58,23 @@ A semi-autonomous web design agency in your command line: autonomous lead genera
 
 let thoughts = [
   "<br>",
-  `<div id="thoughts-section">`,
-  `<span class='underline'>Thoughts</span>`,
+  `<span class="command">1. Brief thoughts on automation</span>`,
+  `<span class="command">2. Brief thoughts on AI</span>`,
+  `<span class="command">Q. Exit thoughts</span>`,
+];
+
+let thoughtsAutomation = [
+  "<br>",
+  `<span class='underline'>Brief thoughts on automation</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Short notes on building software, AI systems, and product execution.
-More writeups coming soon.
+Automation compounds leverage. The best systems remove repetitive work and keep humans focused on judgment.
 </pre>`,
-  "</div>",
+];
+
+let thoughtsAI = [
+  "<br>",
+  `<span class='underline'>Brief thoughts on AI</span>`,
+  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
+AI is strongest as a force multiplier. Pair strong taste with fast iteration and you get outsized outcomes.
+</pre>`,
 ];

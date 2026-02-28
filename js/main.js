@@ -10,6 +10,7 @@ const navCommandLinks = document.querySelectorAll(".top-nav a[data-command]");
 let git = 0;
 let pw = false;
 const commands = [];
+let isThoughtsMode = false;
 const clearBeforeCommands = new Set([
   "about",
   "aboutme",
@@ -19,9 +20,17 @@ const clearBeforeCommands = new Set([
   "social",
   "help",
 ]);
+const topLevelCommands = new Set(clearBeforeCommands);
 const commandLineDelay = 80;
 const helpHintText =
   "(Type <u>help</u> to see a list of supported commands)";
+const defaultPrompt = "[keoni@me]~$";
+const thoughtsPrompt = ">";
+
+function setPromptPrefix(prefix) {
+  if (!liner) return;
+  liner.setAttribute("data-prompt", prefix);
+}
 
 function focusInput() {
   if (!textarea) return;
@@ -79,11 +88,13 @@ navCommandLinks.forEach(function (link) {
 
 textarea.value = "";
 command.innerHTML = "Loading...";
+setPromptPrefix(defaultPrompt);
 
 function enterKey(e) {
   if (e.keyCode === 13) {
     const input = command.innerHTML.trim().toLowerCase();
-    addLine("[keoni@me]~$ " + command.innerHTML, "no-animation", 0);
+    const typedPrompt = isThoughtsMode ? thoughtsPrompt : defaultPrompt;
+    addLine(typedPrompt + " " + command.innerHTML, "no-animation", 0);
 
     commands.push(command.innerHTML);
     git = commands.length;
@@ -113,6 +124,20 @@ function commander(cmd) {
   if (!cmd) {
     return;
   }
+  if (isThoughtsMode && ["1", "2", "q"].includes(cmd)) {
+    handleThoughtsInput(cmd);
+    return;
+  }
+  if (isThoughtsMode && !["1", "2", "q"].includes(cmd)) {
+    if (!topLevelCommands.has(cmd)) {
+      handleThoughtsInput(cmd);
+      return;
+    }
+    if (cmd !== "thoughts") {
+      isThoughtsMode = false;
+      setPromptPrefix(defaultPrompt);
+    }
+  }
   let outputLines = 0;
   let showFooterHint = true;
   if (clearBeforeCommands.has(cmd)) {
@@ -135,6 +160,9 @@ function commander(cmd) {
       break;
     case "thoughts":
       outputLines = thoughts.length;
+      showFooterHint = false;
+      isThoughtsMode = true;
+      setPromptPrefix(thoughtsPrompt);
       loopLines(thoughts, "", commandLineDelay);
       break;
     case "contact":
@@ -158,6 +186,30 @@ function commander(cmd) {
     addLine("<br>", "", (outputLines + 2) * commandLineDelay);
   } else {
     addLine("<br>", "", (outputLines + 1) * commandLineDelay);
+  }
+  scrollToBottom();
+}
+
+function handleThoughtsInput(cmd) {
+  switch (cmd) {
+    case "1":
+      loopLines(thoughtsAutomation, "", commandLineDelay);
+      addLine("<br>", "", (thoughtsAutomation.length + 1) * commandLineDelay);
+      break;
+    case "2":
+      loopLines(thoughtsAI, "", commandLineDelay);
+      addLine("<br>", "", (thoughtsAI.length + 1) * commandLineDelay);
+      break;
+    case "q":
+      isThoughtsMode = false;
+      setPromptPrefix(defaultPrompt);
+      addLine("Exited thoughts.", "output-blue", commandLineDelay);
+      addLine("<br>", "", commandLineDelay * 2);
+      break;
+    default:
+      addLine("Invalid choice. Enter 1, 2, or q.", "output-blue", commandLineDelay);
+      addLine("<br>", "", commandLineDelay * 2);
+      break;
   }
   scrollToBottom();
 }
