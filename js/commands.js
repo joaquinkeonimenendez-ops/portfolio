@@ -12,7 +12,11 @@ let aboutme = [
   "<br>",
   `<div id="aboutme-section">`,
   `<span class='underline'>Joaquin Keoni Menendez</span>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">CS student at UC Irvine building AI projects.</pre>`,
+  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">CS student at UC Irvine focused on AI engineering and automation.</pre>`,
+  `<span class="command">focus</span>`,
+  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">Agentic workflows, scraping systems, and product-minded tooling.</pre>`,
+  `<span class="command">currently</span>`,
+  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">Building Magnum and Charcoal.md while sharpening systems and UI skills.</pre>`,
   "</div>",
   "<br>",
 ];
