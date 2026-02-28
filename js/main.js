@@ -113,9 +113,7 @@ terminal.addEventListener("mouseover", function (e) {
   if (!previewElement) return;
   const previewKey = previewElement.getAttribute("data-preview-key");
   if (!previewKey) return;
-  if (oneTimeButtonPreviewSeen.has(previewKey)) return;
-  oneTimeButtonPreviewSeen.add(previewKey);
-  cancelPreviewByKey(previewKey);
+  markPreviewSeen(previewKey);
 });
 
 navCommandLinks.forEach(function (link) {
@@ -322,6 +320,28 @@ function queueOneTimeButtonPreview(previewKey, runCommand, delayMs) {
   setTimeout(attemptPreview, Math.max(0, delayMs));
 }
 
+function markPreviewSeen(previewKey) {
+  if (!previewKey) return false;
+  if (oneTimeButtonPreviewSeen.has(previewKey)) return false;
+  oneTimeButtonPreviewSeen.add(previewKey);
+  cancelPreviewByKey(previewKey);
+  return true;
+}
+
+function bindPreviewCancelHandlers(scopeElement) {
+  if (!scopeElement) return;
+  const previewItems = scopeElement.querySelectorAll(".cli-run-item[data-preview-key]");
+  previewItems.forEach(function (item) {
+    if (item.dataset.previewBound === "1") return;
+    item.dataset.previewBound = "1";
+
+    item.addEventListener("mouseenter", function () {
+      const previewKey = item.getAttribute("data-preview-key");
+      markPreviewSeen(previewKey);
+    });
+  });
+}
+
 function schedulePreviewForElement(previewKey, element, startDelay, duration) {
   cancelPreviewByKey(previewKey);
 
@@ -425,6 +445,7 @@ function addLine(text, style, time) {
     next.innerHTML = t;
     next.className = style;
     before.parentNode.insertBefore(next, before);
+    bindPreviewCancelHandlers(next);
     contentscroll.scrollTop = contentscroll.scrollHeight;
   }, time);
 }
