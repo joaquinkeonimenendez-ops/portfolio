@@ -10,24 +10,24 @@
 :root {
   /* Theme variables */
   /* Default theme (Cyber) */
-  --color-primary: #79b7ff;
-  --color-secondary: #5d91cb;
-  --color-tertiary: #6f86a3;
-  --color-background: #2d3955;
-  --color-background-overlay: #071a2b6c;
-  --color-accent: #ef4b44;
-  --color-danger: #9d174d;
-  --color-hover: #9fc8ffb3;
-  --color-shadow: #1d1e1fb4;
-  --color-command: #78b4ff;
-  --color-output: #78b4ff;
-  --color-error: #6d71b9d9;
+  --color-primary: #9dd0ff;
+  --color-secondary: #84bfff;
+  --color-tertiary: #9abfe3;
+  --color-background: #344668;
+  --color-background-overlay: #0f27406f;
+  --color-accent: #ff786d;
+  --color-danger: #d64b83;
+  --color-hover: #c4e0ffcc;
+  --color-shadow: #2930439e;
+  --color-command: #9bcfff;
+  --color-output: #9bcfff;
+  --color-error: #a1a6f0;
   --color-white: #fff;
-  --color-spotify-bg: #061826a7;
-  --color-spotify-border: #79b7ff;
-  --color-spotify-icon: #5da9ff;
+  --color-spotify-bg: #0d2740a7;
+  --color-spotify-border: #9dd0ff;
+  --color-spotify-icon: #8dc6ff;
   --color-spotify-text: #fff;
-  --color-spotify-track-info: #79b7ff;
+  --color-spotify-track-info: #9dd0ff;
 
   /* Typography */
   --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
