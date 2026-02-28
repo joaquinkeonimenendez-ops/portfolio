@@ -129,6 +129,8 @@ hr {
 .top-nav a {
   display: flex;
   align-items: center;
+  position: relative;
+  top: -1px;
   color: var(--color-primary);
   text-decoration: none;
   white-space: nowrap;
