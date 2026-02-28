@@ -79,6 +79,10 @@ setTimeout(function () {
     shouldRunNavPreviewOnNextHome = initialCommand === "home";
     setHashForCommand(initialCommand);
     autoTypeAndSubmitCommand(initialCommand);
+    if (initialCommand === "home") {
+      // Fallback trigger in case command timing shifts on slower/fast devices.
+      setTimeout(runInitialNavPreviewSequence, 2000);
+    }
   }, banner.length * 80 + 250);
 }, 100);
 
@@ -260,8 +264,8 @@ function runInitialNavPreviewSequence() {
   hasRunNavPreviewSequence = true;
 
   const sequence = ["about", "projects", "contact"];
-  const highlightDuration = 280;
-  const stepDelay = 340;
+  const highlightDuration = 420;
+  const stepDelay = 520;
 
   sequence.forEach(function (cmd, index) {
     const link = document.querySelector(`.top-nav a[data-command="${cmd}"]`);
