@@ -11,9 +11,9 @@ let banner = [
 let aboutme = [
   "<br>",
   `<div id="aboutme-section">`,
-  `<span class='underline output-blue'>Who am I? I'm Joaquin Keoni Menendez-</span>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">I'm a CS student at UC Irvine. In my free time I build AI systems and study software. I've coded since childhood and leverage modern AI tools to accelerate my workflow.</pre>`,
-  `<span class="command">currently</span>`,
+  `<span class='underline output-blue'>Who I am</span>`,
+  `<pre class="about-body indent-8 whitespace-pre-wrap break-words overflow-x-auto">I'm Joaquin Keoni Menendez, a CS student at UC Irvine. In my spare time I build AI systems. I've coded since childhood and use AI tools to accelerate my workflow.</pre>`,
+  `<span class="command">What I do</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">Currently building Magnum, a CLI tool to sell websites to small businesses, and Charcoal, a webapp alternative to Obsidian.md. Formerly active in the bug bounty scene.</pre>`,
   "</div>",
   "<br>",

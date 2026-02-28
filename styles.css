@@ -355,6 +355,10 @@ hr {
   color: var(--color-output);
 }
 
+.about-body {
+  color: var(--color-secondary);
+}
+
 .help-command {
   color: var(--color-command);
 }
