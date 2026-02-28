@@ -331,15 +331,15 @@ hr {
 }
 
 .help-command {
-  color: var(--color-output);
+  color: var(--color-command);
 }
 
 .help-desc {
-  color: var(--color-output);
+  color: var(--color-command);
 }
 
 .help-white {
-  color: var(--color-output);
+  color: var(--color-command);
 }
 
 .command {
