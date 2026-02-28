@@ -10,23 +10,23 @@
 :root {
   /* Theme variables */
   /* Default theme (Cyber) */
-  --color-primary: #7ae0ca;
-  --color-secondary: #519975;
-  --color-tertiary: #64748b;
-  --color-background: #4a2c4f;
-  --color-background-overlay: #081d2dd8;
+  --color-primary: #79b7ff;
+  --color-secondary: #5d91cb;
+  --color-tertiary: #6f86a3;
+  --color-background: #2d3955;
+  --color-background-overlay: #071a2bd8;
   --color-accent: #ef4b44;
   --color-danger: #9d174d;
-  --color-hover: #8de2d0ac;
+  --color-hover: #9fc8ffb3;
   --color-shadow: #1d1e1fb4;
-  --color-command: #73abad;
+  --color-command: #78b4ff;
   --color-error: #6d71b9d9;
   --color-white: #fff;
   --color-spotify-bg: #061826a7;
-  --color-spotify-border: #7ae0ca;
-  --color-spotify-icon: #1db954;
+  --color-spotify-border: #79b7ff;
+  --color-spotify-icon: #5da9ff;
   --color-spotify-text: #fff;
-  --color-spotify-track-info: #7ae0ca;
+  --color-spotify-track-info: #79b7ff;
 
   /* Typography */
   --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
@@ -37,7 +37,7 @@
   --step-3: clamp(1.944rem, 1.771rem + 0.8651vw, 2.4414rem);
   --step-4: clamp(2.3328rem, 2.0827rem + 1.2504vw, 3.0518rem);
   --step-5: clamp(2.7994rem, 2.4462rem + 1.7658vw, 3.8147rem);
-  --step-ascii: clamp(0.98rem, 0.86rem + 1.05vw, 2.35rem);
+  --step-ascii: clamp(0.86rem, 0.78rem + 0.8vw, 1.95rem);
 }
 
 a {
