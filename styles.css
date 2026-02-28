@@ -10,23 +10,23 @@
 :root {
   /* Theme variables */
   /* Default theme (Cyber) */
-  --color-primary: #fff;
-  --color-secondary: #fff;
-  --color-tertiary: #fff;
+  --color-primary: #79b7ff;
+  --color-secondary: #79b7ff;
+  --color-tertiary: #79b7ff;
   --color-background: #2d3955;
   --color-background-overlay: #071a2b6c;
-  --color-accent: #fff;
-  --color-danger: #fff;
-  --color-hover: #fff;
+  --color-accent: #79b7ff;
+  --color-danger: #79b7ff;
+  --color-hover: #79b7ff;
   --color-shadow: #1d1e1fb4;
-  --color-command: #fff;
-  --color-error: #fff;
+  --color-command: #79b7ff;
+  --color-error: #79b7ff;
   --color-white: #fff;
   --color-spotify-bg: #061826a7;
-  --color-spotify-border: #fff;
-  --color-spotify-icon: #fff;
+  --color-spotify-border: #79b7ff;
+  --color-spotify-icon: #79b7ff;
   --color-spotify-text: #fff;
-  --color-spotify-track-info: #fff;
+  --color-spotify-track-info: #79b7ff;
 
   /* Typography */
   --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
@@ -318,11 +318,11 @@ hr {
 
 /* Colors */
 .index {
-  color: #fff;
+  color: var(--color-command);
 }
 
 .color2 {
-  color: #fff;
+  color: var(--color-command);
 }
 
 .output-blue {
@@ -330,11 +330,15 @@ hr {
 }
 
 .help-command {
-  color: var(--color-command);
+  color: var(--color-white);
 }
 
 .help-desc {
-  color: var(--color-command);
+  color: var(--color-white);
+}
+
+.help-white {
+  color: var(--color-white);
 }
 
 .command {
