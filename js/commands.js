@@ -7,7 +7,7 @@ var email = "mailto:yewaleprithvi2003@gmail.com";
 
 let banner = [
   `<div id="banner-section" class="banner">
- Type <span class="command">begin</span>
+ Ready.
   </div>`,
 ];
 
@@ -52,8 +52,6 @@ let help = [
 ↳ Lists social networks.
 <span class="command">projects</span>
 ↳ View coding projects.
-<span class="command">begin</span>
-↳ Shortcut to view projects.
 <span class="command">email</span>
 ↳ To send me an email.
 <span class="command">history</span>

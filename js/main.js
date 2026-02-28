@@ -9,18 +9,12 @@ const topModeLabel = document.getElementById("top-mode-label");
 let git = 0;
 let pw = false;
 const commands = [];
-let suggestedCommand = null;
-let awaitingConfirmation = false;
 
 function scrollToBottom() {
   if (contentscroll) {
     contentscroll.scrollTop = contentscroll.scrollHeight;
   }
 }
-
-const commandMap = {
-  begin: "begin",
-};
 
 setTimeout(function () {
   loopLines(banner, "", 80);
@@ -69,19 +63,9 @@ function enterKey(e) {
     const input = command.innerHTML.trim().toLowerCase();
     addLine("[keoni@me]~$ " + command.innerHTML, "no-animation", 0);
 
-    if (awaitingConfirmation && suggestedCommand) {
-      if (input === "y") {
-        commander(suggestedCommand);
-      } else {
-        addLine("Cancelled.", "color2", 80);
-      }
-      awaitingConfirmation = false;
-      suggestedCommand = null;
-    } else {
-      commands.push(command.innerHTML);
-      git = commands.length;
-      commander(input);
-    }
+    commands.push(command.innerHTML);
+    git = commands.length;
+    commander(input);
 
     command.innerHTML = "";
     textarea.value = "";
@@ -104,29 +88,10 @@ function enterKey(e) {
 }
 
 function commander(cmd) {
-  switch (cmd.toLowerCase()) {
-    case "begin":
-      addLine("HI", "color2", 80);
-      break;
-    default:
-      const closest = findClosestCommand(cmd);
-      if (closest) {
-        suggestedCommand = closest;
-        awaitingConfirmation = true;
-        addLine(
-          `<span class="inherit">Command not found. Did you mean <span class="command">'${closest}'</span>? (y/n)</span>`,
-          "error",
-          100,
-        );
-      } else {
-        addLine(
-          `<span class="inherit">Command not found.</span>`,
-          "error",
-          100,
-        );
-      }
-      break;
+  if (!cmd) {
+    return;
   }
+  addLine("HI", "color2", 80);
   scrollToBottom();
 }
 
@@ -178,38 +143,4 @@ function loopLines(name, style, time) {
     name.length * time + 50,
   );
 }
-
-function findClosestCommand(input) {
-  const threshold = 3;
-  let minDist = Infinity;
-  let closest = null;
-  Object.keys(commandMap).forEach((cmd) => {
-    const dist = levenshtein(input, cmd);
-    if (dist < minDist && dist <= threshold) {
-      minDist = dist;
-      closest = cmd;
-    }
-  });
-  return closest;
-}
-
-function levenshtein(a, b) {
-  const matrix = Array.from({ length: a.length + 1 }, () =>
-    Array(b.length + 1).fill(0),
-  );
-  for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
-  for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
-  for (let i = 1; i <= a.length; i++) {
-    for (let j = 1; j <= b.length; j++) {
-      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
-      matrix[i][j] = Math.min(
-        matrix[i - 1][j] + 1,
-        matrix[i][j - 1] + 1,
-        matrix[i - 1][j - 1] + cost,
-      );
-    }
-  }
-  return matrix[a.length][b.length];
-}
-
 
