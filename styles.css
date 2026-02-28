@@ -344,7 +344,6 @@ hr {
 
 .command {
   color: var(--color-command);
-  text-shadow: 0 0 5px var(--color-command);
 }
 
 .error {
