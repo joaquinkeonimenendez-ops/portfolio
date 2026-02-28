@@ -24,24 +24,9 @@ const homeHintText =
   '<span class="cli-run-command cli-run-item" data-run-command="home">← Back<br>(Type <u>home</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = ">";
-const hashByCommand = {
-  home: "#home",
-  about: "#about",
-  aboutme: "#about",
-  projects: "#projects",
-  contact: "#contact",
-  social: "#contact",
-};
-const commandByHash = {
-  "#home": "home",
-  "#about": "about",
-  "#projects": "projects",
-  "#contact": "contact",
-  "#terminal": "home",
-};
-let isHashSyncing = false;
 let hasRunNavPreviewSequence = false;
 let shouldRunNavPreviewOnNextHome = false;
+let cliPreviewRetryCount = 0;
 
 function setPromptPrefix(prefix) {
   if (!liner) return;
@@ -75,9 +60,9 @@ setTimeout(function () {
   scrollToBottom();
 
   setTimeout(function () {
-    const initialCommand = getCommandFromHash(window.location.hash) || "home";
+    const initialCommand = "home";
     shouldRunNavPreviewOnNextHome = initialCommand === "home";
-    setHashForCommand(initialCommand);
+    setActiveNavCommand(initialCommand);
     autoTypeAndSubmitCommand(initialCommand);
     if (initialCommand === "home") {
       // Fallback trigger in case command timing shifts on slower/fast devices.
@@ -115,13 +100,6 @@ navCommandLinks.forEach(function (link) {
     if (!cmd) return;
     runCommandFromNavigation(cmd);
   });
-});
-
-window.addEventListener("hashchange", function () {
-  if (isHashSyncing) return;
-  const cmd = getCommandFromHash(window.location.hash);
-  if (!cmd) return;
-  runCommandFromNavigation(cmd);
 });
 
 textarea.value = "";
@@ -179,7 +157,7 @@ function commander(cmd) {
   }
   switch (cmd) {
     case "home":
-      setHashForCommand("home");
+      setActiveNavCommand("home");
       outputLines = home.length;
       showFooterHint = false;
       loopLines(home, "", commandLineDelay);
@@ -190,18 +168,18 @@ function commander(cmd) {
       break;
     case "about":
     case "aboutme":
-      setHashForCommand("about");
+      setActiveNavCommand("about");
       outputLines = aboutme.length;
       loopLines(aboutme, "", commandLineDelay);
       break;
     case "projects":
-      setHashForCommand("projects");
+      setActiveNavCommand("projects");
       outputLines = projects.length;
       loopLines(projects, "", commandLineDelay);
       break;
     case "contact":
     case "social":
-      setHashForCommand("contact");
+      setActiveNavCommand("contact");
       outputLines = social.length;
       loopLines(social, "", commandLineDelay);
       break;
@@ -226,27 +204,11 @@ function commander(cmd) {
   scrollToBottom();
 }
 
-function getCommandFromHash(hashValue) {
-  return commandByHash[(hashValue || "").toLowerCase()] || null;
-}
-
 function setActiveNavCommand(cmd) {
   navCommandLinks.forEach(function (link) {
     const linkCommand = link.getAttribute("data-command");
     link.classList.toggle("active", linkCommand === cmd);
   });
-}
-
-function setHashForCommand(cmd) {
-  const nextHash = hashByCommand[cmd];
-  if (!nextHash) return;
-  setActiveNavCommand(cmd);
-  if (window.location.hash === nextHash) return;
-  isHashSyncing = true;
-  window.location.hash = nextHash;
-  setTimeout(function () {
-    isHashSyncing = false;
-  }, 0);
 }
 
 function runCommandFromNavigation(cmd) {
@@ -255,30 +217,41 @@ function runCommandFromNavigation(cmd) {
     isThoughtsMode = false;
     setPromptPrefix(defaultPrompt);
   }
-  setHashForCommand(cmd);
+  setActiveNavCommand(cmd);
   autoTypeAndSubmitCommand(cmd);
 }
 
 function runInitialNavPreviewSequence() {
   if (hasRunNavPreviewSequence) return;
-  hasRunNavPreviewSequence = true;
 
   const sequence = ["about", "projects", "contact"];
   const highlightDuration = 420;
   const stepDelay = 520;
+  let foundAny = false;
 
   sequence.forEach(function (cmd, index) {
-    const link = document.querySelector(`.top-nav a[data-command="${cmd}"]`);
-    if (!link) return;
+    const matches = terminal.querySelectorAll(
+      `p .cli-run-item[data-run-command="${cmd}"]`,
+    );
+    const item = matches[matches.length - 1];
+    if (!item) return;
+    foundAny = true;
 
     const startDelay = index * stepDelay;
     setTimeout(function () {
-      link.classList.add("hover-preview");
+      item.classList.add("hover-preview");
       setTimeout(function () {
-        link.classList.remove("hover-preview");
+        item.classList.remove("hover-preview");
       }, highlightDuration);
     }, startDelay);
   });
+
+  if (!foundAny && cliPreviewRetryCount < 12) {
+    cliPreviewRetryCount += 1;
+    setTimeout(runInitialNavPreviewSequence, 160);
+    return;
+  }
+  hasRunNavPreviewSequence = true;
 }
 
 function handleThoughtsInput(cmd) {

@@ -428,10 +428,17 @@ hr {
   background-color: rgba(157, 208, 255, 0.12);
 }
 
+.cli-run-command.hover-preview {
+  color: var(--color-primary);
+  background-color: rgba(157, 208, 255, 0.12);
+}
+
 .cli-run-command:hover .command,
 .cli-run-command:focus-visible .command,
+.cli-run-command.hover-preview .command,
 .cli-run-command:hover .home-item-desc,
-.cli-run-command:focus-visible .home-item-desc {
+.cli-run-command:focus-visible .home-item-desc,
+.cli-run-command.hover-preview .home-item-desc {
   color: var(--color-primary);
 }
 
