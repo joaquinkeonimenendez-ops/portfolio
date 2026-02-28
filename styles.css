@@ -187,7 +187,6 @@ hr {
 
 .ascii-Hero {
   justify-self: center;
-  width: min(100%, 500px);
   min-width: 0;
 }
 
@@ -231,9 +230,8 @@ hr {
   grid-column: 1;
   justify-self: center;
   height: 55vh;
-  width: min(100%, 500px);
-  padding-left: var(--step-2);
-  padding-right: var(--step-0);
+  width: min(100%, 680px);
+  padding-inline: var(--step-0);
   font-size: var(--step-0);
 }
 
