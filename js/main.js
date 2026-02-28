@@ -7,7 +7,6 @@ const contentscroll = document.getElementById("contentscroll");
 const projectsOverlay = document.getElementById("projects-overlay");
 const projectsOverlayClose = document.getElementById("projects-overlay-close");
 const topModeLabel = document.getElementById("top-mode-label");
-const headerDivider = document.querySelector("hr");
 
 let git = 0;
 let pw = false;
@@ -21,15 +20,6 @@ function scrollToBottom() {
   }
 }
 
-function updateProjectsOverlayTopOffset() {
-  if (!projectsOverlay) return;
-  const fallbackTop = 58;
-  const top = headerDivider
-    ? Math.ceil(headerDivider.getBoundingClientRect().bottom)
-    : fallbackTop;
-  projectsOverlay.style.setProperty("--projects-overlay-top", `${top}px`);
-}
-
 function clearTerminalLines() {
   if (!terminal) return;
   const lines = terminal.querySelectorAll(":scope > p");
@@ -38,7 +28,6 @@ function clearTerminalLines() {
 
 function openProjectsOverlay() {
   if (!projectsOverlay) return;
-  updateProjectsOverlayTopOffset();
   clearTerminalLines();
   projectsOverlay.hidden = false;
   projectsOverlay.setAttribute("aria-hidden", "false");
@@ -64,10 +53,7 @@ setTimeout(function () {
   loopLines(banner, "", 80);
   textarea.focus();
   scrollToBottom();
-  updateProjectsOverlayTopOffset();
 }, 100);
-
-window.addEventListener("resize", updateProjectsOverlayTopOffset);
 
 window.addEventListener("keyup", function (e) {
   enterKey(e);
