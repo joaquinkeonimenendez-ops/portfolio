@@ -32,7 +32,7 @@
   --frame-gap-right: 11px;
   --frame-gap-bottom: 7px;
   --frame-gap-left: 4px;
-  --cat-offset-x: 0.35rem;
+  --cat-offset-x: 0.95rem;
   --cat-offset-y: 0.2rem;
   --cat-offset-y-stacked: -1rem;
 
@@ -51,7 +51,7 @@
 @media (max-width: 1600px) {
   :root {
     --step-ascii: 1.4rem;
-    --cat-offset-x: 0.32rem;
+    --cat-offset-x: 0.9rem;
     --cat-offset-y: 0.08rem;
   }
 }
@@ -59,7 +59,7 @@
 @media (max-width: 1280px) {
   :root {
     --step-ascii: 1.24rem;
-    --cat-offset-x: 0.26rem;
+    --cat-offset-x: 0.82rem;
     --cat-offset-y: 0rem;
   }
 }
@@ -67,7 +67,7 @@
 @media (max-width: 1024px) {
   :root {
     --step-ascii: 1.08rem;
-    --cat-offset-x: 0.18rem;
+    --cat-offset-x: 0.72rem;
     --cat-offset-y: -0.14rem;
     --frame-gap-top: 4px;
     --frame-gap-left: 7px;
