@@ -35,6 +35,8 @@ let help = [
   "&#8627; Displays who I am.",
   `<span class="command">projects</span>`,
   "&#8627; View coding projects.",
+  `<span class="command">thoughts</span>`,
+  "&#8627; Read notes and ideas.",
   `<span class="command">contact</span>`,
   "&#8627; Lists contact info.",
 ];
@@ -50,6 +52,17 @@ Charcoal.md is a markdown-first note-taking web app inspired by Obsidian: simple
   `<span class='underline'>Magnum CLI Tool</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
 A semi-autonomous web design agency in your command line: autonomous lead generation, lead prequalification, cost-efficient website generation, all funneled into a CRM for AI-assisted outreach, sales calls, and Stripe payments.
+</pre>`,
+  "</div>",
+];
+
+let thoughts = [
+  "<br>",
+  `<div id="thoughts-section">`,
+  `<span class='underline'>Thoughts</span>`,
+  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
+Short notes on building software, AI systems, and product execution.
+More writeups coming soon.
 </pre>`,
   "</div>",
 ];
