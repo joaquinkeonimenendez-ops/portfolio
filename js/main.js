@@ -322,10 +322,12 @@ function queueOneTimeButtonPreview(previewKey, runCommand, delayMs) {
 
 function markPreviewSeen(previewKey) {
   if (!previewKey) return false;
-  if (oneTimeButtonPreviewSeen.has(previewKey)) return false;
-  oneTimeButtonPreviewSeen.add(previewKey);
+  const wasAlreadySeen = oneTimeButtonPreviewSeen.has(previewKey);
+  if (!wasAlreadySeen) {
+    oneTimeButtonPreviewSeen.add(previewKey);
+  }
   cancelPreviewByKey(previewKey);
-  return true;
+  return !wasAlreadySeen;
 }
 
 function bindPreviewCancelHandlers(scopeElement) {
