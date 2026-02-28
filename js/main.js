@@ -29,7 +29,8 @@ let shouldRunNavPreviewOnNextHome = false;
 let cliPreviewRetryCount = 0;
 const cliPreviewStartDelayExtra = 260;
 const oneTimeButtonPreviewSeen = new Set();
-const buttonPreviewDuration = 120;
+const buttonPreviewDuration = 260;
+const backButtonPreviewDelayExtra = 420;
 
 function setPromptPrefix(prefix) {
   if (!liner) return;
@@ -220,7 +221,7 @@ function commander(cmd) {
       queueOneTimeButtonPreview(
         `back:${backPreviewKey}`,
         "home",
-        (outputLines + 2) * commandLineDelay,
+        (outputLines + 2) * commandLineDelay + backButtonPreviewDelayExtra,
       );
     }
   } else {
@@ -283,7 +284,7 @@ function queueOneTimeButtonPreview(previewKey, runCommand, delayMs) {
   if (oneTimeButtonPreviewSeen.has(previewKey)) return;
 
   let attempts = 0;
-  const maxAttempts = 12;
+  const maxAttempts = 24;
 
   const attemptPreview = function () {
     if (oneTimeButtonPreviewSeen.has(previewKey)) return;
@@ -295,7 +296,7 @@ function queueOneTimeButtonPreview(previewKey, runCommand, delayMs) {
     if (!item) {
       attempts += 1;
       if (attempts < maxAttempts) {
-        setTimeout(attemptPreview, 80);
+        setTimeout(attemptPreview, 120);
       }
       return;
     }
