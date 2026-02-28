@@ -20,7 +20,6 @@ const clearBeforeCommands = new Set([
   "social",
   "help",
 ]);
-const topLevelCommands = new Set(clearBeforeCommands);
 const commandLineDelay = 80;
 const helpHintText =
   "(Type <u>help</u> to see a list of supported commands)";
@@ -82,6 +81,10 @@ navCommandLinks.forEach(function (link) {
     e.preventDefault();
     const cmd = link.getAttribute("data-command");
     if (!cmd) return;
+    if (isThoughtsMode) {
+      isThoughtsMode = false;
+      setPromptPrefix(defaultPrompt);
+    }
     autoTypeAndSubmitCommand(cmd);
   });
 });
@@ -124,19 +127,15 @@ function commander(cmd) {
   if (!cmd) {
     return;
   }
-  if (isThoughtsMode && ["1", "q"].includes(cmd)) {
-    handleThoughtsInput(cmd);
-    return;
-  }
-  if (isThoughtsMode && !["1", "q"].includes(cmd)) {
-    if (!topLevelCommands.has(cmd)) {
+  if (isThoughtsMode) {
+    if (cmd === "q" || /^\d+$/.test(cmd)) {
       handleThoughtsInput(cmd);
-      return;
+    } else {
+      addLine("Invalid choice. Enter 1 or q.", "output-blue", commandLineDelay);
+      addLine("<br>", "", commandLineDelay * 2);
+      scrollToBottom();
     }
-    if (cmd !== "thoughts") {
-      isThoughtsMode = false;
-      setPromptPrefix(defaultPrompt);
-    }
+    return;
   }
   let outputLines = 0;
   let showFooterHint = true;
