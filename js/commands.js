@@ -67,60 +67,14 @@ let help = [
 let projects = [
   "<br>",
   `<div id="projects-section">`,
-  `<a href="https://github.com/cosmicwanderer7/google-clone" target="_blank"><span class='underline'>Google Search Clone</span></a>`,
+  `<span class='underline'>Website Sales CLI</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Functional Google homepage replica using Tailwind CSS and Next.js.
-Live: <a href="https://google-clone-cosmicwanderer7.vercel.app/" target="_blank">google-clone.vercel.app</a>
-Built With:
-- Next.js
-- Tailwind CSS
-- Programmable Search API
+Finds thousands of businesses that lack a website and generates one for them complete with real contact info, hours, photos, and reviews. Funnels them all into an easy to use CRM to call each business with one click, text them the website link, and recieve payments via Stripe.
 </pre>`,
 
-  `<a href="https://github.com/cosmicwanderer7/contactform" target="_blank"><span class='underline'>Contact Form with Google Sheets</span></a>`,
+  `<span class='underline'>Charcoal.md</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Next.js contact form storing data to Google Sheets via API, sends confirmation emails.
-Live: <a href="https://contactform-psi.vercel.app/" target="_blank">contactform-psi.vercel.app</a>
-Built With:
-- Next.js
-- Tailwind CSS
-- Google Sheets API
-- IFTTT
-</pre>`,
-
-  `<a href="https://cosmicwanderer7.github.io/Terminal-Portfolio/" target="_blank"><span class='underline'>Terminal-Styled Portfolio</span></a>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-A responsive portfolio that mimics a Linux terminal interface.
-Built With:
-- Vanilla JS
-- Tailwind CSS
-- Yarn
-</pre>`,
-
-  `<a href="https://github.com/cosmicwanderer7/github-script" target="_blank"><span class='underline'>GitHub Init Script</span></a>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Bash script that automates GitHub repo creation and initial commit setup.
-Built With:
-- Bash
-- GitHub API
-</pre>`,
-
-  `<a href="https://github.com/cosmicwanderer7/guacamole-deploy" target="_blank"><span class='underline'>Apache Guacamole on OCI</span></a>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Remote desktop gateway deployment for secure access on Oracle Cloud.
-Built With:
-- Apache Guacamole
-- Oracle Cloud
-- Linux
-</pre>`,
-
-  `<a href="https://github.com/cosmicwanderer7/mumble-deploy" target="_blank"><span class='underline'>Mumble Server on OCI</span></a>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Voice chat server deployed on cloud for low-latency communication.
-Built With:
-- Mumble
-- Oracle Cloud
-- Linux
+A web based clone of the markdown notes app Obsidian. For people who can't install apps on school/work devices and want a cleaner and faster alternative than notion.
 </pre>`,
   "</div>",
   "<br>",
