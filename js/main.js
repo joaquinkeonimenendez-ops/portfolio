@@ -52,7 +52,7 @@ function closeProjectsOverlay() {
   projectsOverlay.hidden = true;
   projectsOverlay.setAttribute("aria-hidden", "true");
   if (topModeLabel) {
-    topModeLabel.textContent = "about me";
+    topModeLabel.textContent = "projects";
   }
 }
 
