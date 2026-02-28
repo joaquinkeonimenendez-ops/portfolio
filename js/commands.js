@@ -16,8 +16,7 @@ let aboutme = [
   `<span class="command">focus</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">Agentic workflows, scraping systems, and product-minded tooling.</pre>`,
   `<span class="command">currently</span>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">Currently building a CLI tool to sell websites to small businesses and a webapp alternative to Obsidian.md</pre>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">Formerly active in the bug bounty scene.</pre>`,
+  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">Currently building a CLI tool to sell websites to small businesses and a webapp alternative to Obsidian.md. Formerly active in the bug bounty scene.</pre>`,
   "</div>",
   "<br>",
 ];
