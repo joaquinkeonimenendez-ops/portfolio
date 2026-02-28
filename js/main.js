@@ -12,6 +12,15 @@ let pw = false;
 const commands = [];
 let hasAutoHelpRun = false;
 
+function focusInput() {
+  if (!textarea) return;
+  try {
+    textarea.focus({ preventScroll: true });
+  } catch (_err) {
+    textarea.focus();
+  }
+}
+
 function scrollToBottom() {
   if (contentscroll) {
     contentscroll.scrollTop = contentscroll.scrollHeight;
@@ -20,7 +29,7 @@ function scrollToBottom() {
 
 setTimeout(function () {
   loopLines(banner, "", 80);
-  textarea.focus();
+  focusInput();
   scrollToBottom();
 
   setTimeout(function () {
@@ -32,22 +41,18 @@ startAsciiCatBlinkAnimation();
 
 window.addEventListener("keyup", function (e) {
   enterKey(e);
-  scrollToBottom();
 });
 
 window.addEventListener("keydown", function () {
-  textarea.focus();
-  scrollToBottom();
+  focusInput();
 });
 
 document.addEventListener("click", function () {
-  textarea.focus();
-  scrollToBottom();
+  focusInput();
 });
 
 terminal.addEventListener("click", function () {
-  textarea.focus();
-  scrollToBottom();
+  focusInput();
 });
 
 navCommandLinks.forEach(function (link) {
@@ -59,14 +64,11 @@ navCommandLinks.forEach(function (link) {
   });
 });
 
-textarea.addEventListener("input", scrollToBottom);
-
 textarea.value = "";
 command.innerHTML = textarea.value;
 
 function enterKey(e) {
-  textarea.focus();
-  scrollToBottom();
+  focusInput();
 
   if (e.keyCode === 13) {
     const input = command.innerHTML.trim().toLowerCase();
