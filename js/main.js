@@ -136,11 +136,12 @@ function commander(cmd) {
       loopLines(social, "", commandLineDelay);
       break;
     default:
-      outputLines = 1;
+      outputLines = 2;
+      addLine("<br>", "", commandLineDelay);
       addLine(
         "Unknown command - Type <u>help</u> to see a list of supported commands",
         "output-blue",
-        commandLineDelay,
+        commandLineDelay * 2,
       );
       break;
   }
