@@ -21,6 +21,7 @@ const clearBeforeCommands = new Set([
 ]);
 const commandLineDelay = 80;
 const buttonPreviewDuration = 250;
+const previewedButtonKeys = new Set();
 const homeHintText =
   '<span class="cli-run-command cli-run-item" data-run-command="home">← Back<br>(Type <u>home</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
@@ -298,6 +299,14 @@ function applyTemporaryButtonPreview(lineNode, previewDuration) {
   const previewNodes = lineNode.querySelectorAll(".cli-run-command");
   if (!previewNodes.length) return;
   previewNodes.forEach(function (previewNode) {
+    const explicitKey = previewNode.getAttribute("data-preview-key");
+    const commandKey = previewNode.getAttribute("data-run-command") || "";
+    const labelKey = (previewNode.textContent || "")
+      .replace(/\s+/g, " ")
+      .trim();
+    const previewKey = explicitKey || `${commandKey}|${labelKey}`;
+    if (!previewKey || previewedButtonKeys.has(previewKey)) return;
+    previewedButtonKeys.add(previewKey);
     previewNode.classList.add("cli-preview-active");
     setTimeout(function () {
       previewNode.classList.remove("cli-preview-active");
