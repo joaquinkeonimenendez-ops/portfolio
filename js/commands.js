@@ -45,16 +45,16 @@ let social = [
 ];
 
 let help = [
-  `<br><div id="help-section"><pre class="whitespace-pre-wrap">
-<span class="command">about</span>
-&#8627; Displays who I am.
-<span class="command">projects</span>
-&#8627; View coding projects.
-<span class="command">contact</span>
-&#8627; Lists contact links.
-<span class="command">help</span>
-&#8627; Displays this help message.
-</pre></div><br>`,
+  "<br>",
+  `<span class="command">about</span>`,
+  "&#8627; Displays who I am.",
+  `<span class="command">projects</span>`,
+  "&#8627; View coding projects.",
+  `<span class="command">contact</span>`,
+  "&#8627; Lists contact links.",
+  `<span class="command">help</span>`,
+  "&#8627; Displays this help message.",
+  "<br>",
 ];
 let projects = [
   "<br>",
