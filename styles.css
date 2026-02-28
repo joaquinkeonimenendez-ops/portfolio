@@ -28,10 +28,13 @@
   --color-spotify-icon: #8dc6ff;
   --color-spotify-text: #fff;
   --color-spotify-track-info: #9dd0ff;
-  --frame-gap-top: 7px;
+  --frame-gap-top: 4px;
   --frame-gap-right: 11px;
   --frame-gap-bottom: 7px;
   --frame-gap-left: 4px;
+  --cat-offset-x: 0.35rem;
+  --cat-offset-y: 0.2rem;
+  --cat-offset-y-stacked: -1rem;
 
   /* Typography */
   --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
@@ -48,30 +51,48 @@
 @media (max-width: 1600px) {
   :root {
     --step-ascii: 1.4rem;
+    --cat-offset-x: 0.32rem;
+    --cat-offset-y: 0.08rem;
   }
 }
 
 @media (max-width: 1280px) {
   :root {
     --step-ascii: 1.24rem;
+    --cat-offset-x: 0.26rem;
+    --cat-offset-y: 0rem;
   }
 }
 
 @media (max-width: 1024px) {
   :root {
     --step-ascii: 1.08rem;
+    --cat-offset-x: 0.18rem;
+    --cat-offset-y: -0.14rem;
+    --frame-gap-top: 4px;
+    --frame-gap-left: 7px;
+    --frame-gap-right: 7px;
   }
 }
 
 @media (max-width: 768px) {
   :root {
     --step-ascii: 0.95rem;
+    --cat-offset-y-stacked: -0.85rem;
+    --frame-gap-top: 3px;
   }
 }
 
 @media (max-width: 520px) {
   :root {
-    --step-ascii: 0.82rem;
+    --step-ascii: 0.62rem;
+    --cat-offset-y-stacked: -0.72rem;
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --step-ascii: 0.52rem;
   }
 }
 
@@ -200,16 +221,92 @@ hr {
 }
 
 @media (max-width: 726px) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .terminal-window {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    height: auto;
+    min-height: calc(
+      100vh - var(--frame-gap-top) - var(--frame-gap-bottom)
+    );
+  }
+
   header {
     flex-wrap: wrap;
     row-gap: 0.45rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .brand-title {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
   }
 
   .top-nav {
     width: 100%;
-    justify-content: flex-end;
+    margin-left: 0;
+    justify-content: center;
     gap: 1rem;
     font-size: var(--step--1);
+  }
+
+  #contentscroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: visible;
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .content-container,
+  #terminal {
+    width: min(100%, 42rem);
+    max-width: 100%;
+    box-sizing: border-box;
+    align-self: center;
+  }
+
+  .content-container,
+  .ascii-Hero,
+  .cat-panel,
+  #terminal {
+    text-align: left;
+  }
+
+  .cat-panel {
+    justify-content: flex-start;
+  }
+
+  .ascii-Hero {
+    max-width: 100%;
+  }
+
+  .ascii {
+    padding-left: 0.35rem;
+    max-width: 100%;
+  }
+
+  #terminal {
+    height: auto;
+    min-height: 38vh;
+    padding-left: var(--step-1);
+    padding-right: var(--step-0);
+  }
+
+  .bottom-bar {
+    display: none;
   }
 }
 
@@ -299,8 +396,8 @@ hr {
   padding: 0;
   margin-top: 0;
   margin-bottom: 0.55rem;
-  margin-left: 0.35rem;
-  transform: none;
+  margin-left: var(--cat-offset-x);
+  transform: translateY(var(--cat-offset-y));
 }
 
 .ascii-cat-wrapper {
@@ -341,7 +438,7 @@ hr {
     margin-top: 0;
     margin-bottom: 0.4rem;
     margin-left: 0;
-    transform: translateY(-1rem);
+    transform: translateY(var(--cat-offset-y-stacked));
   }
 
   .spotify-panel {
@@ -358,6 +455,7 @@ hr {
   height: 55vh;
   width: 60%;
   padding-left: var(--step-2);
+  box-sizing: border-box;
   font-size: var(--step-0);
   position: relative;
   margin-top: -0.35rem;
