@@ -18,19 +18,7 @@ function scrollToBottom() {
 }
 
 const commandMap = {
-  help: "help",
-  aboutme: "aboutme",
-  projects: "projects",
   begin: "begin",
-  social: "social",
-  email: "email",
-  history: "history",
-  clear: "clear",
-  dev: "dev",
-  twitter: "twitter",
-  linkedin: "linkedin",
-  instagram: "instagram",
-  github: "github",
 };
 
 setTimeout(function () {
@@ -108,70 +96,8 @@ function enterKey(e) {
 
 function commander(cmd) {
   switch (cmd.toLowerCase()) {
-    case "help":
-      loopLines(help, "color2 margin", 80);
-      break;
-    case "aboutme":
-      loopLines(aboutme, "color2 margin", 80);
-      break;
-    case "projects":
-      loopLines(projects, "color2 margin", 80);
-      break;
     case "begin":
       loopLines(projects, "color2 margin", 80);
-      break;
-    case "social":
-      loopLines(social, "color2 margin", 80);
-      break;
-    case "history":
-      addLine("<br>", "", 0);
-      loopLines(commands, "color2", 80);
-      addLine("<br>", "command", 80 * commands.length + 50);
-      break;
-    case "email":
-      addLine(
-        'Opening mailto:<a href="mailto:yewaleprithvi2003@gmail.com"> yewaleprithvi2003@gmail.com</a>...',
-        "color2",
-        80,
-      );
-      newTab(email);
-      break;
-    case "clear":
-      setTimeout(function () {
-        const paragraphs = terminal.querySelectorAll("p");
-        paragraphs.forEach((p) => p.remove());
-        if (!document.getElementById("before")) {
-          const beforeElement = document.createElement("a");
-          beforeElement.id = "before";
-          terminal.insertBefore(beforeElement, terminal.firstChild);
-          before = beforeElement;
-        }
-        if (typeof banner !== "undefined") {
-          loopLines(banner, "", 80);
-        }
-        textarea.focus();
-        scrollToBottom();
-      }, 1);
-      break;
-    case "dev":
-      addLine("Opening Dev.to...", "color2", 80);
-      newTab(dev);
-      break;
-    case "twitter":
-      addLine("Opening Twitter...", "color2", 0);
-      newTab(twitter);
-      break;
-    case "linkedin":
-      addLine("Opening LinkedIn...", "color2", 0);
-      newTab(linkedin);
-      break;
-    case "instagram":
-      addLine("Opening Instagram...", "color2", 0);
-      newTab(instagram);
-      break;
-    case "github":
-      addLine("Opening GitHub...", "color2", 0);
-      newTab(github);
       break;
     default:
       const closest = findClosestCommand(cmd);
@@ -185,7 +111,7 @@ function commander(cmd) {
         );
       } else {
         addLine(
-          `<span class="inherit">Command not found. Type <span class="command">'help'</span> for available commands.</span>`,
+          `<span class="inherit">Command not found. Type <span class="command">'begin'</span> to view projects.</span>`,
           "error",
           100,
         );
