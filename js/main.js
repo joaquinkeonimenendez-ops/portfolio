@@ -176,13 +176,13 @@ function typeHelpMenu() {
     { text: "Supported commands:", style: "output-blue" },
     { text: "", style: "output-blue" },
     { text: "about", style: "help-command" },
-    { text: "-> Learn more about me.", style: "help-desc" },
+    { text: "\u21B3 Learn more about me.", style: "help-desc" },
     { text: "projects", style: "help-command" },
-    { text: "-> View my projects.", style: "help-desc" },
+    { text: "\u21B3 View my projects.", style: "help-desc" },
     { text: "writings", style: "help-command" },
-    { text: "-> Read my writings.", style: "help-desc" },
+    { text: "\u21B3 Read my writings.", style: "help-desc" },
     { text: "contact", style: "help-command" },
-    { text: "-> Reach out to me.", style: "help-desc" },
+    { text: "\u21B3 Reach out to me.", style: "help-desc" },
   ];
   let delay = 80;
   const charDelay = 16;
