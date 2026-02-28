@@ -12,7 +12,7 @@ let aboutme = [
   "<br>",
   `<div id="aboutme-section">`,
   `<span class='underline'>Joaquin Keoni Menendez</span>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">I'm a CS student at UC Irvine. In my free time I build AI tools and study software. I've coded since childhood and leverage modern AI tools to accelerate my workflow.</pre>`,
+  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">I'm a CS student at UC Irvine. In my free time I build AI tools to build AI systems and study software. I've coded since childhood and leverage modern AI tools to accelerate my workflow.</pre>`,
   `<span class="command">focus</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">Agentic workflows, scraping systems, and product-minded tooling.</pre>`,
   `<span class="command">currently</span>`,
