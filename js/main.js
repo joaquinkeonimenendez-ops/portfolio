@@ -28,6 +28,8 @@ let hasRunNavPreviewSequence = false;
 let shouldRunNavPreviewOnNextHome = false;
 let cliPreviewRetryCount = 0;
 const cliPreviewStartDelayExtra = 260;
+const oneTimeButtonPreviewSeen = new Set();
+const buttonPreviewDuration = 120;
 
 function setPromptPrefix(prefix) {
   if (!liner) return;
@@ -206,6 +208,21 @@ function commander(cmd) {
     addLine("<br>", "", (outputLines + 1) * commandLineDelay);
     addLine(homeHintText, "tertiary", (outputLines + 2) * commandLineDelay);
     addLine("<br>", "", (outputLines + 3) * commandLineDelay);
+    const backKeyMap = {
+      about: "about",
+      aboutme: "about",
+      projects: "projects",
+      contact: "contact",
+      social: "contact",
+    };
+    const backPreviewKey = backKeyMap[cmd];
+    if (backPreviewKey) {
+      queueOneTimeButtonPreview(
+        `back:${backPreviewKey}`,
+        "home",
+        (outputLines + 2) * commandLineDelay,
+      );
+    }
   } else {
     addLine("<br>", "", (outputLines + 1) * commandLineDelay);
   }
@@ -260,6 +277,37 @@ function runInitialNavPreviewSequence() {
     return;
   }
   hasRunNavPreviewSequence = true;
+}
+
+function queueOneTimeButtonPreview(previewKey, runCommand, delayMs) {
+  if (oneTimeButtonPreviewSeen.has(previewKey)) return;
+
+  let attempts = 0;
+  const maxAttempts = 12;
+
+  const attemptPreview = function () {
+    if (oneTimeButtonPreviewSeen.has(previewKey)) return;
+
+    const matches = terminal.querySelectorAll(
+      `p .cli-run-item[data-run-command="${runCommand}"]`,
+    );
+    const item = matches[matches.length - 1];
+    if (!item) {
+      attempts += 1;
+      if (attempts < maxAttempts) {
+        setTimeout(attemptPreview, 80);
+      }
+      return;
+    }
+
+    oneTimeButtonPreviewSeen.add(previewKey);
+    item.classList.add("hover-preview");
+    setTimeout(function () {
+      item.classList.remove("hover-preview");
+    }, buttonPreviewDuration);
+  };
+
+  setTimeout(attemptPreview, Math.max(0, delayMs));
 }
 
 function handleThoughtsInput(cmd) {
