@@ -5,11 +5,7 @@ var instagram = "https://www.instagram.com/prithvi_yewale/";
 var github = "https://github.com/cosmicwanderer7";
 var email = "mailto:yewaleprithvi2003@gmail.com";
 
-let banner = [
-  `<div id="banner-section" class="banner">
- I'm a CS student at UC Irvine. I build AI projects in my free time.
-  </div>`,
-];
+let banner = [];
 
 let aboutme = [
   "<br>",

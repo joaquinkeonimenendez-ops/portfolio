@@ -145,6 +145,12 @@ hr {
   width: 100%;
 }
 
+.profile-summary {
+  margin: 0.15rem 0 0.9rem;
+  color: var(--color-primary);
+  line-height: 1.45;
+}
+
 .info-item {
   display: flex;
   align-items: center;
