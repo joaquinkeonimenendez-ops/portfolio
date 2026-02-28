@@ -326,7 +326,7 @@ hr {
 }
 
 .help-desc {
-  color: var(--color-tertiary);
+  color: var(--color-secondary);
 }
 
 .command {
