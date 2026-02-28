@@ -149,7 +149,7 @@ hr {
 
 .top-nav a.hover-preview {
   color: var(--color-primary);
-  background-color: rgba(157, 208, 255, 0.12);
+  background-color: rgba(157, 208, 255, 0.2);
 }
 
 .top-nav a.active {

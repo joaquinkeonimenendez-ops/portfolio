@@ -41,6 +41,7 @@ const commandByHash = {
 };
 let isHashSyncing = false;
 let hasRunNavPreviewSequence = false;
+let shouldRunNavPreviewOnNextHome = false;
 
 function setPromptPrefix(prefix) {
   if (!liner) return;
@@ -75,12 +76,9 @@ setTimeout(function () {
 
   setTimeout(function () {
     const initialCommand = getCommandFromHash(window.location.hash) || "home";
+    shouldRunNavPreviewOnNextHome = initialCommand === "home";
     setHashForCommand(initialCommand);
     autoTypeAndSubmitCommand(initialCommand);
-    if (initialCommand === "home") {
-      const autoTypeDuration = initialCommand.length * 110 + 260;
-      setTimeout(runInitialNavPreviewSequence, autoTypeDuration);
-    }
   }, banner.length * 80 + 250);
 }, 100);
 
@@ -181,6 +179,10 @@ function commander(cmd) {
       outputLines = home.length;
       showFooterHint = false;
       loopLines(home, "", commandLineDelay);
+      if (shouldRunNavPreviewOnNextHome) {
+        shouldRunNavPreviewOnNextHome = false;
+        setTimeout(runInitialNavPreviewSequence, (outputLines + 2) * commandLineDelay);
+      }
       break;
     case "about":
     case "aboutme":
@@ -258,8 +260,8 @@ function runInitialNavPreviewSequence() {
   hasRunNavPreviewSequence = true;
 
   const sequence = ["about", "projects", "contact"];
-  const highlightDuration = 170;
-  const stepDelay = 240;
+  const highlightDuration = 280;
+  const stepDelay = 340;
 
   sequence.forEach(function (cmd, index) {
     const link = document.querySelector(`.top-nav a[data-command="${cmd}"]`);
