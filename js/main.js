@@ -15,6 +15,8 @@ const clearBeforeCommands = new Set([
   "about",
   "aboutme",
   "projects",
+  "charcoal",
+  "magnum",
   "contact",
   "social",
   "home",
@@ -172,6 +174,22 @@ function commander(cmd) {
       setActiveNavCommand("projects");
       outputLines = projects.length;
       loopLines(projects, "", commandLineDelay, {
+        previewClickableItems: true,
+        previewDuration: buttonPreviewDuration,
+      });
+      break;
+    case "charcoal":
+      setActiveNavCommand("projects");
+      outputLines = projectCharcoal.length;
+      loopLines(projectCharcoal, "", commandLineDelay, {
+        previewClickableItems: true,
+        previewDuration: buttonPreviewDuration,
+      });
+      break;
+    case "magnum":
+      setActiveNavCommand("projects");
+      outputLines = projectMagnum.length;
+      loopLines(projectMagnum, "", commandLineDelay, {
         previewClickableItems: true,
         previewDuration: buttonPreviewDuration,
       });

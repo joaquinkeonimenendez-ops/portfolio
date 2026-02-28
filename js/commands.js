@@ -38,16 +38,30 @@ let home = [
 
 let projects = [
   "<br>",
-  `<div id="projects-section">`,
-  `<span class="output-blue">1. Charcoal.md</span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="charcoal" data-preview-key="project:charcoal"><span class="command">1. Charcoal.md</span><br><span class="home-item-desc">&#8627; A markdown note-taking web app inspired by Obsidian.</span></span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="magnum" data-preview-key="project:magnum"><span class="command">2. Magnum</span><br><span class="home-item-desc">&#8627; AI-driven CLI for selling websites to small businesses.</span></span>`,
+];
+
+let projectCharcoal = [
+  "<br>",
+  `<span class="output-blue">Charcoal.md</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-A markdown based note-taking webapp inspired by Obsidian. Built for people who can't install desktop apps on work/school devices or don't want to pay for Obsidian sync.
+A markdown-based note-taking web app inspired by Obsidian.
+Built for people who can't install desktop apps on work/school devices
+or who don't want to pay for Obsidian sync.
 </pre>`,
-  `<span class="output-blue">2. Magnum</span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">â† Back to projects</span></span>`,
+];
+
+let projectMagnum = [
+  "<br>",
+  `<span class="output-blue">Magnum</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-A CLI for selling websites to small businesses. Lead generation and website creation is entirely handled by AI agents. Fully integrated with OpenPhone and Stripe for a human operator to smoothly make sales calls.
+A CLI for selling websites to small businesses.
+Lead generation and website creation are handled by AI agents,
+with integrations for OpenPhone and Stripe to support smooth operator workflows.
 </pre>`,
-  "</div>",
+  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">â† Back to projects</span></span>`,
 ];
 
 let thoughts = [
