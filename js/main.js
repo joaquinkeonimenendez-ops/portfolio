@@ -147,7 +147,6 @@ function loopLines(name, style, time) {
 function typeHelpMenu() {
   const lines = [
     { text: "Supported commands:", style: "output-blue" },
-    { text: "&nbsp;", style: "output-blue" },
     { text: "about", style: "help-command" },
     { text: "\u21B3 Learn more about me.", style: "help-desc" },
     { text: "projects", style: "help-command" },
