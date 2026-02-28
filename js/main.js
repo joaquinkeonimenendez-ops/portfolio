@@ -84,7 +84,7 @@ function commander(cmd) {
   }
   if (cmd === "help") {
     addLine(
-      "Supported commands:<br><br><span class=\"help-command\">about</span><br><span class=\"help-desc\">↳ Learn more about me.</span><br><span class=\"help-command\">projects</span><br><span class=\"help-desc\">↳ View my projects.</span><br><span class=\"help-command\">writings</span><br><span class=\"help-desc\">↳ Read my writings.</span><br><span class=\"help-command\">contact</span><br><span class=\"help-desc\">↳ Reach out to me.</span>",
+      "Supported commands:<br><br><span class=\"help-command\">About</span><br><span class=\"help-desc\">&#8627; Learn more about me.</span><br><span class=\"help-command\">projects</span><br><span class=\"help-desc\">&#8627; View my projects.</span><br><span class=\"help-command\">writings</span><br><span class=\"help-desc\">&#8627; Read my writings.</span><br><span class=\"help-command\">contact</span><br><span class=\"help-desc\">&#8627; Reach out to me.</span>",
       "output-blue",
       80,
     );
@@ -148,4 +148,7 @@ function loopLines(name, style, time) {
     name.length * time + 50,
   );
 }
+
+
+
 
