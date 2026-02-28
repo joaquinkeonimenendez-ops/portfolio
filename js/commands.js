@@ -37,6 +37,8 @@ let social = [
 
 let help = [
   "<br>",
+  `<span class="command">help</span>`,
+  "&#8627; Lists supported commands.",
   `<span class="command">about</span>`,
   "&#8627; Displays who I am.",
   `<span class="command">projects</span>`,
