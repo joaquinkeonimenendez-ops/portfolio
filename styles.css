@@ -253,7 +253,7 @@ hr {
 #command {
   cursor: text;
   height: 50px;
-  color: var(--color-command);
+  color: var(--color-secondary);
 }
 
 .texter {
