@@ -146,6 +146,7 @@ function loopLines(name, style, time) {
 
 function typeHelpMenu() {
   const lines = [
+    { text: "&nbsp;", style: "output-blue" },
     { text: "Supported commands:", style: "output-blue" },
     { text: "about", style: "help-command" },
     { text: "\u21B3 Learn more about me.", style: "help-desc" },
@@ -153,6 +154,7 @@ function typeHelpMenu() {
     { text: "\u21B3 View my projects.", style: "help-desc" },
     { text: "contact", style: "help-command" },
     { text: "\u21B3 Reach out to me.", style: "help-desc" },
+    { text: "&nbsp;", style: "output-blue" },
   ];
   let delay = 80;
   const lineGap = 120;
