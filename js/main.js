@@ -20,13 +20,11 @@ const clearBeforeCommands = new Set([
   "home",
 ]);
 const commandLineDelay = 80;
-const initialHomePreviewLineDelay = 280;
-const initialHomePreviewHoldDuration = 250;
+const buttonPreviewDuration = 250;
 const homeHintText =
   '<span class="cli-run-command cli-run-item" data-run-command="home">← Back<br>(Type <u>home</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = "> ";
-let hasShownInitialHomePreview = false;
 
 function setPromptPrefix(prefix) {
   if (!liner) return;
@@ -146,7 +144,6 @@ function commander(cmd) {
     return;
   }
   let outputLines = 0;
-  let outputLineDelay = commandLineDelay;
   let showFooterHint = true;
   if (clearBeforeCommands.has(cmd)) {
     clearTerminalLines();
@@ -156,32 +153,36 @@ function commander(cmd) {
       setActiveNavCommand("home");
       outputLines = home.length;
       showFooterHint = false;
-      const showHomePreview = !hasShownInitialHomePreview;
-      if (showHomePreview) {
-        outputLineDelay = initialHomePreviewLineDelay;
-        hasShownInitialHomePreview = true;
-      }
-      loopLines(home, "", outputLineDelay, {
-        previewHomeItems: showHomePreview,
-        previewDuration: initialHomePreviewHoldDuration,
+      loopLines(home, "", commandLineDelay, {
+        previewClickableItems: true,
+        previewDuration: buttonPreviewDuration,
       });
       break;
     case "about":
     case "aboutme":
       setActiveNavCommand("about");
       outputLines = aboutme.length;
-      loopLines(aboutme, "", commandLineDelay);
+      loopLines(aboutme, "", commandLineDelay, {
+        previewClickableItems: true,
+        previewDuration: buttonPreviewDuration,
+      });
       break;
     case "projects":
       setActiveNavCommand("projects");
       outputLines = projects.length;
-      loopLines(projects, "", commandLineDelay);
+      loopLines(projects, "", commandLineDelay, {
+        previewClickableItems: true,
+        previewDuration: buttonPreviewDuration,
+      });
       break;
     case "contact":
     case "social":
       setActiveNavCommand("contact");
       outputLines = social.length;
-      loopLines(social, "", commandLineDelay);
+      loopLines(social, "", commandLineDelay, {
+        previewClickableItems: true,
+        previewDuration: buttonPreviewDuration,
+      });
       break;
     default:
       outputLines = 2;
@@ -195,11 +196,18 @@ function commander(cmd) {
       break;
   }
   if (showFooterHint) {
-    addLine("<br>", "", (outputLines + 1) * outputLineDelay);
-    addLine(homeHintText, "tertiary", (outputLines + 2) * outputLineDelay);
-    addLine("<br>", "", (outputLines + 3) * outputLineDelay);
+    addLine("<br>", "", (outputLines + 1) * commandLineDelay);
+    addLine(
+      homeHintText,
+      "tertiary",
+      (outputLines + 2) * commandLineDelay,
+      function (lineNode) {
+        applyTemporaryButtonPreview(lineNode, buttonPreviewDuration);
+      },
+    );
+    addLine("<br>", "", (outputLines + 3) * commandLineDelay);
   } else {
-    addLine("<br>", "", (outputLines + 1) * outputLineDelay);
+    addLine("<br>", "", (outputLines + 1) * commandLineDelay);
   }
   scrollToBottom();
 }
@@ -285,28 +293,25 @@ function addLine(text, style, time, onRendered) {
   }, time);
 }
 
-function getPreviewKey(line) {
-  if (typeof line !== "string") return "";
-  const keyMatch = line.match(/data-preview-key="([^"]+)"/);
-  return keyMatch ? keyMatch[1] : "";
+function applyTemporaryButtonPreview(lineNode, previewDuration) {
+  if (!lineNode) return;
+  const previewNodes = lineNode.querySelectorAll(".cli-run-command");
+  if (!previewNodes.length) return;
+  previewNodes.forEach(function (previewNode) {
+    previewNode.classList.add("cli-preview-active");
+    setTimeout(function () {
+      previewNode.classList.remove("cli-preview-active");
+    }, previewDuration);
+  });
 }
 
 function loopLines(name, style, time, options = {}) {
-  const previewHomeItems = Boolean(options.previewHomeItems);
+  const previewClickableItems = Boolean(options.previewClickableItems);
   const previewDuration = options.previewDuration || time;
   name.forEach(function (item, index) {
-    const lineDelay = index * time;
-    const previewKey = previewHomeItems ? getPreviewKey(item) : "";
-    addLine(item, style, lineDelay, function (lineNode) {
-      if (!previewKey || !lineNode) return;
-      const previewNode = lineNode.querySelector(
-        `[data-preview-key="${previewKey}"]`,
-      );
-      if (!previewNode) return;
-      previewNode.classList.add("cli-preview-active");
-      setTimeout(function () {
-        previewNode.classList.remove("cli-preview-active");
-      }, previewDuration);
+    addLine(item, style, index * time, function (lineNode) {
+      if (!previewClickableItems) return;
+      applyTemporaryButtonPreview(lineNode, previewDuration);
     });
   });
   setTimeout(
