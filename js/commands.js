@@ -39,8 +39,6 @@ let help = [
   "&#8627; View coding projects.",
   `<span class="command">contact</span>`,
   "&#8627; Lists contact info.",
-  `<span class="command">help</span>`,
-  "&#8627; Lists supported commands.",
   "<br>",
 ];
 
