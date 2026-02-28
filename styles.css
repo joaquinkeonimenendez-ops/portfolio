@@ -93,7 +93,7 @@ body {
 
 .terminal-window {
   position: fixed;
-  inset: 3px;
+  inset: 7px;
   z-index: 1;
   border: 1px solid var(--color-primary);
   background-color: var(--color-background-overlay);
