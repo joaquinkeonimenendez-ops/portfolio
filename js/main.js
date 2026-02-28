@@ -82,6 +82,16 @@ function commander(cmd) {
   if (!cmd) {
     return;
   }
+  if (cmd === "help") {
+    addLine(
+      "Supported commands: about, projects, writings, contact.",
+      "color2",
+      80,
+    );
+    scrollToBottom();
+    return;
+  }
+
   addLine("HI", "color2", 80);
   scrollToBottom();
 }
