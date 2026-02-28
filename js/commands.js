@@ -42,12 +42,13 @@ let help = [
 let projects = [
   "<br>",
   `<div id="projects-section">`,
+  `<span class="output-blue">1. Charcoal.md</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Charcoal.md - A markdown based note-taking webapp inspired by Obsidian. Built for people who can't install desktop apps on work/school devices or don't want to pay for Obsidian sync.
+A markdown based note-taking webapp inspired by Obsidian. Built for people who can't install desktop apps on work/school devices or don't want to pay for Obsidian sync.
 </pre>`,
-
+  `<span class="output-blue">2. Magnum</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Magnum - A CLI for selling websites to small businesses. Lead generation and website creation is entirely handled by AI agents. Fully integrated with OpenPhone and Stripe for a human operator to smoothly make sales calls.
+A CLI for selling websites to small businesses. Lead generation and website creation is entirely handled by AI agents. Fully integrated with OpenPhone and Stripe for a human operator to smoothly make sales calls.
 </pre>`,
   "</div>",
 ];
