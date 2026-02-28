@@ -67,14 +67,14 @@ let help = [
 let projects = [
   "<br>",
   `<div id="projects-section">`,
-  `<span class='underline'>Website Sales CLI</span>`,
-  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-Finds thousands of businesses that lack a website and generates one for them complete with real contact info, hours, photos, and reviews. Funnels them all into an easy to use CRM to call each business with one click, text them the website link, and recieve payments via Stripe.
-</pre>`,
-
   `<span class='underline'>Charcoal.md</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
 A web based alternative to the markdown notes app Obsidian. For those who can't install desktop apps on work/school devices and want a cleaner, faster option than notion.
+</pre>`,
+
+  `<span class='underline'>Website Sales CLI</span>`,
+  `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
+Finds thousands of businesses that lack a website and generates one for them complete with real contact info, hours, photos, and reviews. Funnels them all into an easy to use CRM to call each business with one click, text them the website link, and recieve payments via Stripe.
 </pre>`,
   "</div>",
   "<br>",
