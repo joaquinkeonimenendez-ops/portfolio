@@ -10,7 +10,6 @@ const navCommandLinks = document.querySelectorAll(".top-nav a[data-command]");
 let git = 0;
 let pw = false;
 const commands = [];
-let hasAutoHelpRun = false;
 const clearBeforeCommands = new Set([
   "about",
   "aboutme",
@@ -189,11 +188,6 @@ function loopLines(name, style, time) {
 }
 
 function autoTypeAndSubmitCommand(autoCommand) {
-  if (autoCommand === "help" && hasAutoHelpRun) return;
-  if (autoCommand === "help") {
-    hasAutoHelpRun = true;
-  }
-
   let index = 0;
   textarea.value = "";
   command.innerHTML = "";
