@@ -4,8 +4,6 @@ const command = document.getElementById("typer");
 const textarea = document.getElementById("texter");
 const terminal = document.getElementById("terminal");
 const contentscroll = document.getElementById("contentscroll");
-const projectsOverlay = document.getElementById("projects-overlay");
-const projectsOverlayClose = document.getElementById("projects-overlay-close");
 const topModeLabel = document.getElementById("top-mode-label");
 
 let git = 0;
@@ -17,31 +15,6 @@ let awaitingConfirmation = false;
 function scrollToBottom() {
   if (contentscroll) {
     contentscroll.scrollTop = contentscroll.scrollHeight;
-  }
-}
-
-function clearTerminalLines() {
-  if (!terminal) return;
-  const lines = terminal.querySelectorAll(":scope > p");
-  lines.forEach((line) => line.remove());
-}
-
-function openProjectsOverlay() {
-  if (!projectsOverlay) return;
-  clearTerminalLines();
-  projectsOverlay.hidden = false;
-  projectsOverlay.setAttribute("aria-hidden", "false");
-  if (topModeLabel) {
-    topModeLabel.textContent = "projects";
-  }
-}
-
-function closeProjectsOverlay() {
-  if (!projectsOverlay) return;
-  projectsOverlay.hidden = true;
-  projectsOverlay.setAttribute("aria-hidden", "true");
-  if (topModeLabel) {
-    topModeLabel.textContent = "about me";
   }
 }
 
@@ -67,7 +40,9 @@ window.addEventListener("keydown", function () {
 
 window.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
-    closeProjectsOverlay();
+    if (topModeLabel) {
+      topModeLabel.textContent = "about me";
+    }
   }
 });
 
@@ -80,14 +55,6 @@ terminal.addEventListener("click", function () {
   textarea.focus();
   scrollToBottom();
 });
-
-if (projectsOverlayClose) {
-  projectsOverlayClose.addEventListener("click", function () {
-    closeProjectsOverlay();
-    textarea.focus();
-    scrollToBottom();
-  });
-}
 
 textarea.addEventListener("input", scrollToBottom);
 
@@ -139,7 +106,7 @@ function enterKey(e) {
 function commander(cmd) {
   switch (cmd.toLowerCase()) {
     case "begin":
-      openProjectsOverlay();
+      addLine("HI", "color2", 80);
       break;
     default:
       const closest = findClosestCommand(cmd);
@@ -153,7 +120,7 @@ function commander(cmd) {
         );
       } else {
         addLine(
-          `<span class="inherit">Command not found. Type <span class="command">'begin'</span> to view projects.</span>`,
+          `<span class="inherit">Command not found.</span>`,
           "error",
           100,
         );
