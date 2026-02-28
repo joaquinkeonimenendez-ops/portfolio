@@ -200,7 +200,8 @@ function handleThoughtsInput(cmd) {
       isThoughtsMode = false;
       setPromptPrefix(defaultPrompt);
       addLine("Exited thoughts.", "output-blue", commandLineDelay);
-      addLine("<br>", "", commandLineDelay * 2);
+      addLine(helpHintText, "tertiary", commandLineDelay * 2);
+      addLine("<br>", "", commandLineDelay * 3);
       break;
     default:
       addLine("Invalid choice. Enter 1 or q.", "output-blue", commandLineDelay);
