@@ -74,7 +74,7 @@ Finds thousands of businesses that lack a website and generates one for them com
 
   `<span class='underline'>Charcoal.md</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-A web based clone of the markdown notes app Obsidian. For people who can't install apps on school/work devices and want a cleaner and faster alternative than notion.
+A web based alternative to the markdown notes app Obsidian. For those who can't install desktop apps on work/school devices and want a cleaner, faster option than notion.
 </pre>`,
   "</div>",
   "<br>",
