@@ -88,7 +88,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 10px 0 10px;
+  gap: 1rem;
+  padding: 10px 12px 0 12px;
   position: relative;
   font-size: var(--step-0);
   font-family: "FantasqueSansMono";
@@ -97,25 +98,42 @@ header {
 hr {
   border: 1px ridge var(--color-primary);
 }
-.centered {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+
+.brand-title {
+  color: var(--color-primary);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.header-icon {
-  padding-top: 2.5px;
-  font-size: 1.25rem;
-  color: var(--color-tertiary);
+.top-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
 }
 
-/* Specific hover colors */
-.github-icon:hover {
+.top-nav a {
+  color: var(--color-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.top-nav a:hover {
   color: var(--color-accent);
 }
 
-.close-icon:hover {
-  color: var(--color-danger);
+@media (max-width: 726px) {
+  header {
+    flex-wrap: wrap;
+    row-gap: 0.45rem;
+  }
+
+  .top-nav {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 1rem;
+    font-size: var(--step--1);
+  }
 }
 
 .ascii {

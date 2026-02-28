@@ -87,31 +87,13 @@
     </video>
     <div class="terminal-window" role="main">
       <header role="banner" aria-label="Site Header">
-        <a
-          href="https://github.com/joaquinkeonimenendez-ops/"
-          target="_blank"
-          aria-label="GitHub Profile"
-        >
-          <i
-            class="fa-brands fa-github header-icon github-icon"
-            aria-hidden="true"
-          ></i>
-        </a>
-
-        <div class="centered" aria-hidden="true">
-          <span id="top-mode-label">about me</span>
-        </div>
-
-        <a
-          href="#"
-          onclick="close_window(); return false;"
-          aria-label="Close Window"
-        >
-          <i
-            class="fa-solid fa-circle-xmark header-icon close-icon"
-            aria-hidden="true"
-          ></i>
-        </a>
+        <div class="brand-title">keoni@me</div>
+        <nav class="top-nav" aria-label="Primary Navigation">
+          <a href="#about">About Me</a>
+          <a href="#terminal">Projects</a>
+          <a href="#terminal">Writings</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </header>
 
       <hr aria-hidden="true" />
@@ -130,7 +112,7 @@
             </pre>
           </div>
 
-          <section class="profile-info" aria-labelledby="profile-heading">
+          <section id="about" class="profile-info" aria-labelledby="profile-heading">
             <h1 id="profile-heading" class="sr-only">Profile Information</h1>
 
             <div class="info-item">
@@ -210,7 +192,7 @@
         </section>
       </div>
 
-      <footer class="bottom-bar" role="contentinfo">
+      <footer id="contact" class="bottom-bar" role="contentinfo">
         <div class="license-info"></div>
         <div class="spotify-panel" aria-label="Now Playing on Spotify">
           <div class="spotify-inner">

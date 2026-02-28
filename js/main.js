@@ -4,7 +4,6 @@ const command = document.getElementById("typer");
 const textarea = document.getElementById("texter");
 const terminal = document.getElementById("terminal");
 const contentscroll = document.getElementById("contentscroll");
-const topModeLabel = document.getElementById("top-mode-label");
 
 let git = 0;
 let pw = false;
@@ -30,14 +29,6 @@ window.addEventListener("keyup", function (e) {
 window.addEventListener("keydown", function () {
   textarea.focus();
   scrollToBottom();
-});
-
-window.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    if (topModeLabel) {
-      topModeLabel.textContent = "about me";
-    }
-  }
 });
 
 document.addEventListener("click", function () {
