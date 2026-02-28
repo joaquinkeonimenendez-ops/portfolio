@@ -405,10 +405,21 @@ hr {
   background-color: rgba(157, 208, 255, 0.12);
 }
 
-.cli-run-block {
+.cli-run-command:hover .command,
+.cli-run-command:focus-visible .command,
+.cli-run-command:hover .help-item-desc,
+.cli-run-command:focus-visible .help-item-desc {
+  color: var(--color-primary);
+}
+
+.cli-run-item {
   display: inline-block;
   width: 100%;
   padding: 0 2px;
+}
+
+.help-item-desc {
+  color: var(--color-command);
 }
 
 .error {
