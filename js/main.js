@@ -180,7 +180,7 @@ function commander(cmd) {
       showFooterHint = false;
       addLine("<br>", "", commandLineDelay);
       addLine(
-        `Unknown command - Type ${clickableHelpCommand} to see a list of supported commands`,
+        "Unknown command - Type <u>help</u> to see a list of supported commands",
         "output-blue",
         commandLineDelay * 2,
       );
