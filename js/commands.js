@@ -223,8 +223,7 @@ A markdown-based note-taking web app inspired by Obsidian.
 Built for people who can't install desktop apps on work/school devices
 or who don't want to pay for Obsidian sync.
 </pre>`,
-  charcoalProjectBrowserMock,
-    `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">Back to projects</span></span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">Back to projects</span></span>`,
 ];
 
 let projectMagnum = [
@@ -235,7 +234,7 @@ A CLI for selling websites to small businesses.
 Lead generation and website creation are handled by AI agents,
 with integrations for OpenPhone and Stripe to support smooth operator workflows.
 </pre>`,
-    `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">Back to projects</span></span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">Back to projects</span></span>`,
 ];
 
 let thoughts = [

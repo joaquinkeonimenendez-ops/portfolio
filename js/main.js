@@ -186,8 +186,8 @@ function commander(cmd) {
         previewDuration: buttonPreviewDuration,
       });
       setTimeout(function () {
-        initCharcoalProjectJourney();
-      }, outputLines * commandLineDelay + 120);
+        openCharcoalOverlay();
+      }, 40);
       break;
     case "magnum":
       setActiveNavCommand("projects");
@@ -352,11 +352,43 @@ function loopLines(name, style, time, options = {}) {
   );
 }
 
-function initCharcoalProjectJourney() {
-  const charcoalProject = terminal.querySelector(".charcoal-project");
+function closeCharcoalOverlay() {
+  const overlay = document.getElementById("charcoal-overlay");
+  if (!overlay) return;
+  overlay.classList.remove("is-open");
+}
+
+function openCharcoalOverlay() {
+  const overlayId = "charcoal-overlay";
+  let overlay = document.getElementById(overlayId);
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.id = overlayId;
+    overlay.className = "charcoal-overlay";
+    document.body.appendChild(overlay);
+  }
+
+  overlay.innerHTML = `<div class="charcoal-overlay-panel">${charcoalProjectBrowserMock}</div>`;
+  overlay.classList.add("is-open");
+
+  const charcoalProject = overlay.querySelector(".charcoal-project");
   if (!charcoalProject) return;
-  if (charcoalProject.dataset.charcoalJourneyReady === "1") return;
-  charcoalProject.dataset.charcoalJourneyReady = "1";
+
+  const tabCloseButton = charcoalProject.querySelector(".chrome-tab-close");
+  const windowCloseButton = charcoalProject.querySelector(".chrome-window-close");
+
+  if (tabCloseButton) {
+    tabCloseButton.addEventListener("click", closeCharcoalOverlay);
+  }
+  if (windowCloseButton) {
+    windowCloseButton.addEventListener("click", closeCharcoalOverlay);
+  }
+
+  initCharcoalProjectJourney(charcoalProject);
+}
+
+function initCharcoalProjectJourney(charcoalProject) {
+  if (!charcoalProject) return;
 
   const urlEl = charcoalProject.querySelector(".chrome-url");
   const frameEl = charcoalProject.querySelector(".chrome-viewport iframe");

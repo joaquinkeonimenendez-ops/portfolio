@@ -1622,4 +1622,38 @@ a {
     }
 }
 
+.charcoal-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh 2vw;
+    background: rgba(8, 14, 24, 0.72);
+    z-index: 100000;
+}
+
+.charcoal-overlay.is-open {
+    display: flex;
+}
+
+.charcoal-overlay-panel {
+    width: min(96vw, 1500px);
+    max-height: 96vh;
+    overflow: auto;
+}
+
+.charcoal-overlay .charcoal-project {
+    margin-top: 0;
+}
+
+.charcoal-overlay .projects-header {
+    display: none;
+}
+
+.charcoal-overlay .chrome-tab-close,
+.charcoal-overlay .chrome-window-close {
+    cursor: pointer;
+}
+
 
