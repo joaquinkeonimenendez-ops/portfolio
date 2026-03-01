@@ -240,6 +240,12 @@ hr {
   background-color: rgba(157, 208, 255, 0.18);
 }
 
+.top-nav .nav-close {
+  font-weight: 700;
+  min-width: 1.6rem;
+  justify-content: center;
+}
+
 @media (max-width: 726px) {
   body {
     overflow-y: auto;
