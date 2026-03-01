@@ -172,7 +172,7 @@ header {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding: 10px 22px 0 22px;
+  padding: 10px 22px 6px 22px;
   position: relative;
   font-size: var(--step-0);
   font-family: "FantasqueSansMono";
