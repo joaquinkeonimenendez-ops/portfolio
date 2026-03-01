@@ -388,6 +388,7 @@ function createMagnumShowcaseCard(item) {
     };
     card.addEventListener("mouseenter", keepPlaying);
     card.addEventListener("focus", keepPlaying);
+    keepPlaying();
   } else {
     const image = document.createElement("img");
     image.className = "magnum-gif-image";
