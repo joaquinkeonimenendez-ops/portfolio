@@ -263,7 +263,7 @@ const magnumGalleryItems = [
     src: "assets/4.mp4",
   },
   {
-    title: "Phase 5: Complete Live Websites",
+    title: "Phase 5: Deploy full websites",
     description: "Placeholder GIF for campaign health monitoring and alerts.",
     src: "assets/5.mp4",
   },
