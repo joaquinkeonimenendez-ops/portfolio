@@ -7,6 +7,7 @@ const contentscroll = document.getElementById("contentscroll");
 const asciiCatFrame = document.getElementById("ascii-cat-frame");
 const navCommandLinks = document.querySelectorAll("header [data-command]");
 const magnumShowcaseId = "magnum-showcase";
+let magnumVideoObserver = null;
 
 let git = 0;
 let pw = false;
@@ -390,6 +391,58 @@ function loopLines(name, style, time, options = {}) {
   );
 }
 
+function attemptPlayVideo(video) {
+  if (!video || !video.paused) return;
+  const playAttempt = video.play();
+  if (playAttempt && typeof playAttempt.catch === "function") {
+    playAttempt.catch(function () {});
+  }
+}
+
+function hydrateMagnumVideo(video, preloadValue = "metadata") {
+  if (!video || video.dataset.hydrated === "true") return;
+  const src = video.dataset.src;
+  if (!src) return;
+  video.preload = preloadValue;
+  video.src = src;
+  video.dataset.hydrated = "true";
+  video.load();
+}
+
+function observeMagnumVideo(video) {
+  if (!video || typeof IntersectionObserver === "undefined") {
+    hydrateMagnumVideo(video, "metadata");
+    return;
+  }
+  if (!magnumVideoObserver) {
+    magnumVideoObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          const targetVideo = entry.target;
+          hydrateMagnumVideo(targetVideo, "metadata");
+          attemptPlayVideo(targetVideo);
+          magnumVideoObserver.unobserve(targetVideo);
+        });
+      },
+      { root: null, rootMargin: "220px 0px", threshold: 0.01 },
+    );
+  }
+  magnumVideoObserver.observe(video);
+}
+
+function primeMagnumVideos(showcase, maxCount = 2) {
+  if (!showcase) return;
+  const videos = showcase.querySelectorAll(".magnum-gif-video");
+  let hydrated = 0;
+  videos.forEach(function (video) {
+    if (hydrated >= maxCount) return;
+    hydrateMagnumVideo(video, "metadata");
+    attemptPlayVideo(video);
+    hydrated += 1;
+  });
+}
+
 function createMagnumShowcaseCard(item) {
   const titleText = (item && item.title) || "Magnum Workflow";
   const descriptionText =
@@ -404,43 +457,38 @@ function createMagnumShowcaseCard(item) {
   if (isVideo) {
     const video = document.createElement("video");
     video.className = "magnum-gif-video";
-    video.src = src;
+    video.dataset.src = src;
     video.autoplay = true;
     video.loop = true;
     video.muted = true;
     video.playsInline = true;
-    video.preload = "auto";
+    video.preload = "none";
     video.controls = false;
     video.disablePictureInPicture = true;
     video.setAttribute("aria-label", `${titleText} preview video`);
     card.appendChild(video);
 
     const forcePlay = function () {
-      if (video.paused) {
-        const playAttempt = video.play();
-        if (playAttempt && typeof playAttempt.catch === "function") {
-          playAttempt.catch(function () {});
-        }
-      }
+      hydrateMagnumVideo(video, "metadata");
+      attemptPlayVideo(video);
     };
 
     // Try to play once video data is loaded
-    video.addEventListener("loadeddata", forcePlay);
-    video.addEventListener("canplay", forcePlay);
-    video.addEventListener("load", forcePlay);
+    video.addEventListener("loadeddata", function () {
+      attemptPlayVideo(video);
+    });
+    video.addEventListener("canplay", function () {
+      attemptPlayVideo(video);
+    });
 
     // Also try on mouseenter and focus
     const keepPlaying = function () {
-      if (video.paused) {
-        const playAttempt = video.play();
-        if (playAttempt && typeof playAttempt.catch === "function") {
-          playAttempt.catch(function () {});
-        }
-      }
+      forcePlay();
     };
     card.addEventListener("mouseenter", keepPlaying);
     card.addEventListener("focus", keepPlaying);
-    keepPlaying();
+    card.addEventListener("touchstart", keepPlaying, { passive: true });
+    observeMagnumVideo(video);
   } else {
     const image = document.createElement("img");
     image.className = "magnum-gif-image";
@@ -533,6 +581,7 @@ function ensureMagnumShowcase() {
   });
 
   showcase.appendChild(grid);
+  primeMagnumVideos(showcase, 2);
 
   const backHint = document.createElement("button");
   backHint.className = "magnum-back-hint cli-run-command cli-run-item";
@@ -559,6 +608,7 @@ function showMagnumShowcase() {
   closeCharcoalOverlay();
   const showcase = ensureMagnumShowcase();
   if (!showcase) return;
+  primeMagnumVideos(showcase, 2);
   showcase.classList.add("is-visible");
   document.body.classList.add("magnum-mode");
 }
