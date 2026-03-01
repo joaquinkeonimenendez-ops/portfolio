@@ -454,6 +454,12 @@ function ensureMagnumShowcase() {
       src: "assets/4.mp4",
     },
     {
+      title: "Signal Monitoring",
+      description:
+        "Placeholder video for checking campaign health and channel-level alerts.",
+      src: "assets/5.mp4",
+    },
+    {
       title: "Operator Console",
       description:
         "Placeholder GIF for human approval checkpoints in the selling workflow.",
@@ -473,7 +479,7 @@ function ensureMagnumShowcase() {
     magnumGalleryItems.length
       ? magnumGalleryItems
       : fallbackItems;
-  const items = sourceItems.slice(0, 6);
+  const items = sourceItems.slice();
 
   items.forEach(function (item) {
     grid.appendChild(createMagnumShowcaseCard(item));
