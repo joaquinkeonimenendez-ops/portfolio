@@ -259,7 +259,7 @@ const magnumGalleryItems = [
   {
     title: "Phase 4: Generate website templates",
     description:
-      "Based on research from phase 3, generative AI creates website templates and template variants for each business type.",
+      "Generative AI creates website templates and variants. New variants are generated only after successful sales, so there are zero AI costs for failed sales.",
     src: "assets/4.mp4",
   },
   {
