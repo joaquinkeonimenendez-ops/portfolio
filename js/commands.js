@@ -268,7 +268,7 @@ const magnumGalleryItems = [
   {
     title: "Operator Console",
     description: "Placeholder GIF for human-in-the-loop approvals and handoffs.",
-    src: "assets/438198.webp",
+    src: "assets/6.mp4",
   },
 ];
 
