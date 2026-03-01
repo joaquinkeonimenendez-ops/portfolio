@@ -185,6 +185,9 @@ function commander(cmd) {
         previewClickableItems: true,
         previewDuration: buttonPreviewDuration,
       });
+      setTimeout(function () {
+        initCharcoalProjectJourney();
+      }, outputLines * commandLineDelay + 120);
       break;
     case "magnum":
       setActiveNavCommand("projects");
@@ -347,6 +350,247 @@ function loopLines(name, style, time, options = {}) {
     },
     name.length * time + 50,
   );
+}
+
+function initCharcoalProjectJourney() {
+  const charcoalProject = terminal.querySelector(".charcoal-project");
+  if (!charcoalProject) return;
+  if (charcoalProject.dataset.charcoalJourneyReady === "1") return;
+  charcoalProject.dataset.charcoalJourneyReady = "1";
+
+  const urlEl = charcoalProject.querySelector(".chrome-url");
+  const frameEl = charcoalProject.querySelector(".chrome-viewport iframe");
+  const splashEl = charcoalProject.querySelector(".chrome-viewport-splash");
+  const homeSearchTextEl = splashEl
+    ? splashEl.querySelector(".google-search-text")
+    : null;
+  const resultsQueryEl = splashEl
+    ? splashEl.querySelector(".google-results-query")
+    : null;
+  const resultsSearchShellEl = splashEl
+    ? splashEl.querySelector(".google-search-shell-results")
+    : null;
+  const primaryResultEl = splashEl
+    ? splashEl.querySelector(".google-result-primary")
+    : null;
+  const cursorEl = splashEl ? splashEl.querySelector(".google-mock-cursor") : null;
+  const initialUrlText = charcoalProject.dataset.initialUrl || "google.com";
+  const targetUrlText =
+    charcoalProject.dataset.targetUrl || "charcoal-md.vercel.app";
+  const targetFrameSrc =
+    charcoalProject.dataset.targetSrc || "https://charcoal-md.vercel.app/";
+  const queryText = splashEl
+    ? (splashEl.dataset.query || "Obsidian alternatives for web").trim()
+    : "Obsidian alternatives for web";
+  const defaultHomeSearchText = homeSearchTextEl
+    ? (homeSearchTextEl.textContent || "").trim()
+    : "";
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  const gsapRef = window.gsap;
+  const INITIAL_SEQUENCE_TIMING = {
+    queryTypingMs: 56,
+    startDelayMs: 700,
+    resultsRevealDelayMs: 480,
+    cursorStartDelayMs: 2000,
+    postClickDelayMs: 360,
+    cursorClickHoldMs: 230,
+    cursorTravelSeconds: 3.1,
+  };
+  let isSequenceRunning = false;
+  let hasLoadedFrame = false;
+  let typingTimer = null;
+  let cursorTween = null;
+  const stepTimers = [];
+
+  const queueStep = (fn, delay) => {
+    const timer = setTimeout(() => {
+      const timerIndex = stepTimers.indexOf(timer);
+      if (timerIndex >= 0) {
+        stepTimers.splice(timerIndex, 1);
+      }
+      fn();
+    }, delay);
+    stepTimers.push(timer);
+    return timer;
+  };
+
+  const clearCharcoalTimers = () => {
+    if (typingTimer) {
+      clearTimeout(typingTimer);
+      typingTimer = null;
+    }
+    while (stepTimers.length) {
+      clearTimeout(stepTimers.pop());
+    }
+    if (cursorTween && typeof cursorTween.kill === "function") {
+      cursorTween.kill();
+      cursorTween = null;
+    }
+  };
+
+  const setCursorState = (x, y, opacity) => {
+    if (!cursorEl) return;
+    if (gsapRef && typeof gsapRef.set === "function") {
+      gsapRef.set(cursorEl, { x, y, opacity });
+      return;
+    }
+    cursorEl.style.opacity = String(opacity);
+    cursorEl.style.transform = `translate(${x}px, ${y}px)`;
+  };
+
+  const resetMockState = () => {
+    if (!splashEl) return;
+    splashEl.classList.remove("is-hidden", "is-results");
+    if (homeSearchTextEl) {
+      homeSearchTextEl.classList.remove("is-typing");
+      homeSearchTextEl.textContent = defaultHomeSearchText;
+    }
+    if (resultsQueryEl) {
+      resultsQueryEl.textContent = queryText;
+    }
+    if (primaryResultEl) {
+      primaryResultEl.classList.remove("is-clicked");
+    }
+    if (cursorEl) {
+      cursorEl.classList.remove("is-clicking");
+      setCursorState(0, 0, 0);
+    }
+  };
+
+  const loadCharcoal = () => {
+    if (!urlEl || !frameEl) return;
+    urlEl.classList.remove("is-typing");
+    urlEl.textContent = targetUrlText;
+    if (splashEl) {
+      splashEl.classList.add("is-hidden");
+    }
+    if (!hasLoadedFrame) {
+      frameEl.src = targetFrameSrc;
+      hasLoadedFrame = true;
+    }
+    isSequenceRunning = false;
+  };
+
+  const typeGoogleQuery = (onDone, typingMs) => {
+    if (!homeSearchTextEl) {
+      if (typeof onDone === "function") onDone();
+      return;
+    }
+    homeSearchTextEl.classList.add("is-typing");
+    homeSearchTextEl.textContent = "";
+    let i = 0;
+
+    const step = () => {
+      if (i <= queryText.length) {
+        homeSearchTextEl.textContent = queryText.slice(0, i);
+        i += 1;
+        typingTimer = setTimeout(step, typingMs);
+        return;
+      }
+      typingTimer = null;
+      homeSearchTextEl.classList.remove("is-typing");
+      if (typeof onDone === "function") onDone();
+    };
+
+    step();
+  };
+
+  const animateCursorClick = (onDone, cursorTravelSeconds, cursorClickHoldMs) => {
+    if (!splashEl || !cursorEl || !primaryResultEl) {
+      if (typeof onDone === "function") onDone();
+      return;
+    }
+    const splashRect = splashEl.getBoundingClientRect();
+    const originRect = (resultsSearchShellEl || primaryResultEl).getBoundingClientRect();
+    const targetRect = primaryResultEl.getBoundingClientRect();
+    const originX =
+      originRect.left -
+      splashRect.left +
+      Math.min(originRect.width * 0.86, originRect.width - 24);
+    const originY = originRect.top - splashRect.top + originRect.height * 0.66;
+    const targetX =
+      targetRect.left - splashRect.left + Math.min(188, targetRect.width * 0.52);
+    const targetY =
+      targetRect.top - splashRect.top + Math.min(36, targetRect.height * 0.56);
+
+    cursorEl.classList.remove("is-clicking");
+    setCursorState(originX, originY, 1);
+
+    if (gsapRef && typeof gsapRef.to === "function") {
+      cursorTween = gsapRef.to(cursorEl, {
+        x: targetX,
+        y: targetY,
+        duration: cursorTravelSeconds,
+        ease: "power2.inOut",
+        onComplete: () => {
+          cursorTween = null;
+          cursorEl.classList.add("is-clicking");
+          primaryResultEl.classList.add("is-clicked");
+          queueStep(() => {
+            cursorEl.classList.remove("is-clicking");
+            if (typeof onDone === "function") onDone();
+          }, cursorClickHoldMs);
+        },
+      });
+      return;
+    }
+
+    setCursorState(targetX, targetY, 1);
+    cursorEl.classList.add("is-clicking");
+    primaryResultEl.classList.add("is-clicked");
+    queueStep(() => {
+      cursorEl.classList.remove("is-clicking");
+      if (typeof onDone === "function") onDone();
+    }, cursorClickHoldMs);
+  };
+
+  const runCharcoalSequence = () => {
+    if (isSequenceRunning || !urlEl || !frameEl) return;
+    isSequenceRunning = true;
+    clearCharcoalTimers();
+    urlEl.textContent = initialUrlText;
+    if (!hasLoadedFrame) {
+      frameEl.src = "about:blank";
+    }
+    resetMockState();
+
+    if (prefersReducedMotion) {
+      if (homeSearchTextEl) {
+        homeSearchTextEl.textContent = queryText;
+      }
+      if (splashEl) {
+        splashEl.classList.add("is-results");
+      }
+      loadCharcoal();
+      return;
+    }
+
+    const timing = INITIAL_SEQUENCE_TIMING;
+
+    queueStep(() => {
+      typeGoogleQuery(() => {
+        queueStep(() => {
+          if (resultsQueryEl) {
+            resultsQueryEl.textContent = queryText;
+          }
+          if (splashEl) {
+            splashEl.classList.add("is-results");
+          }
+          queueStep(() => {
+            animateCursorClick(() => {
+              queueStep(() => {
+                loadCharcoal();
+              }, timing.postClickDelayMs);
+            }, timing.cursorTravelSeconds, timing.cursorClickHoldMs);
+          }, timing.cursorStartDelayMs);
+        }, timing.resultsRevealDelayMs);
+      }, timing.queryTypingMs);
+    }, timing.startDelayMs);
+  };
+
+  runCharcoalSequence();
 }
 
 function autoTypeAndSubmitCommand(autoCommand) {

@@ -42,6 +42,179 @@ let projects = [
   `<span class="cli-run-command cli-run-item" data-run-command="magnum" data-preview-key="project:magnum"><span class="command">2. Magnum</span><br><span class="home-item-desc">&#8627; A CLI for selling websites to small businesses. Lead generation and website creation is entirely handled by AI agents. Fully integrated with OpenPhone and Stripe for a human operator to smoothly make sales calls.</span></span>`,
 ];
 
+const charcoalProjectBrowserMock = `
+<div class="charcoal-project project-card" data-initial-url="google.com" data-target-url="charcoal-md.vercel.app"
+    data-target-src="https://charcoal-md.vercel.app/">
+    <div class="projects-header block-left">
+        <h2 class="section-title">Charcoal.md</h2>
+        <p class="section-subtitle">
+            Charcoal.md is a markdown-first note-taking web app inspired by Obsidian: simple, fast,
+            and file-first. It's built for people who can't install desktop apps on work or school
+            devices and want a cleaner, faster alternative to Notion. You can try it at <a
+                href="https://charcoal-md.vercel.app/" target="_blank"
+                rel="noopener noreferrer">https://charcoal-md.vercel.app/</a> or in the iframe below.
+        </p>
+    </div>
+    <div class="chrome-shell">
+        <div class="chrome-tabstrip">
+            <div class="chrome-tab chrome-tab-active">
+                <img class="chrome-tab-favicon" src="favicon.png" alt="" aria-hidden="true">
+                <span class="chrome-tab-label">Charcoal notes</span>
+                <span class="chrome-tab-close" aria-hidden="true">x</span>
+            </div>
+            <button class="chrome-new-tab" type="button" aria-label="New tab">+</button>
+            <div class="chrome-tab-fade" aria-hidden="true"></div>
+            <div class="chrome-window-controls" aria-hidden="true">
+                <span class="chrome-window-btn chrome-window-min"></span>
+                <span class="chrome-window-btn chrome-window-max"></span>
+                <span class="chrome-window-btn chrome-window-close"></span>
+            </div>
+        </div>
+        <div class="chrome-toolbar">
+            <div class="chrome-nav-controls" aria-hidden="true">
+                <span class="chrome-nav-btn chrome-nav-back"></span>
+                <span class="chrome-nav-btn chrome-nav-forward"></span>
+                <span class="chrome-nav-btn chrome-nav-reload"></span>
+            </div>
+            <div class="chrome-omnibox">
+                <span class="chrome-site-icon" aria-hidden="true"></span>
+                <span class="chrome-url">google.com</span>
+            </div>
+            <div class="chrome-toolbar-actions" aria-hidden="true">
+                <span class="chrome-menu"></span>
+            </div>
+        </div>
+        <div class="chrome-viewport">
+            <div class="chrome-viewport-splash google-mock" aria-hidden="true"
+                data-query="Obsidian alternatives for web">
+                <div class="google-mock-home">
+                    <div class="google-mock-center">
+                        <div class="google-wordmark">
+                            <span class="g-blue">G</span><span class="g-red">o</span><span
+                                class="g-yellow">o</span><span class="g-blue">g</span><span
+                                class="g-green">l</span><span class="g-red">e</span>
+                        </div>
+                        <div class="google-search-shell">
+                            <span class="google-search-icon"></span>
+                            <span class="google-search-text">Search Google or type a URL</span>
+                            <span class="google-mic-icon"></span>
+                        </div>
+                        <div class="google-actions" aria-hidden="true">
+                            <span class="google-btn">Google Search</span>
+                            <span class="google-btn">I'm Feeling Lucky</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="google-mock-results">
+                    <div class="google-results-search">
+                        <div class="google-search-shell google-search-shell-results">
+                            <span class="google-search-icon"></span>
+                            <span class="google-results-query">Obsidian alternatives for web</span>
+                        </div>
+                    </div>
+                    <div class="google-results-meta">About 79,000,000 results (0.53 seconds)</div>
+                    <div class="google-results-list">
+                        <div class="google-result google-ai-overview google-result-primary">
+                            <div class="google-ai-overview-label">
+                                <span class="google-ai-overview-dot" aria-hidden="true"></span>
+                                <span>AI Overview</span>
+                            </div>
+                            <div class="google-ai-summary-row">
+                                <div class="google-ai-summary-copy">
+                                    <p class="google-ai-overview-text">For a web-based Obsidian
+                                        alternative, use
+                                        <span class="google-ai-highlight">Charcoal.md</span>: a fast,
+                                        markdown-native notes app built for school/work environments
+                                        where desktop installs are often blocked.
+                                    </p>
+                                    <p class="google-ai-overview-text">Charcoal.md keeps the
+                                        Obsidian-style experience people care about, including
+                                        backlinks, local-first workflows, and file ownership, while
+                                        staying clean and responsive in the browser.</p>
+                                    <div class="google-ai-source-inline" aria-hidden="true">Google
+                                        Search +5</div>
+                                </div>
+                                <div class="google-ai-figure" aria-hidden="true">
+                                    <div class="google-ai-figure-inner"></div>
+                                </div>
+                            </div>
+                            <div class="google-ai-details-title">Why Charcoal.md
+                            </div>
+                            <ul class="google-ai-detail-list">
+                                <li><strong>Best fit:</strong> It combines markdown speed,
+                                    Obsidian-like workflows, and browser access on locked-down devices
+                                    without the clutter of heavier all-in-one tools.</li>
+                            </ul>
+                            <div class="google-ai-show-more" aria-hidden="true">
+                                <span>Show more</span>
+                            </div>
+                        </div>
+                        <div class="google-result">
+                            <div class="google-result-url">charcoal-md.vercel.app</div>
+                            <div class="google-result-title">Charcoal.md - A real Obsidian alternative
+                                for the web</div>
+                            <div class="google-result-snippet">A browser-native markdown workspace with
+                                local-first storage, backlinking, graph exploration, and fast command
+                                palette workflows designed for people who want Obsidian-style thinking
+                                without desktop lock-in. Includes clean note linking, flexible folders,
+                                keyboard-heavy editing, and a modern interface that feels fast even on
+                                large note collections.</div>
+                        </div>
+                        <div class="google-result">
+                            <div class="google-result-url">forum.obsidian.md</div>
+                            <div class="google-result-title">Obsidian alternatives for web? (2026
+                                thread)</div>
+                            <div class="google-result-snippet">Huge community thread with side-by-side
+                                comparisons, migration stories, and heated debates about sync,
+                                offline-first design, plugins, collaboration, and what people give up
+                                when moving from desktop PKM tools to web-first options.</div>
+                        </div>
+                        <div class="google-result">
+                            <div class="google-result-url">logseq.com</div>
+                            <div class="google-result-title">Logseq - Open source knowledge base</div>
+                            <div class="google-result-snippet">Graph notes, local markdown, plugin
+                                ecosystem, daily journals, and block references. Strong if you like
+                                outlining-first workflows and bidirectional linking with a lot of
+                                extensibility.</div>
+                        </div>
+                        <div class="google-result">
+                            <div class="google-result-url">capacities.io</div>
+                            <div class="google-result-title">Capacities</div>
+                            <div class="google-result-snippet">Object-driven notes with backlinks,
+                                embeds, and a clean editor geared toward personal knowledge workflows
+                                that mix writing, research, and planning across projects, classes, and
+                                reference material.</div>
+                        </div>
+                        <div class="google-result">
+                            <div class="google-result-url">notion.so</div>
+                            <div class="google-result-title">Notion: docs, tasks, and wikis</div>
+                            <div class="google-result-snippet">Popular all-in-one workspace.</div>
+                        </div>
+                        <div class="google-result">
+                            <div class="google-result-url">dev.to</div>
+                            <div class="google-result-title">Web-first PKM tools people actually use
+                            </div>
+                            <div class="google-result-snippet">Roundup post with short demos, pricing
+                                notes, and practical tradeoffs for teams vs solo note-takers,
+                                including comments about speed, sync reliability, export options, and
+                                markdown compatibility.</div>
+                        </div>
+                        <div class="google-result">
+                            <div class="google-result-url">reddit.com/r/PKMS</div>
+                            <div class="google-result-title">Switched from Obsidian to browser notes
+                            </div>
+                            <div class="google-result-snippet">Quick takes. Mixed reviews.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="google-mock-cursor" aria-hidden="true"></div>
+            </div>
+            <iframe src="about:blank" title="Charcoal.md local preview" loading="lazy"></iframe>
+        </div>
+    </div>
+</div>
+`;
+
 let projectCharcoal = [
   "<br>",
   `<span class="output-blue">Charcoal md</span>`,
@@ -50,7 +223,8 @@ A markdown-based note-taking web app inspired by Obsidian.
 Built for people who can't install desktop apps on work/school devices
 or who don't want to pay for Obsidian sync.
 </pre>`,
-  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">â† Back to projects</span></span>`,
+  charcoalProjectBrowserMock,
+    `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">Back to projects</span></span>`,
 ];
 
 let projectMagnum = [
@@ -61,7 +235,7 @@ A CLI for selling websites to small businesses.
 Lead generation and website creation are handled by AI agents,
 with integrations for OpenPhone and Stripe to support smooth operator workflows.
 </pre>`,
-  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">â† Back to projects</span></span>`,
+    `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">Back to projects</span></span>`,
 ];
 
 let thoughts = [
