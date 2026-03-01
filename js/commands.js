@@ -261,6 +261,11 @@ const magnumGalleryItems = [
     src: "assets/4.mp4",
   },
   {
+    title: "Signal Monitoring",
+    description: "Placeholder GIF for campaign health monitoring and alerts.",
+    src: "assets/5.mp4",
+  },
+  {
     title: "Operator Console",
     description: "Placeholder GIF for human-in-the-loop approvals and handoffs.",
     src: "assets/438198.webp",
