@@ -157,6 +157,8 @@ body {
   left: var(--frame-gap-left);
   width: auto;
   height: auto;
+  display: flex;
+  flex-direction: column;
   z-index: 1;
   border: none;
   background-color: var(--color-background-overlay);
@@ -403,9 +405,11 @@ hr {
 }
 
 #contentscroll {
+  flex: 1 1 auto;
+  min-height: 0;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer and Edge */
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .content-container {
   display: flex;
