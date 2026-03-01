@@ -264,7 +264,8 @@ const magnumGalleryItems = [
   },
   {
     title: "Phase 5: Deploy full websites",
-    description: "Placeholder GIF for campaign health monitoring and alerts.",
+    description:
+      "Each website is deployed on Cloudflare Pages with real photos, hours, and contact info.",
     src: "assets/5.mp4",
   },
   {

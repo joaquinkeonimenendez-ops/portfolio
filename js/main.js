@@ -509,7 +509,7 @@ function ensureMagnumShowcase() {
     {
       title: "Phase 5: Deploy full websites",
       description:
-        "Placeholder video for checking campaign health and channel-level alerts.",
+        "Each website is deployed on Cloudflare Pages with real photos, hours, and contact info.",
       src: "assets/5.mp4",
     },
     {
