@@ -751,8 +751,8 @@ a {
     display: flex;
     align-items: center;
     gap: 0;
-    min-height: calc(1.78rem - 2px);
-    padding: 0.08rem 0.18rem 0 0.06rem;
+    min-height: calc(1.9rem - 2px);
+    padding: 0.12rem 0.18rem 0 0.06rem;
     background: #1d1f22;
 }
 
@@ -762,8 +762,8 @@ a {
     gap: 0.6rem;
     min-width: 252px;
     max-width: 292px;
-    min-height: calc(1.52rem - 2px);
-    padding: 0.26rem 0.86rem 0.25rem 0.72rem;
+    min-height: calc(1.62rem - 2px);
+    padding: 0.3rem 0.86rem 0.29rem 0.72rem;
     border-radius: 12px 12px 0 0;
     border: 1px solid transparent;
     border-bottom: none;
@@ -885,6 +885,7 @@ a {
 
 .chrome-window-btn {
     width: 1.56rem;
+    height: 1.24rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -894,6 +895,8 @@ a {
     position: relative;
     z-index: 1;
     transform: translateY(0);
+    border-radius: 2px;
+    transition: background-color 0.16s ease;
 }
 
 .chrome-window-min::before {
@@ -923,6 +926,15 @@ a {
 
 .chrome-window-close::after {
     transform: rotate(-45deg);
+}
+
+.chrome-window-close:hover {
+    background-color: rgba(232, 17, 35, 0.92);
+}
+
+.chrome-window-close:hover::before,
+.chrome-window-close:hover::after {
+    border-top-color: rgba(248, 250, 252, 0.98);
 }
 
 .chrome-toolbar {
