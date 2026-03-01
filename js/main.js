@@ -356,6 +356,8 @@ function loopLines(name, style, time, options = {}) {
 
 function createMagnumShowcaseCard(item) {
   const titleText = (item && item.title) || "Magnum Workflow";
+  const descriptionText =
+    (item && item.description) || "Placeholder GIF preview.";
   const src = (item && item.src) || "assets/cat.gif";
 
   const card = document.createElement("article");
@@ -369,6 +371,21 @@ function createMagnumShowcaseCard(item) {
   image.loading = "lazy";
   image.decoding = "async";
   card.appendChild(image);
+
+  const overlay = document.createElement("div");
+  overlay.className = "magnum-gif-overlay";
+
+  const title = document.createElement("h3");
+  title.className = "magnum-gif-title";
+  title.textContent = titleText;
+
+  const description = document.createElement("p");
+  description.className = "magnum-gif-description";
+  description.textContent = descriptionText;
+
+  overlay.appendChild(title);
+  overlay.appendChild(description);
+  card.appendChild(overlay);
 
   return card;
 }

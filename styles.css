@@ -539,11 +539,55 @@ body.magnum-mode #cursor-cat-gif {
     filter 0.24s ease;
 }
 
+.magnum-gif-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  padding: 0.88rem;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 19, 34, 0.94) 0%,
+    rgba(9, 19, 34, 0.74) 46%,
+    rgba(9, 19, 34, 0) 100%
+  );
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  pointer-events: none;
+}
+
+.magnum-gif-title {
+  margin: 0;
+  color: #e6f2ff;
+  font-size: var(--step-0);
+  line-height: 1.25;
+}
+
+.magnum-gif-description {
+  margin: 0;
+  color: #bbd8f8;
+  font-size: var(--step--1);
+  line-height: 1.35;
+  max-width: 48ch;
+}
+
 .magnum-gif-card:hover .magnum-gif-image,
 .magnum-gif-card:focus-within .magnum-gif-image,
 .magnum-gif-card:focus-visible .magnum-gif-image {
   transform: scale(1.05);
   filter: brightness(0.86) saturate(1);
+}
+
+.magnum-gif-card:hover .magnum-gif-overlay,
+.magnum-gif-card:focus-within .magnum-gif-overlay,
+.magnum-gif-card:focus-visible .magnum-gif-overlay {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .magnum-gif-card:focus-visible {
