@@ -129,7 +129,8 @@ function enterKey(e) {
   }
   if (isEnterPressed) {
     const rawInput = command.innerHTML.trim();
-    if (!rawInput) {
+    const isMagnumModeActive = document.body.classList.contains("magnum-mode");
+    if (!rawInput && isMagnumModeActive) {
       return;
     }
     const input = rawInput.toLowerCase();
