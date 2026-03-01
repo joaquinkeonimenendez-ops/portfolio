@@ -260,14 +260,22 @@ function setActiveNavCommand(cmd) {
   });
 }
 
-function runCommandFromNavigation(cmd) {
+function runCommandFromNavigation(cmd, options = {}) {
   if (!cmd) return;
   if (isThoughtsMode) {
     isThoughtsMode = false;
     setPromptPrefix(defaultPrompt);
   }
   setActiveNavCommand(cmd);
-  autoTypeAndSubmitCommand(cmd);
+  if (options.autoType) {
+    autoTypeAndSubmitCommand(cmd);
+    return;
+  }
+  commander(cmd);
+  command.innerHTML = "";
+  textarea.value = "";
+  focusInput();
+  scrollToBottom();
 }
 
 function handleThoughtsInput(cmd) {
@@ -459,37 +467,37 @@ function ensureMagnumShowcase() {
 
   const fallbackItems = [
     {
-      title: "Phase 1",
+      title: "Phase 1: Lead generation",
       description:
         "Placeholder GIF for finding local businesses with low-performing websites.",
       src: "assets/1.mp4",
     },
     {
-      title: "Phase 2",
+      title: "Phase 2: Lead qualification",
       description:
         "Placeholder GIF for collecting contact data and business intelligence.",
       src: "assets/2.mp4",
     },
     {
-      title: "Phase 3",
+      title: "Phase 3: Research website design",
       description:
         "Placeholder GIF for generating landing pages and content from prompts.",
       src: "assets/3.mp4",
     },
     {
-      title: "Phase 4",
+      title: "Phase 4: Generate website templates",
       description:
         "Placeholder GIF for automating call/text sequences and follow-up timing.",
       src: "assets/4.mp4",
     },
     {
-      title: "Phase 5",
+      title: "Phase 5: Deploy live websites",
       description:
         "Placeholder video for checking campaign health and channel-level alerts.",
       src: "assets/5.mp4",
     },
     {
-      title: "Phase 6",
+      title: "Phase 6: Sell websites to businesses",
       description:
         "Placeholder GIF for human approval checkpoints in the selling workflow.",
       src: "assets/438198.webp",

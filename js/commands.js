@@ -239,32 +239,32 @@ with integrations for OpenPhone and Stripe to support smooth operator workflows.
 
 const magnumGalleryItems = [
   {
-    title: "Phase 1",
+    title: "Phase 1: Lead generation",
     description: "Placeholder GIF for finding local businesses that need better websites.",
     src: "assets/1.mp4",
   },
   {
-    title: "Phase 2",
+    title: "Phase 2: Lead qualification",
     description: "Placeholder GIF for automatically collecting contact and business context.",
     src: "assets/2.mp4",
   },
   {
-    title: "Phase 3",
+    title: "Phase 3: Research website design",
     description: "Placeholder GIF for generating a conversion-focused website in minutes.",
     src: "assets/3.mp4",
   },
   {
-    title: "Phase 4",
+    title: "Phase 4: Generate website templates",
     description: "Placeholder GIF for sequencing calls, texts, and follow-ups.",
     src: "assets/4.mp4",
   },
   {
-    title: "Phase 5",
+    title: "Phase 5: Deploy live websites",
     description: "Placeholder GIF for campaign health monitoring and alerts.",
     src: "assets/5.mp4",
   },
   {
-    title: "Phase 6",
+    title: "Phase 6: Sell websites to businesses",
     description: "Placeholder GIF for human-in-the-loop approvals and handoffs.",
     src: "assets/6.mp4",
   },
