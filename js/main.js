@@ -485,7 +485,7 @@ function ensureMagnumShowcase() {
     {
       title: "Phase 1: Lead generation",
       description:
-        "Scrapers find hundreds of businesses from Google maps that do not own websites",
+        "Scrapers find hundreds of businesses that do not own websites from Google maps.",
       src: "assets/1.mp4",
     },
     {
