@@ -72,7 +72,10 @@ window.addEventListener("keyup", function (e) {
   enterKey(e);
 });
 
-document.addEventListener("click", function () {
+document.addEventListener("click", function (e) {
+  if (e.target && e.target.closest && e.target.closest(".charcoal-overlay")) {
+    return;
+  }
   focusInput();
 });
 
@@ -433,11 +436,25 @@ function initCharcoalProjectJourney(charcoalProject) {
     selection.addRange(range);
   };
 
+  const handleUrlPointerDown = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    selectUrlText();
+  };
+
+  const handleUrlClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    selectUrlText();
+  };
+
   if (urlEl) {
-    urlEl.addEventListener("click", selectUrlText);
+    urlEl.addEventListener("pointerdown", handleUrlPointerDown);
+    urlEl.addEventListener("click", handleUrlClick);
   }
   if (omniboxEl) {
-    omniboxEl.addEventListener("click", selectUrlText);
+    omniboxEl.addEventListener("pointerdown", handleUrlPointerDown);
+    omniboxEl.addEventListener("click", handleUrlClick);
   }
 
   const queueStep = (fn, delay) => {
