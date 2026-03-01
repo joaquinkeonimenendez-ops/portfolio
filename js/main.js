@@ -16,6 +16,7 @@ const clearBeforeCommands = new Set([
   "about",
   "aboutme",
   "projects",
+  "magnum",
   "contact",
   "social",
   "help",
