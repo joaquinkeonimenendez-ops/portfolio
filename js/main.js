@@ -416,18 +416,19 @@ function initCharcoalProjectJourney(charcoalProject) {
   ).matches;
   const gsapRef = window.gsap;
   const INITIAL_SEQUENCE_TIMING = {
-    queryTypingMs: 56,
+    queryTypingMs: 92,
     startDelayMs: 700,
     resultsRevealDelayMs: 480,
     cursorStartDelayMs: 2000,
     postClickDelayMs: 360,
     cursorClickHoldMs: 230,
-    cursorTravelSeconds: 3.1,
+    cursorTravelSeconds: 3.9,
   };
   let isSequenceRunning = false;
   let hasLoadedFrame = false;
   let typingTimer = null;
   let cursorTween = null;
+  let cursorRafId = null;
   const stepTimers = [];
 
   const queueStep = (fn, delay) => {
@@ -453,6 +454,10 @@ function initCharcoalProjectJourney(charcoalProject) {
     if (cursorTween && typeof cursorTween.kill === "function") {
       cursorTween.kill();
       cursorTween = null;
+    }
+    if (cursorRafId) {
+      cancelAnimationFrame(cursorRafId);
+      cursorRafId = null;
     }
   };
 
@@ -563,13 +568,35 @@ function initCharcoalProjectJourney(charcoalProject) {
       return;
     }
 
-    setCursorState(targetX, targetY, 1);
-    cursorEl.classList.add("is-clicking");
-    primaryResultEl.classList.add("is-clicked");
-    queueStep(() => {
-      cursorEl.classList.remove("is-clicking");
-      if (typeof onDone === "function") onDone();
-    }, cursorClickHoldMs);
+    const startTime = performance.now();
+    const durationMs = cursorTravelSeconds * 1000;
+    const deltaX = targetX - originX;
+    const deltaY = targetY - originY;
+
+    const easeInOutCubic = (t) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const stepCursor = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const eased = easeInOutCubic(progress);
+      setCursorState(originX + deltaX * eased, originY + deltaY * eased, 1);
+
+      if (progress < 1) {
+        cursorRafId = requestAnimationFrame(stepCursor);
+        return;
+      }
+
+      cursorRafId = null;
+      cursorEl.classList.add("is-clicking");
+      primaryResultEl.classList.add("is-clicked");
+      queueStep(() => {
+        cursorEl.classList.remove("is-clicking");
+        if (typeof onDone === "function") onDone();
+      }, cursorClickHoldMs);
+    };
+
+    cursorRafId = requestAnimationFrame(stepCursor);
   };
 
   const runCharcoalSequence = () => {
