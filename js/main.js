@@ -507,7 +507,7 @@ function ensureMagnumShowcase() {
       src: "assets/4.mp4",
     },
     {
-      title: "Phase 5: Deploy live websites",
+      title: "Phase 5: Complete Live Websites",
       description:
         "Placeholder video for checking campaign health and channel-level alerts.",
       src: "assets/5.mp4",
