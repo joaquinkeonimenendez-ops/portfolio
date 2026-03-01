@@ -129,7 +129,11 @@ function enterKey(e) {
   if (isEnterPressed) {
     const input = command.innerHTML.trim().toLowerCase();
     const typedPrompt = isThoughtsMode ? thoughtsPrompt : defaultPrompt;
-    if (input !== "charcoal" && input !== "magnum") {
+    const shouldEchoTypedLine =
+      input !== "charcoal" &&
+      input !== "magnum" &&
+      !clearBeforeCommands.has(input);
+    if (shouldEchoTypedLine) {
       addLine(typedPrompt + " " + command.innerHTML, "no-animation", 0);
     }
 
@@ -260,22 +264,14 @@ function setActiveNavCommand(cmd) {
   });
 }
 
-function runCommandFromNavigation(cmd, options = {}) {
+function runCommandFromNavigation(cmd) {
   if (!cmd) return;
   if (isThoughtsMode) {
     isThoughtsMode = false;
     setPromptPrefix(defaultPrompt);
   }
   setActiveNavCommand(cmd);
-  if (options.autoType) {
-    autoTypeAndSubmitCommand(cmd);
-    return;
-  }
-  commander(cmd);
-  command.innerHTML = "";
-  textarea.value = "";
-  focusInput();
-  scrollToBottom();
+  autoTypeAndSubmitCommand(cmd);
 }
 
 function handleThoughtsInput(cmd) {
