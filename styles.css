@@ -556,6 +556,18 @@ body.magnum-mode #cursor-cat-gif {
   text-align: center;
   color: var(--color-command-desc);
   font-size: var(--step--1);
+  background: transparent;
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+  padding: 0.2rem 0;
+}
+
+.magnum-back-hint:hover,
+.magnum-back-hint:focus-visible {
+  color: var(--color-primary);
 }
 
 @media (max-width: 1080px) {

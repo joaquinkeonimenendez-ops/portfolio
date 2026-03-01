@@ -438,9 +438,14 @@ function ensureMagnumShowcase() {
 
   showcase.appendChild(grid);
 
-  const backHint = document.createElement("p");
+  const backHint = document.createElement("button");
   backHint.className = "magnum-back-hint";
-  backHint.textContent = "Type help to go back";
+  backHint.type = "button";
+  backHint.textContent = "Click here to go back to projects";
+  backHint.addEventListener("click", function (e) {
+    e.preventDefault();
+    runCommandFromNavigation("projects");
+  });
   showcase.appendChild(backHint);
 
   if (contentscroll) {
