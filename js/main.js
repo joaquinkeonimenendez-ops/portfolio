@@ -151,6 +151,9 @@ function commander(cmd) {
   if (!cmd) {
     return;
   }
+  const isMagnumModeActive = document.body.classList.contains("magnum-mode");
+  const preserveHistoryForMagnumCharcoal =
+    isMagnumModeActive && cmd === "charcoal";
   if (cmd !== "magnum") {
     hideMagnumShowcase();
   }
@@ -166,7 +169,7 @@ function commander(cmd) {
   }
   let outputLines = 0;
   let showFooterHint = true;
-  if (clearBeforeCommands.has(cmd)) {
+  if (clearBeforeCommands.has(cmd) && !preserveHistoryForMagnumCharcoal) {
     clearTerminalLines();
   }
   switch (cmd) {
