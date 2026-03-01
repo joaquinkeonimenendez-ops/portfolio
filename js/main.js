@@ -185,12 +185,7 @@ function commander(cmd) {
       return;
     case "magnum":
       setActiveNavCommand("projects");
-      outputLines = projectMagnum.length;
-      loopLines(projectMagnum, "", commandLineDelay, {
-        previewClickableItems: true,
-        previewDuration: buttonPreviewDuration,
-      });
-      break;
+      return;
     case "contact":
     case "social":
       setActiveNavCommand("contact");
