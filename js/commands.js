@@ -270,7 +270,8 @@ const magnumGalleryItems = [
   },
   {
     title: "Phase 6: Sell to small businesses",
-    description: "Placeholder GIF for human-in-the-loop approvals and handoffs.",
+    description:
+      "A human makes sales calls with one-click for OpenPhone and fully integrated Stripe payments.",
     src: "assets/6.mp4",
   },
 ];

@@ -515,7 +515,7 @@ function ensureMagnumShowcase() {
     {
       title: "Phase 6: Sell to small businesses",
       description:
-        "Placeholder GIF for human approval checkpoints in the selling workflow.",
+        "A human makes sales calls with one-click for OpenPhone and fully integrated Stripe payments.",
       src: "assets/438198.webp",
     },
   ];
