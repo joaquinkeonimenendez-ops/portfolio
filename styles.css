@@ -591,21 +591,18 @@ body.magnum-mode #cursor-cat-gif {
 }
 
 .magnum-gif-card:hover .magnum-gif-image,
-.magnum-gif-card:focus-within .magnum-gif-image,
 .magnum-gif-card:focus-visible .magnum-gif-image {
   transform: scale(1.05);
   filter: brightness(0.86) saturate(1);
 }
 
 .magnum-gif-card:hover .magnum-gif-video,
-.magnum-gif-card:focus-within .magnum-gif-video,
 .magnum-gif-card:focus-visible .magnum-gif-video {
   transform: scale(1.05);
   filter: brightness(0.86) saturate(1);
 }
 
 .magnum-gif-card:hover .magnum-gif-overlay,
-.magnum-gif-card:focus-within .magnum-gif-overlay,
 .magnum-gif-card:focus-visible .magnum-gif-overlay {
   opacity: 1;
   transform: translateY(0);
