@@ -503,7 +503,7 @@ function ensureMagnumShowcase() {
     {
       title: "Phase 4: Generate website templates",
       description:
-        "Placeholder GIF for automating call/text sequences and follow-up timing.",
+        "Based on research from phase 3, generative AI creates website templates and template variants for each business type.",
       src: "assets/4.mp4",
     },
     {
