@@ -253,7 +253,7 @@ const magnumGalleryItems = [
   {
     title: "Phase 3: Research web design",
     description:
-      "AI agents analyze real business websites to identify best practices for each industry",
+      "AI agents find and analyze real business websites to identify best practices for each industry",
     src: "assets/3.mp4",
   },
   {
