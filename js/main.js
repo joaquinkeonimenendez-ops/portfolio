@@ -177,7 +177,8 @@ function commander(cmd) {
   }
   let outputLines = 0;
   let showFooterHint = true;
-  if (clearBeforeCommands.has(cmd)) {
+  const preserveTerminalHistory = cmd === "charcoal" || cmd === "magnum";
+  if (clearBeforeCommands.has(cmd) && !preserveTerminalHistory) {
     clearTerminalLines();
   }
   switch (cmd) {
