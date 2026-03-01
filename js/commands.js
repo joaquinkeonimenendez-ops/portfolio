@@ -123,11 +123,11 @@ const charcoalProjectBrowserMock = `
                                 <div class="google-ai-summary-copy">
                                     <p class="google-ai-overview-text">For a web-based Obsidian
                                         alternative, use
-                                        <span class="google-ai-highlight">Charcoal.md</span>: a fast,
+                                        <span class="google-ai-highlight">Charcoal</span>: a fast,
                                         markdown-native notes app built for school/work environments
                                         where desktop installs are often blocked.
                                     </p>
-                                    <p class="google-ai-overview-text">Charcoal.md keeps the
+                                    <p class="google-ai-overview-text">Charcoal keeps the
                                         Obsidian-style experience people care about, including
                                         backlinks, local-first workflows, and file ownership, while
                                         staying clean and responsive in the browser.</p>
@@ -138,7 +138,7 @@ const charcoalProjectBrowserMock = `
                                     <div class="google-ai-figure-inner"></div>
                                 </div>
                             </div>
-                            <div class="google-ai-details-title">Why Charcoal.md
+                            <div class="google-ai-details-title">Why Charcoal
                             </div>
                             <ul class="google-ai-detail-list">
                                 <li><strong>Best fit:</strong> It combines markdown speed,
