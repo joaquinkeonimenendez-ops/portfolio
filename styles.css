@@ -184,7 +184,26 @@ hr {
   color: #b7dcff;
   font-weight: 700;
   white-space: nowrap;
-  margin-left: 12px;
+  margin-left: 6px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 2px;
+  padding: 0.2rem 0.5rem;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.brand-title:hover,
+.brand-title:focus-visible {
+  color: var(--color-primary);
+  background-color: rgba(157, 208, 255, 0.12);
+}
+
+.brand-title.active {
+  color: var(--color-primary);
+  background-color: rgba(157, 208, 255, 0.18);
 }
 
 .top-nav {
@@ -251,6 +270,7 @@ hr {
     width: 100%;
     margin-left: 0;
     text-align: center;
+    justify-content: center;
   }
 
   .top-nav {

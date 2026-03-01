@@ -5,7 +5,7 @@ const textarea = document.getElementById("texter");
 const terminal = document.getElementById("terminal");
 const contentscroll = document.getElementById("contentscroll");
 const asciiCatFrame = document.getElementById("ascii-cat-frame");
-const navCommandLinks = document.querySelectorAll(".top-nav a[data-command]");
+const navCommandLinks = document.querySelectorAll("header [data-command]");
 
 let git = 0;
 let pw = false;
@@ -18,13 +18,13 @@ const clearBeforeCommands = new Set([
   "magnum",
   "contact",
   "social",
-  "home",
+  "help",
 ]);
 const commandLineDelay = 80;
 const buttonPreviewDuration = 250;
 const previewedButtonKeys = new Set();
-const homeHintText =
-  '<span class="cli-run-command cli-run-item" data-run-command="home">← Back<br>(Type <u>home</u> to return to the list of supported commands)</span>';
+const helpHintText =
+  '<span class="cli-run-command cli-run-item" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = "> ";
 
@@ -60,7 +60,7 @@ setTimeout(function () {
   scrollToBottom();
 
   setTimeout(function () {
-    const initialCommand = "home";
+    const initialCommand = "help";
     setActiveNavCommand(initialCommand);
     autoTypeAndSubmitCommand(initialCommand);
   }, banner.length * 80 + 250);
@@ -153,11 +153,11 @@ function commander(cmd) {
     clearTerminalLines();
   }
   switch (cmd) {
-    case "home":
-      setActiveNavCommand("home");
-      outputLines = home.length;
+    case "help":
+      setActiveNavCommand("help");
+      outputLines = help.length;
       showFooterHint = false;
-      loopLines(home, "", commandLineDelay, {
+      loopLines(help, "", commandLineDelay, {
         previewClickableItems: true,
         previewDuration: buttonPreviewDuration,
       });
@@ -205,7 +205,7 @@ function commander(cmd) {
       showFooterHint = false;
       addLine("<br>", "", commandLineDelay);
       addLine(
-        "Unknown command - Type <u>home</u> to see a list of supported commands",
+        "Unknown command - Type <u>help</u> to see a list of supported commands",
         "output-blue",
         commandLineDelay * 2,
       );
@@ -214,7 +214,7 @@ function commander(cmd) {
   if (showFooterHint) {
     addLine("<br>", "", (outputLines + 1) * commandLineDelay);
     addLine(
-      homeHintText,
+      helpHintText,
       "tertiary",
       (outputLines + 2) * commandLineDelay,
       function (lineNode) {
@@ -258,7 +258,7 @@ function handleThoughtsInput(cmd) {
       addLine("Exited thoughts.", "output-blue", commandLineDelay);
       addLine("<br>", "", commandLineDelay * 2);
       setTimeout(function () {
-        autoTypeAndSubmitCommand("home");
+        autoTypeAndSubmitCommand("help");
       }, commandLineDelay * 3);
       break;
     default:
