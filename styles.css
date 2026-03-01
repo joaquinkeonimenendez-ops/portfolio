@@ -561,7 +561,12 @@ body.magnum-mode #cursor-cat-gif {
   justify-content: flex-start;
   gap: 0.35rem;
   padding: 0.88rem;
-  background: transparent;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 10, 14, 0.22) 0%,
+    rgba(8, 10, 14, 0.1) 46%,
+    rgba(8, 10, 14, 0) 100%
+  );
   opacity: 0;
   transform: translateY(-10px);
   transition:
