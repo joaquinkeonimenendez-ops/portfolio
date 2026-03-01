@@ -248,7 +248,7 @@ function commander(cmd) {
       showFooterHint = false;
       addLine("<br>", "", commandLineDelay);
       addLine(
-        "Unknown command - Type <u>help</u> to see a list of supported commands",
+        'Unknown command - Type <span class="cli-run-command cli-run-item" data-run-command="help" data-preview-key="unknown:help"><span class="command"><u>help</u></span></span> to see a list of supported commands',
         "output-blue",
         commandLineDelay * 2,
       );
