@@ -762,7 +762,7 @@ a {
     gap: 0.6rem;
     min-width: 252px;
     max-width: 292px;
-    min-height: calc(1.62rem - 2px);
+    min-height: calc(1.62rem - 3px);
     padding: 0.3rem 0.86rem 0.29rem 0.72rem;
     border-radius: 12px 12px 0 0;
     border: 1px solid transparent;
