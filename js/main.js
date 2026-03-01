@@ -359,18 +359,44 @@ function createMagnumShowcaseCard(item) {
   const descriptionText =
     (item && item.description) || "Placeholder GIF preview.";
   const src = (item && item.src) || "assets/cat.gif";
+  const isVideo = /\.(mp4|webm|ogg)(?:$|[?#])/i.test(src);
 
   const card = document.createElement("article");
   card.className = "magnum-gif-card";
   card.tabIndex = 0;
 
-  const image = document.createElement("img");
-  image.className = "magnum-gif-image";
-  image.src = src;
-  image.alt = `${titleText} placeholder GIF`;
-  image.loading = "lazy";
-  image.decoding = "async";
-  card.appendChild(image);
+  if (isVideo) {
+    const video = document.createElement("video");
+    video.className = "magnum-gif-video";
+    video.src = src;
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.controls = false;
+    video.disablePictureInPicture = true;
+    video.setAttribute("aria-label", `${titleText} preview video`);
+    card.appendChild(video);
+
+    const keepPlaying = function () {
+      if (!video.paused) return;
+      const playAttempt = video.play();
+      if (playAttempt && typeof playAttempt.catch === "function") {
+        playAttempt.catch(function () {});
+      }
+    };
+    card.addEventListener("mouseenter", keepPlaying);
+    card.addEventListener("focus", keepPlaying);
+  } else {
+    const image = document.createElement("img");
+    image.className = "magnum-gif-image";
+    image.src = src;
+    image.alt = `${titleText} placeholder GIF`;
+    image.loading = "lazy";
+    image.decoding = "async";
+    card.appendChild(image);
+  }
 
   const overlay = document.createElement("div");
   overlay.className = "magnum-gif-overlay";
@@ -407,37 +433,37 @@ function ensureMagnumShowcase() {
       title: "Lead Discovery",
       description:
         "Placeholder GIF for finding local businesses with low-performing websites.",
-      src: "assets/cat.gif",
+      src: "assets/1.mp4",
     },
     {
       title: "Data Enrichment",
       description:
         "Placeholder GIF for collecting contact data and business intelligence.",
-      src: "assets/cat.gif",
+      src: "assets/2.mp4",
     },
     {
       title: "Website Drafting",
       description:
         "Placeholder GIF for generating landing pages and content from prompts.",
-      src: "assets/cat.gif",
+      src: "assets/3.mp4",
     },
     {
       title: "Outreach Pipeline",
       description:
         "Placeholder GIF for automating call/text sequences and follow-up timing.",
-      src: "assets/cat.gif",
+      src: "assets/438198.webp",
     },
     {
       title: "Operator Console",
       description:
         "Placeholder GIF for human approval checkpoints in the selling workflow.",
-      src: "assets/cat.gif",
+      src: "assets/438198.webp",
     },
     {
       title: "Close + Payment",
       description:
         "Placeholder GIF for checkout and deal completion with Stripe/OpenPhone.",
-      src: "assets/cat.gif",
+      src: "assets/438198.webp",
     },
   ];
 

@@ -243,32 +243,32 @@ const magnumGalleryItems = [
   {
     title: "Lead Discovery",
     description: "Placeholder GIF for finding local businesses that need better websites.",
-    src: "assets/cat.gif",
+    src: "assets/1.mp4",
   },
   {
     title: "Data Enrichment",
     description: "Placeholder GIF for automatically collecting contact and business context.",
-    src: "assets/cat.gif",
+    src: "assets/2.mp4",
   },
   {
     title: "Website Drafting",
     description: "Placeholder GIF for generating a conversion-focused website in minutes.",
-    src: "assets/cat.gif",
+    src: "assets/3.mp4",
   },
   {
     title: "Outreach Pipeline",
     description: "Placeholder GIF for sequencing calls, texts, and follow-ups.",
-    src: "assets/cat.gif",
+    src: "assets/438198.webp",
   },
   {
     title: "Operator Console",
     description: "Placeholder GIF for human-in-the-loop approvals and handoffs.",
-    src: "assets/cat.gif",
+    src: "assets/438198.webp",
   },
   {
     title: "Close + Payment",
     description: "Placeholder GIF for payment capture and deal completion workflows.",
-    src: "assets/cat.gif",
+    src: "assets/438198.webp",
   },
 ];
 
