@@ -241,7 +241,7 @@ const magnumGalleryItems = [
   {
     title: "Phase 1: Lead generation",
     description:
-      "We scrape hundreds of businesses from Google Maps and filter for those that don't have websites. Rotating proxies and user agents are used to avoid rate limits.",
+      "Scrapers find hundreds of businesses from Google maps that do not own websites",
     src: "assets/1.mp4",
   },
   {
