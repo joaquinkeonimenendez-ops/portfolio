@@ -375,6 +375,7 @@ function initCharcoalProjectJourney(charcoalProject) {
   if (!charcoalProject) return;
 
   const urlEl = charcoalProject.querySelector(".chrome-url");
+  const omniboxEl = charcoalProject.querySelector(".chrome-omnibox");
   const frameEl = charcoalProject.querySelector(".chrome-viewport iframe");
   const splashEl = charcoalProject.querySelector(".chrome-viewport-splash");
   const homeSearchTextEl = splashEl
@@ -421,6 +422,23 @@ function initCharcoalProjectJourney(charcoalProject) {
   let cursorTween = null;
   let cursorRafId = null;
   const stepTimers = [];
+
+  const selectUrlText = () => {
+    if (!urlEl) return;
+    const selection = window.getSelection();
+    if (!selection) return;
+    const range = document.createRange();
+    range.selectNodeContents(urlEl);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  };
+
+  if (urlEl) {
+    urlEl.addEventListener("click", selectUrlText);
+  }
+  if (omniboxEl) {
+    omniboxEl.addEventListener("click", selectUrlText);
+  }
 
   const queueStep = (fn, delay) => {
     const timer = setTimeout(() => {
