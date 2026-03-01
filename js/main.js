@@ -356,8 +356,6 @@ function loopLines(name, style, time, options = {}) {
 
 function createMagnumShowcaseCard(item) {
   const titleText = (item && item.title) || "Magnum Workflow";
-  const descriptionText =
-    (item && item.description) || "Placeholder GIF preview.";
   const src = (item && item.src) || "assets/cat.gif";
 
   const card = document.createElement("article");
@@ -372,21 +370,6 @@ function createMagnumShowcaseCard(item) {
   image.decoding = "async";
   card.appendChild(image);
 
-  const overlay = document.createElement("div");
-  overlay.className = "magnum-gif-overlay";
-
-  const title = document.createElement("h3");
-  title.className = "magnum-gif-title";
-  title.textContent = titleText;
-
-  const description = document.createElement("p");
-  description.className = "magnum-gif-description";
-  description.textContent = descriptionText;
-
-  overlay.appendChild(title);
-  overlay.appendChild(description);
-  card.appendChild(overlay);
-
   return card;
 }
 
@@ -398,22 +381,6 @@ function ensureMagnumShowcase() {
   showcase.id = magnumShowcaseId;
   showcase.className = "magnum-showcase";
   showcase.setAttribute("aria-label", "Magnum GIF previews");
-
-  const header = document.createElement("div");
-  header.className = "magnum-showcase-header";
-
-  const heading = document.createElement("h2");
-  heading.className = "magnum-showcase-title";
-  heading.textContent = "Magnum Workflow Preview";
-
-  const subheading = document.createElement("p");
-  subheading.className = "magnum-showcase-subtitle";
-  subheading.textContent =
-    "Placeholder GIFs until final recordings are ready. Hover to preview each stage.";
-
-  header.appendChild(heading);
-  header.appendChild(subheading);
-  showcase.appendChild(header);
 
   const grid = document.createElement("div");
   grid.className = "magnum-showcase-grid";
@@ -470,6 +437,11 @@ function ensureMagnumShowcase() {
   });
 
   showcase.appendChild(grid);
+
+  const backHint = document.createElement("p");
+  backHint.className = "magnum-back-hint";
+  backHint.textContent = "Type help to go back";
+  showcase.appendChild(backHint);
 
   if (contentscroll) {
     contentscroll.insertBefore(showcase, terminal);
