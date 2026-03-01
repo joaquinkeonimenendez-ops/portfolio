@@ -751,8 +751,8 @@ a {
     display: flex;
     align-items: center;
     gap: 0;
-    min-height: calc(2.05rem - 2px);
-    padding: 0.16rem 0.22rem 0 0.08rem;
+    min-height: calc(1.78rem - 2px);
+    padding: 0.08rem 0.18rem 0 0.06rem;
     background: #1d1f22;
 }
 
@@ -762,8 +762,8 @@ a {
     gap: 0.6rem;
     min-width: 252px;
     max-width: 292px;
-    min-height: calc(1.76rem - 2px);
-    padding: 0.38rem 0.92rem 0.36rem 0.8rem;
+    min-height: calc(1.52rem - 2px);
+    padding: 0.26rem 0.86rem 0.25rem 0.72rem;
     border-radius: 12px 12px 0 0;
     border: 1px solid transparent;
     border-bottom: none;
@@ -852,12 +852,12 @@ a {
 }
 
 .chrome-new-tab {
-    width: 1.58rem;
-    height: 1.58rem;
+    width: 1.44rem;
+    height: 1.44rem;
     border: none;
     background: transparent;
     color: rgba(244, 247, 251, 0.9);
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1;
     cursor: default;
     margin-right: 0.2rem;
@@ -884,7 +884,7 @@ a {
 }
 
 .chrome-window-btn {
-    width: 1.72rem;
+    width: 1.56rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -893,7 +893,7 @@ a {
     line-height: 1;
     position: relative;
     z-index: 1;
-    transform: translateY(-1px);
+    transform: translateY(0);
 }
 
 .chrome-window-min::before {
