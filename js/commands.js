@@ -246,7 +246,8 @@ const magnumGalleryItems = [
   },
   {
     title: "Phase 2: Lead qualification",
-    description: "Placeholder GIF for automatically collecting contact and business context.",
+    description:
+      "Haiku agents review each business and determine if they would truly benefit from a website or not.",
     src: "assets/2.mp4",
   },
   {
