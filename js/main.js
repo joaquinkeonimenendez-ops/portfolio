@@ -6,6 +6,7 @@ const terminal = document.getElementById("terminal");
 const contentscroll = document.getElementById("contentscroll");
 const asciiCatFrame = document.getElementById("ascii-cat-frame");
 const navCommandLinks = document.querySelectorAll("header [data-command]");
+const magnumShowcaseId = "magnum-showcase";
 
 let git = 0;
 let pw = false;
@@ -150,6 +151,9 @@ function commander(cmd) {
   if (!cmd) {
     return;
   }
+  if (cmd !== "magnum") {
+    hideMagnumShowcase();
+  }
   if (isThoughtsMode) {
     if (cmd === "q" || /^\d+$/.test(cmd)) {
       handleThoughtsInput(cmd);
@@ -198,6 +202,7 @@ function commander(cmd) {
       return;
     case "magnum":
       setActiveNavCommand("projects");
+      showMagnumShowcase();
       return;
     case "contact":
     case "social":
@@ -347,6 +352,149 @@ function loopLines(name, style, time, options = {}) {
     },
     name.length * time + 50,
   );
+}
+
+function createMagnumShowcaseCard(item) {
+  const titleText = (item && item.title) || "Magnum Workflow";
+  const descriptionText =
+    (item && item.description) || "Placeholder GIF preview.";
+  const src = (item && item.src) || "assets/cat.gif";
+
+  const card = document.createElement("article");
+  card.className = "magnum-gif-card";
+  card.tabIndex = 0;
+
+  const image = document.createElement("img");
+  image.className = "magnum-gif-image";
+  image.src = src;
+  image.alt = `${titleText} placeholder GIF`;
+  image.loading = "lazy";
+  image.decoding = "async";
+  card.appendChild(image);
+
+  const overlay = document.createElement("div");
+  overlay.className = "magnum-gif-overlay";
+
+  const title = document.createElement("h3");
+  title.className = "magnum-gif-title";
+  title.textContent = titleText;
+
+  const description = document.createElement("p");
+  description.className = "magnum-gif-description";
+  description.textContent = descriptionText;
+
+  overlay.appendChild(title);
+  overlay.appendChild(description);
+  card.appendChild(overlay);
+
+  return card;
+}
+
+function ensureMagnumShowcase() {
+  let showcase = document.getElementById(magnumShowcaseId);
+  if (showcase) return showcase;
+
+  showcase = document.createElement("section");
+  showcase.id = magnumShowcaseId;
+  showcase.className = "magnum-showcase";
+  showcase.setAttribute("aria-label", "Magnum GIF previews");
+
+  const header = document.createElement("div");
+  header.className = "magnum-showcase-header";
+
+  const heading = document.createElement("h2");
+  heading.className = "magnum-showcase-title";
+  heading.textContent = "Magnum Workflow Preview";
+
+  const subheading = document.createElement("p");
+  subheading.className = "magnum-showcase-subtitle";
+  subheading.textContent =
+    "Placeholder GIFs until final recordings are ready. Hover to preview each stage.";
+
+  header.appendChild(heading);
+  header.appendChild(subheading);
+  showcase.appendChild(header);
+
+  const grid = document.createElement("div");
+  grid.className = "magnum-showcase-grid";
+
+  const fallbackItems = [
+    {
+      title: "Lead Discovery",
+      description:
+        "Placeholder GIF for finding local businesses with low-performing websites.",
+      src: "assets/cat.gif",
+    },
+    {
+      title: "Data Enrichment",
+      description:
+        "Placeholder GIF for collecting contact data and business intelligence.",
+      src: "assets/cat.gif",
+    },
+    {
+      title: "Website Drafting",
+      description:
+        "Placeholder GIF for generating landing pages and content from prompts.",
+      src: "assets/cat.gif",
+    },
+    {
+      title: "Outreach Pipeline",
+      description:
+        "Placeholder GIF for automating call/text sequences and follow-up timing.",
+      src: "assets/cat.gif",
+    },
+    {
+      title: "Operator Console",
+      description:
+        "Placeholder GIF for human approval checkpoints in the selling workflow.",
+      src: "assets/cat.gif",
+    },
+    {
+      title: "Close + Payment",
+      description:
+        "Placeholder GIF for checkout and deal completion with Stripe/OpenPhone.",
+      src: "assets/cat.gif",
+    },
+  ];
+
+  const sourceItems =
+    typeof magnumGalleryItems !== "undefined" &&
+    Array.isArray(magnumGalleryItems) &&
+    magnumGalleryItems.length
+      ? magnumGalleryItems
+      : fallbackItems;
+  const items = sourceItems.slice(0, 6);
+
+  items.forEach(function (item) {
+    grid.appendChild(createMagnumShowcaseCard(item));
+  });
+
+  showcase.appendChild(grid);
+
+  if (contentscroll) {
+    contentscroll.insertBefore(showcase, terminal);
+  }
+
+  return showcase;
+}
+
+function showMagnumShowcase() {
+  closeCharcoalOverlay();
+  const showcase = ensureMagnumShowcase();
+  if (!showcase) return;
+  showcase.classList.add("is-visible");
+  document.body.classList.add("magnum-mode");
+  if (contentscroll) {
+    contentscroll.scrollTop = 0;
+  }
+}
+
+function hideMagnumShowcase() {
+  const showcase = document.getElementById(magnumShowcaseId);
+  if (showcase) {
+    showcase.classList.remove("is-visible");
+  }
+  document.body.classList.remove("magnum-mode");
 }
 
 function closeCharcoalOverlay() {

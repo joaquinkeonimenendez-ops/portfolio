@@ -239,6 +239,39 @@ with integrations for OpenPhone and Stripe to support smooth operator workflows.
   `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">Back to projects</span></span>`,
 ];
 
+const magnumGalleryItems = [
+  {
+    title: "Lead Discovery",
+    description: "Placeholder GIF for finding local businesses that need better websites.",
+    src: "assets/cat.gif",
+  },
+  {
+    title: "Data Enrichment",
+    description: "Placeholder GIF for automatically collecting contact and business context.",
+    src: "assets/cat.gif",
+  },
+  {
+    title: "Website Drafting",
+    description: "Placeholder GIF for generating a conversion-focused website in minutes.",
+    src: "assets/cat.gif",
+  },
+  {
+    title: "Outreach Pipeline",
+    description: "Placeholder GIF for sequencing calls, texts, and follow-ups.",
+    src: "assets/cat.gif",
+  },
+  {
+    title: "Operator Console",
+    description: "Placeholder GIF for human-in-the-loop approvals and handoffs.",
+    src: "assets/cat.gif",
+  },
+  {
+    title: "Close + Payment",
+    description: "Placeholder GIF for payment capture and deal completion workflows.",
+    src: "assets/cat.gif",
+  },
+];
+
 let thoughts = [
   "<br>",
   `<span class="command">1. Brief thoughts on automation</span>`,
