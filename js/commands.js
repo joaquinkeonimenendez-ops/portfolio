@@ -253,13 +253,13 @@ const magnumGalleryItems = [
   {
     title: "Phase 3: Research web design",
     description:
-      "AI agents find and analyze real business websites to identify best practices for each industry",
+      "AI agents find and analyze real business websites to identify best practices for each industry.",
     src: "assets/3.mp4",
   },
   {
     title: "Phase 4: Generate website templates",
     description:
-      "Generative AI creates website templates and variants. New variants are generated only after successful sales, so there are zero AI costs for failed sales.",
+      "AI generates new templates after each successful sale: no sale, no expenses.",
     src: "assets/4.mp4",
   },
   {
