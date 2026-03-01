@@ -77,15 +77,8 @@
 
       function close_window() {
         const terminalWindow = document.querySelector(".terminal-window");
-        const bgVideo = document.querySelector(".bg-video");
-        if (terminalWindow) {
-          terminalWindow.style.display = "none";
-        }
-        if (bgVideo) {
-          bgVideo.muted = false;
-          bgVideo.volume = 0.55;
-          bgVideo.play().catch(() => {});
-        }
+        if (!terminalWindow) return;
+        terminalWindow.style.display = "none";
       }
     </script>
 
@@ -104,7 +97,7 @@
           <a href="" data-command="about">about</a>
           <a href="" data-command="projects">projects</a>
           <a href="" data-command="contact">contact</a>
-          <a href="" class="nav-close" onclick="close_window(); return false;">x</a>
+          <a href="" class="nav-close" onclick="runCommandFromNavigation('help'); return false;">x</a>
         </nav>
       </header>
 

@@ -266,15 +266,8 @@ function handleThoughtsInput(cmd) {
 
 function close_window() {
   const terminalWindow = document.querySelector(".terminal-window");
-  const bgVideo = document.querySelector(".bg-video");
-  if (terminalWindow) {
-    terminalWindow.style.display = "none";
-  }
-  if (bgVideo) {
-    bgVideo.muted = false;
-    bgVideo.volume = 0.55;
-    bgVideo.play().catch(() => {});
-  }
+  if (!terminalWindow) return;
+  terminalWindow.style.display = "none";
 }
 
 function newTab(link) {
