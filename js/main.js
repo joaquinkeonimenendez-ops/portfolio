@@ -40,7 +40,6 @@ function setPromptPrefix(prefix) {
 }
 
 function focusInput() {
-  if (!isTypingEnabled()) return;
   if (!textarea) return;
   try {
     textarea.focus({ preventScroll: true });
@@ -140,6 +139,7 @@ function enterKey(e) {
 
     command.innerHTML = "";
     textarea.value = "";
+    focusInput();
     scrollToBottom();
   }
 
