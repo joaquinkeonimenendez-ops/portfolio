@@ -497,7 +497,7 @@ function ensureMagnumShowcase() {
     {
       title: "Phase 3: Research web design",
       description:
-        "Placeholder GIF for generating landing pages and content from prompts.",
+        "For each type of business, AI agents analyze real website examples to identify effective design patterns and best practices.",
       src: "assets/3.mp4",
     },
     {

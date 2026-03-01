@@ -252,7 +252,8 @@ const magnumGalleryItems = [
   },
   {
     title: "Phase 3: Research web design",
-    description: "Placeholder GIF for generating a conversion-focused website in minutes.",
+    description:
+      "For each type of business, AI agents analyze real website examples to identify effective design patterns and best practices.",
     src: "assets/3.mp4",
   },
   {
