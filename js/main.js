@@ -248,9 +248,12 @@ function commander(cmd) {
       showFooterHint = false;
       addLine("<br>", "", commandLineDelay);
       addLine(
-        'Unknown command - Type <span class="cli-run-command cli-run-item" data-run-command="help" data-preview-key="unknown:help"><span class="command"><u>help</u></span></span> to see a list of supported commands',
+        '<span class="cli-run-command cli-run-item" data-run-command="help" data-preview-key="unknown:help-full"><span class="command">Unknown command - Type <u>help</u> to see a list of supported commands</span></span>',
         "output-blue",
         commandLineDelay * 2,
+        function (lineNode) {
+          applyTemporaryButtonPreview(lineNode, buttonPreviewDuration);
+        },
       );
       break;
   }
