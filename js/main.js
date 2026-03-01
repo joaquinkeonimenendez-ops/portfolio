@@ -538,7 +538,6 @@ function ensureMagnumShowcase() {
   backHint.appendChild(backLabel);
   backHint.addEventListener("click", function (e) {
     e.preventDefault();
-    scrollToBottom();
     runCommandFromNavigation("projects");
   });
   showcase.appendChild(backHint);
