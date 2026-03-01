@@ -80,6 +80,7 @@ window.addEventListener("keyup", function (e) {
 });
 
 textarea.addEventListener("keydown", function (e) {
+  if (!mobileTypingMediaQuery.matches) return;
   const keyCode = e.keyCode || e.which;
   if (e.key === "Enter" || keyCode === 13) {
     e.preventDefault();
