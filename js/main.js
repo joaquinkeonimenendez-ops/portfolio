@@ -491,7 +491,7 @@ function ensureMagnumShowcase() {
     {
       title: "Phase 2: Lead qualification",
       description:
-        "Haiku agents review businesses to determine if they'd truly benefit from a website or not.",
+        "Haiku agents review each business to determine if they'd truly benefit from a website or not.",
       src: "assets/2.mp4",
     },
     {
