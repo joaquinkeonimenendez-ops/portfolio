@@ -507,6 +507,7 @@ function ensureMagnumShowcase() {
   backHint.appendChild(backLabel);
   backHint.addEventListener("click", function (e) {
     e.preventDefault();
+    scrollToBottom();
     runCommandFromNavigation("projects");
   });
   showcase.appendChild(backHint);
@@ -524,9 +525,6 @@ function showMagnumShowcase() {
   if (!showcase) return;
   showcase.classList.add("is-visible");
   document.body.classList.add("magnum-mode");
-  if (contentscroll) {
-    contentscroll.scrollTop = 0;
-  }
 }
 
 function hideMagnumShowcase() {
