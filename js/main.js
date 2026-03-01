@@ -128,6 +128,7 @@ function enterKey(e) {
     return;
   }
   if (isEnterPressed) {
+    const wasMagnumModeActive = document.body.classList.contains("magnum-mode");
     const rawInput = command.innerHTML.trim();
     const isMagnumModeActive = document.body.classList.contains("magnum-mode");
     if (!rawInput && isMagnumModeActive) {
@@ -154,6 +155,8 @@ function enterKey(e) {
       if (contentscroll) {
         contentscroll.scrollTop = 0;
       }
+    } else if (input === "charcoal" && wasMagnumModeActive) {
+      // Preserve current viewport position for the Magnum -> Charcoal exception.
     } else {
       scrollToBottom();
     }
