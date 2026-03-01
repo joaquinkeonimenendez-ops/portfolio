@@ -128,7 +128,11 @@ function enterKey(e) {
     return;
   }
   if (isEnterPressed) {
-    const input = command.innerHTML.trim().toLowerCase();
+    const rawInput = command.innerHTML.trim();
+    if (!rawInput) {
+      return;
+    }
+    const input = rawInput.toLowerCase();
     const typedPrompt = isThoughtsMode ? thoughtsPrompt : defaultPrompt;
     const shouldEchoTypedLine =
       input !== "charcoal" &&
