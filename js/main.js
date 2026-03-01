@@ -15,7 +15,6 @@ const clearBeforeCommands = new Set([
   "about",
   "aboutme",
   "projects",
-  "charcoal",
   "magnum",
   "contact",
   "social",
@@ -106,7 +105,9 @@ function enterKey(e) {
   if (e.keyCode === 13) {
     const input = command.innerHTML.trim().toLowerCase();
     const typedPrompt = isThoughtsMode ? thoughtsPrompt : defaultPrompt;
-    addLine(typedPrompt + " " + command.innerHTML, "no-animation", 0);
+    if (input !== "charcoal") {
+      addLine(typedPrompt + " " + command.innerHTML, "no-animation", 0);
+    }
 
     commands.push(command.innerHTML);
     git = commands.length;
@@ -180,15 +181,8 @@ function commander(cmd) {
       break;
     case "charcoal":
       setActiveNavCommand("projects");
-      outputLines = projectCharcoal.length;
-      loopLines(projectCharcoal, "", commandLineDelay, {
-        previewClickableItems: true,
-        previewDuration: buttonPreviewDuration,
-      });
-      setTimeout(function () {
-        openCharcoalOverlay();
-      }, 40);
-      break;
+      openCharcoalOverlay();
+      return;
     case "magnum":
       setActiveNavCommand("projects");
       outputLines = projectMagnum.length;
