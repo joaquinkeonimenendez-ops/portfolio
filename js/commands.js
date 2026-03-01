@@ -8,7 +8,7 @@ let aboutme = [
   "<br>",
   `<div id="aboutme-section">`,
   `<span class='underline output-blue'>Who I am</span>`,
-  `<pre class="about-body indent-8 whitespace-pre-wrap break-words overflow-x-auto">I'm a CS student at UC Irvine. In my spare time I work on AI projects. I've been interested in coding since childhood. I was awarded my first bug bounty (stored XSS) at age 12!</pre>`,
+  `<pre class="about-body indent-8 whitespace-pre-wrap break-words overflow-x-auto">I'm a CS student at UC Irvine. In my spare time I work on AI projects. I've been interested in coding since childhood. I was awarded my first cash bug bounty (for stored XSS) at age 12!</pre>`,
   `<span class="command">What I do</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">I'm currently building Magnum a CLI tool for selling websites to small businesses, and Charcoal a web alternative for Obsidian.md out of personal necessity. Use the projects command to explore further.</pre>`,
   "</div>",
