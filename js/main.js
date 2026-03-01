@@ -281,14 +281,14 @@ function setActiveNavCommand(cmd) {
   });
 }
 
-function runCommandFromNavigation(cmd) {
+function runCommandFromNavigation(cmd, options = {}) {
   if (!cmd) return;
   if (isThoughtsMode) {
     isThoughtsMode = false;
     setPromptPrefix(defaultPrompt);
   }
   setActiveNavCommand(cmd);
-  autoTypeAndSubmitCommand(cmd);
+  autoTypeAndSubmitCommand(cmd, options);
 }
 
 function handleThoughtsInput(cmd) {
@@ -541,7 +541,7 @@ function ensureMagnumShowcase() {
   backHint.appendChild(backLabel);
   backHint.addEventListener("click", function (e) {
     e.preventDefault();
-    runCommandFromNavigation("projects");
+    runCommandFromNavigation("projects", { suppressAutoTypeScroll: true });
   });
   showcase.appendChild(backHint);
 
@@ -910,7 +910,8 @@ function initCharcoalProjectJourney(charcoalProject) {
   runCharcoalSequence();
 }
 
-function autoTypeAndSubmitCommand(autoCommand) {
+function autoTypeAndSubmitCommand(autoCommand, options = {}) {
+  const suppressAutoTypeScroll = Boolean(options.suppressAutoTypeScroll);
   let index = 0;
   textarea.value = "";
   command.innerHTML = "";
@@ -921,7 +922,9 @@ function autoTypeAndSubmitCommand(autoCommand) {
       const current = autoCommand.slice(0, index);
       textarea.value = current;
       command.innerHTML = current;
-      scrollToBottom();
+      if (!suppressAutoTypeScroll) {
+        scrollToBottom();
+      }
       setTimeout(typeNext, 110);
       return;
     }
