@@ -76,7 +76,16 @@ setTimeout(function () {
 startAsciiCatBlinkAnimation();
 
 window.addEventListener("keyup", function (e) {
+  if (mobileTypingMediaQuery.matches) return;
   enterKey(e);
+});
+
+textarea.addEventListener("keydown", function (e) {
+  const keyCode = e.keyCode || e.which;
+  if (e.key === "Enter" || keyCode === 13) {
+    e.preventDefault();
+    enterKey(e);
+  }
 });
 
 document.addEventListener("click", function (e) {
@@ -113,10 +122,12 @@ setPromptPrefix(defaultPrompt);
 
 function enterKey(e) {
   const programmatic = Boolean(e && e.programmatic);
-  if (!isTypingEnabled() && !programmatic) {
+  const keyCode = (e && (e.keyCode || e.which)) || 0;
+  const isEnterPressed = (e && e.key === "Enter") || keyCode === 13;
+  if (!isTypingEnabled() && !programmatic && !isEnterPressed) {
     return;
   }
-  if (e.keyCode === 13) {
+  if (isEnterPressed) {
     const input = command.innerHTML.trim().toLowerCase();
     const typedPrompt = isThoughtsMode ? thoughtsPrompt : defaultPrompt;
     if (input !== "charcoal" && input !== "magnum") {
@@ -132,14 +143,14 @@ function enterKey(e) {
     scrollToBottom();
   }
 
-  if (e.keyCode === 38 && git !== 0) {
+  if (keyCode === 38 && git !== 0) {
     git -= 1;
     textarea.value = commands[git];
     command.innerHTML = textarea.value;
     scrollToBottom();
   }
 
-  if (e.keyCode === 40 && git !== commands.length) {
+  if (keyCode === 40 && git !== commands.length) {
     git += 1;
     textarea.value = commands[git] || "";
     command.innerHTML = textarea.value;
