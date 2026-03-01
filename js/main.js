@@ -150,7 +150,13 @@ function enterKey(e) {
     command.innerHTML = "";
     textarea.value = "";
     focusInput();
-    scrollToBottom();
+    if (input === "magnum") {
+      if (contentscroll) {
+        contentscroll.scrollTop = 0;
+      }
+    } else {
+      scrollToBottom();
+    }
   }
 
   if (keyCode === 38 && git !== 0) {
