@@ -420,6 +420,7 @@ function initCharcoalProjectJourney(charcoalProject) {
     startDelayMs: 700,
     resultsRevealDelayMs: 480,
     cursorStartDelayMs: 2000,
+    cursorMoveDelayMs: 220,
     postClickDelayMs: 360,
     cursorClickHoldMs: 230,
     cursorTravelSeconds: 3.9,
@@ -528,7 +529,12 @@ function initCharcoalProjectJourney(charcoalProject) {
     step();
   };
 
-  const animateCursorClick = (onDone, cursorTravelSeconds, cursorClickHoldMs) => {
+  const animateCursorClick = (
+    onDone,
+    cursorTravelSeconds,
+    cursorClickHoldMs,
+    cursorMoveDelayMs,
+  ) => {
     if (!splashEl || !cursorEl || !primaryResultEl) {
       if (typeof onDone === "function") onDone();
       return;
@@ -549,54 +555,58 @@ function initCharcoalProjectJourney(charcoalProject) {
     cursorEl.classList.remove("is-clicking");
     setCursorState(originX, originY, 1);
 
-    if (gsapRef && typeof gsapRef.to === "function") {
-      cursorTween = gsapRef.to(cursorEl, {
-        x: targetX,
-        y: targetY,
-        duration: cursorTravelSeconds,
-        ease: "power2.inOut",
-        onComplete: () => {
-          cursorTween = null;
-          cursorEl.classList.add("is-clicking");
-          primaryResultEl.classList.add("is-clicked");
-          queueStep(() => {
-            cursorEl.classList.remove("is-clicking");
-            if (typeof onDone === "function") onDone();
-          }, cursorClickHoldMs);
-        },
-      });
-      return;
-    }
-
-    const startTime = performance.now();
-    const durationMs = cursorTravelSeconds * 1000;
-    const deltaX = targetX - originX;
-    const deltaY = targetY - originY;
-
-    const easeInOutCubic = (t) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const stepCursor = (now) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / durationMs, 1);
-      const eased = easeInOutCubic(progress);
-      setCursorState(originX + deltaX * eased, originY + deltaY * eased, 1);
-
-      if (progress < 1) {
-        cursorRafId = requestAnimationFrame(stepCursor);
+    const startCursorMove = () => {
+      if (gsapRef && typeof gsapRef.to === "function") {
+        cursorTween = gsapRef.to(cursorEl, {
+          x: targetX,
+          y: targetY,
+          duration: cursorTravelSeconds,
+          ease: "power2.inOut",
+          onComplete: () => {
+            cursorTween = null;
+            cursorEl.classList.add("is-clicking");
+            primaryResultEl.classList.add("is-clicked");
+            queueStep(() => {
+              cursorEl.classList.remove("is-clicking");
+              if (typeof onDone === "function") onDone();
+            }, cursorClickHoldMs);
+          },
+        });
         return;
       }
 
-      cursorRafId = null;
-      cursorEl.classList.add("is-clicking");
-      primaryResultEl.classList.add("is-clicked");
-      queueStep(() => {
-        cursorEl.classList.remove("is-clicking");
-        if (typeof onDone === "function") onDone();
-      }, cursorClickHoldMs);
+      const startTime = performance.now();
+      const durationMs = cursorTravelSeconds * 1000;
+      const deltaX = targetX - originX;
+      const deltaY = targetY - originY;
+
+      const easeInOutCubic = (t) =>
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+      const stepCursor = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / durationMs, 1);
+        const eased = easeInOutCubic(progress);
+        setCursorState(originX + deltaX * eased, originY + deltaY * eased, 1);
+
+        if (progress < 1) {
+          cursorRafId = requestAnimationFrame(stepCursor);
+          return;
+        }
+
+        cursorRafId = null;
+        cursorEl.classList.add("is-clicking");
+        primaryResultEl.classList.add("is-clicked");
+        queueStep(() => {
+          cursorEl.classList.remove("is-clicking");
+          if (typeof onDone === "function") onDone();
+        }, cursorClickHoldMs);
+      };
+
+      cursorRafId = requestAnimationFrame(stepCursor);
     };
 
-    cursorRafId = requestAnimationFrame(stepCursor);
+    queueStep(startCursorMove, cursorMoveDelayMs || 0);
   };
 
   const runCharcoalSequence = () => {
@@ -636,7 +646,7 @@ function initCharcoalProjectJourney(charcoalProject) {
               queueStep(() => {
                 loadCharcoal();
               }, timing.postClickDelayMs);
-            }, timing.cursorTravelSeconds, timing.cursorClickHoldMs);
+            }, timing.cursorTravelSeconds, timing.cursorClickHoldMs, timing.cursorMoveDelayMs);
           }, timing.cursorStartDelayMs);
         }, timing.resultsRevealDelayMs);
       }, timing.queryTypingMs);
