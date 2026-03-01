@@ -423,7 +423,7 @@ function initCharcoalProjectJourney(charcoalProject) {
     cursorMoveDelayMs: 220,
     postClickDelayMs: 360,
     cursorClickHoldMs: 230,
-    cursorTravelSeconds: 3.9,
+    cursorTravelSeconds: 3.2,
   };
   let isSequenceRunning = false;
   let hasLoadedFrame = false;
