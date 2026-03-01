@@ -451,7 +451,7 @@ function ensureMagnumShowcase() {
       title: "Outreach Pipeline",
       description:
         "Placeholder GIF for automating call/text sequences and follow-up timing.",
-      src: "assets/438198.webp",
+      src: "assets/4.mp4",
     },
     {
       title: "Operator Console",

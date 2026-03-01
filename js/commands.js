@@ -258,7 +258,7 @@ const magnumGalleryItems = [
   {
     title: "Outreach Pipeline",
     description: "Placeholder GIF for sequencing calls, texts, and follow-ups.",
-    src: "assets/438198.webp",
+    src: "assets/4.mp4",
   },
   {
     title: "Operator Console",
