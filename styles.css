@@ -20,6 +20,7 @@
   --color-hover: #c4e0ffcc;
   --color-shadow: #2930439e;
   --color-command: #9bcfff;
+  --color-command-desc: #88bde8;
   --color-output: #9bcfff;
   --color-error: #a1a6f0;
   --color-white: #fff;
@@ -570,7 +571,7 @@ hr {
 }
 
 .home-desc {
-  color: var(--color-command);
+  color: var(--color-command-desc);
 }
 
 .home-white {
@@ -624,7 +625,7 @@ hr {
 }
 
 .home-item-desc {
-  color: var(--color-command);
+  color: var(--color-command-desc);
 }
 
 .error {
