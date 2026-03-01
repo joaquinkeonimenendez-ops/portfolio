@@ -38,7 +38,7 @@ let home = [
 
 let projects = [
   "<br>",
-  `<span class="cli-run-command cli-run-item" data-run-command="charcoal" data-preview-key="project:charcoal"><span class="command">1. Charcoal md</span><br><span class="home-item-desc">&#8627; A markdown note-taking web app inspired by Obsidian.</span></span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="charcoal" data-preview-key="project:charcoal"><span class="command">1. Charcoal md</span><br><span class="home-item-desc">&#8627; A markdown based note-taking webapp inspired by Obsidian. Built for people who can't install desktop apps on work/school devices or don't want to pay for Obsidian sync.</span></span>`,
   `<span class="cli-run-command cli-run-item" data-run-command="magnum" data-preview-key="project:magnum"><span class="command">2. Magnum</span><br><span class="home-item-desc">&#8627; A CLI for selling websites to small businesses. Lead generation and website creation is entirely handled by AI agents. Fully integrated with OpenPhone and Stripe for a human operator to smoothly make sales calls.</span></span>`,
 ];
 
