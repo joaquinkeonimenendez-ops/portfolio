@@ -495,7 +495,7 @@ function ensureMagnumShowcase() {
       src: "assets/2.mp4",
     },
     {
-      title: "Phase 3: Research website design",
+      title: "Phase 3: Research web design",
       description:
         "Placeholder GIF for generating landing pages and content from prompts.",
       src: "assets/3.mp4",
