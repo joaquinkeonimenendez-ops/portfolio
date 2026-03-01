@@ -447,37 +447,37 @@ function ensureMagnumShowcase() {
 
   const fallbackItems = [
     {
-      title: "Lead Discovery",
+      title: "Phase 1",
       description:
         "Placeholder GIF for finding local businesses with low-performing websites.",
       src: "assets/1.mp4",
     },
     {
-      title: "Data Enrichment",
+      title: "Phase 2",
       description:
         "Placeholder GIF for collecting contact data and business intelligence.",
       src: "assets/2.mp4",
     },
     {
-      title: "Website Drafting",
+      title: "Phase 3",
       description:
         "Placeholder GIF for generating landing pages and content from prompts.",
       src: "assets/3.mp4",
     },
     {
-      title: "Outreach Pipeline",
+      title: "Phase 4",
       description:
         "Placeholder GIF for automating call/text sequences and follow-up timing.",
       src: "assets/4.mp4",
     },
     {
-      title: "Signal Monitoring",
+      title: "Phase 5",
       description:
         "Placeholder video for checking campaign health and channel-level alerts.",
       src: "assets/5.mp4",
     },
     {
-      title: "Operator Console",
+      title: "Phase 6",
       description:
         "Placeholder GIF for human approval checkpoints in the selling workflow.",
       src: "assets/438198.webp",
@@ -939,3 +939,4 @@ function startAsciiCatBlinkAnimation() {
 
   setTimeout(animateBlink, 1800);
 }
+
