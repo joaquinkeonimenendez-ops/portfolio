@@ -373,17 +373,33 @@ function createMagnumShowcaseCard(item) {
     video.loop = true;
     video.muted = true;
     video.playsInline = true;
-    video.preload = "metadata";
+    video.preload = "auto";
     video.controls = false;
     video.disablePictureInPicture = true;
     video.setAttribute("aria-label", `${titleText} preview video`);
     card.appendChild(video);
 
+    const forcePlay = function () {
+      if (video.paused) {
+        const playAttempt = video.play();
+        if (playAttempt && typeof playAttempt.catch === "function") {
+          playAttempt.catch(function () {});
+        }
+      }
+    };
+
+    // Try to play once video data is loaded
+    video.addEventListener("loadeddata", forcePlay);
+    video.addEventListener("canplay", forcePlay);
+    video.addEventListener("load", forcePlay);
+
+    // Also try on mouseenter and focus
     const keepPlaying = function () {
-      if (!video.paused) return;
-      const playAttempt = video.play();
-      if (playAttempt && typeof playAttempt.catch === "function") {
-        playAttempt.catch(function () {});
+      if (video.paused) {
+        const playAttempt = video.play();
+        if (playAttempt && typeof playAttempt.catch === "function") {
+          playAttempt.catch(function () {});
+        }
       }
     };
     card.addEventListener("mouseenter", keepPlaying);
@@ -483,9 +499,12 @@ function ensureMagnumShowcase() {
   showcase.appendChild(grid);
 
   const backHint = document.createElement("button");
-  backHint.className = "magnum-back-hint";
+  backHint.className = "magnum-back-hint cli-run-command cli-run-item";
   backHint.type = "button";
-  backHint.textContent = "Click here to go back to projects";
+  const backLabel = document.createElement("span");
+  backLabel.className = "command";
+  backLabel.textContent = "<- Back to projects";
+  backHint.appendChild(backLabel);
   backHint.addEventListener("click", function (e) {
     e.preventDefault();
     runCommandFromNavigation("projects");

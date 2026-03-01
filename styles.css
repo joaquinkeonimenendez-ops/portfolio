@@ -623,21 +623,16 @@ body.magnum-mode #cursor-cat-gif {
 
 .magnum-back-hint {
   margin: clamp(0.95rem, 2.5vw, 1.35rem) 0 0;
-  text-align: center;
-  color: var(--color-command-desc);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   font-size: var(--step--1);
   background: transparent;
   border: 0;
-  width: 100%;
+  width: fit-content;
   cursor: pointer;
-  text-decoration: underline;
   font-family: inherit;
-  padding: 0.2rem 0;
-}
-
-.magnum-back-hint:hover,
-.magnum-back-hint:focus-visible {
-  color: var(--color-primary);
+  padding: 0.2rem 0.45rem;
 }
 
 @media (max-width: 1080px) {
