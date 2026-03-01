@@ -166,7 +166,9 @@ function commander(cmd) {
   if (!cmd) {
     return;
   }
-  if (cmd !== "magnum") {
+  const isMagnumModeActive = document.body.classList.contains("magnum-mode");
+  const isMagnumToCharcoalException = isMagnumModeActive && cmd === "charcoal";
+  if (cmd !== "magnum" && !isMagnumToCharcoalException) {
     hideMagnumShowcase();
   }
   if (isThoughtsMode) {
