@@ -485,7 +485,7 @@ function ensureMagnumShowcase() {
     {
       title: "Phase 1: Lead generation",
       description:
-        "Placeholder GIF for finding local businesses with low-performing websites.",
+        "We scrape hundreds of businesses from Google Maps and filter for those that don't have websites. Rotating proxies and user agents are used to avoid rate limits.",
       src: "assets/1.mp4",
     },
     {
