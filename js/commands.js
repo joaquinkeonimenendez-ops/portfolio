@@ -269,7 +269,7 @@ const magnumGalleryItems = [
     src: "assets/5.mp4",
   },
   {
-    title: "Phase 6: Sell websites to businesses",
+    title: "Phase 6: Sell to small businesses",
     description: "Placeholder GIF for human-in-the-loop approvals and handoffs.",
     src: "assets/6.mp4",
   },
@@ -303,4 +303,5 @@ opus + playwright is such a brilliant combo that it can automate tasks before ev
 gatekeep this tho
 </pre>`,
 ];
+
 

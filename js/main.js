@@ -513,7 +513,7 @@ function ensureMagnumShowcase() {
       src: "assets/5.mp4",
     },
     {
-      title: "Phase 6: Sell websites to businesses",
+      title: "Phase 6: Sell to small businesses",
       description:
         "Placeholder GIF for human approval checkpoints in the selling workflow.",
       src: "assets/438198.webp",
@@ -978,4 +978,5 @@ function startAsciiCatBlinkAnimation() {
 
   setTimeout(animateBlink, 1800);
 }
+
 
