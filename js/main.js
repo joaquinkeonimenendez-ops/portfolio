@@ -495,7 +495,7 @@ function ensureMagnumShowcase() {
       src: "assets/2.mp4",
     },
     {
-      title: "Phase 3: Research web design",
+      title: "Phase 3: Web design research",
       description:
         "AI agents find and analyze real business websites to identify best practices for each industry.",
       src: "assets/3.mp4",
