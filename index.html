@@ -76,9 +76,9 @@
       document.addEventListener("DOMContentLoaded", fetchLatestTrack);
 
       function close_window() {
-        if (confirm("Close Window?")) {
-          window.location.href = "about:blank";
-        }
+        const terminalWindow = document.querySelector(".terminal-window");
+        if (!terminalWindow) return;
+        terminalWindow.style.display = "none";
       }
     </script>
 

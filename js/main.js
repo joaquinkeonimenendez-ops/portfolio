@@ -265,14 +265,9 @@ function handleThoughtsInput(cmd) {
 }
 
 function close_window() {
-  // Attempt normal close (works if tab was JS-opened)
-  window.open("", "_self");
-  window.close();
-
-  // Fallback (most browsers): navigate away
-  setTimeout(() => {
-    window.location.href = "about:blank";
-  }, 100);
+  const terminalWindow = document.querySelector(".terminal-window");
+  if (!terminalWindow) return;
+  terminalWindow.style.display = "none";
 }
 
 function newTab(link) {
