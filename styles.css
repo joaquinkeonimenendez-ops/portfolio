@@ -290,6 +290,10 @@ hr {
     font-size: var(--step--1);
   }
 
+  .top-nav .nav-close {
+    display: none;
+  }
+
   #contentscroll {
     display: flex;
     flex-direction: column;

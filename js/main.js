@@ -27,6 +27,11 @@ const helpHintText =
   '<span class="cli-run-command cli-run-item" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = "> ";
+const mobileTypingMediaQuery = window.matchMedia("(max-width: 726px)");
+
+function isTypingEnabled() {
+  return !mobileTypingMediaQuery.matches;
+}
 
 function setPromptPrefix(prefix) {
   if (!liner) return;
@@ -34,6 +39,7 @@ function setPromptPrefix(prefix) {
 }
 
 function focusInput() {
+  if (!isTypingEnabled()) return;
   if (!textarea) return;
   try {
     textarea.focus({ preventScroll: true });
@@ -105,6 +111,10 @@ command.innerHTML = "Loading...";
 setPromptPrefix(defaultPrompt);
 
 function enterKey(e) {
+  const programmatic = Boolean(e && e.programmatic);
+  if (!isTypingEnabled() && !programmatic) {
+    return;
+  }
   if (e.keyCode === 13) {
     const input = command.innerHTML.trim().toLowerCase();
     const typedPrompt = isThoughtsMode ? thoughtsPrompt : defaultPrompt;
@@ -698,7 +708,7 @@ function autoTypeAndSubmitCommand(autoCommand) {
     }
 
     setTimeout(function () {
-      enterKey({ keyCode: 13 });
+      enterKey({ keyCode: 13, programmatic: true });
     }, 140);
   };
 
