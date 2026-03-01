@@ -465,12 +465,6 @@ function ensureMagnumShowcase() {
         "Placeholder GIF for human approval checkpoints in the selling workflow.",
       src: "assets/438198.webp",
     },
-    {
-      title: "Close + Payment",
-      description:
-        "Placeholder GIF for checkout and deal completion with Stripe/OpenPhone.",
-      src: "assets/438198.webp",
-    },
   ];
 
   const sourceItems =
@@ -479,7 +473,7 @@ function ensureMagnumShowcase() {
     magnumGalleryItems.length
       ? magnumGalleryItems
       : fallbackItems;
-  const items = sourceItems.slice();
+  const items = sourceItems.slice(0, 6);
 
   items.forEach(function (item) {
     grid.appendChild(createMagnumShowcaseCard(item));

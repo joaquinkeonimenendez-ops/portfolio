@@ -270,11 +270,6 @@ const magnumGalleryItems = [
     description: "Placeholder GIF for human-in-the-loop approvals and handoffs.",
     src: "assets/438198.webp",
   },
-  {
-    title: "Close + Payment",
-    description: "Placeholder GIF for payment capture and deal completion workflows.",
-    src: "assets/438198.webp",
-  },
 ];
 
 let thoughts = [
