@@ -119,7 +119,7 @@ function enterKey(e) {
   if (e.keyCode === 13) {
     const input = command.innerHTML.trim().toLowerCase();
     const typedPrompt = isThoughtsMode ? thoughtsPrompt : defaultPrompt;
-    if (input !== "charcoal") {
+    if (input !== "charcoal" && input !== "magnum") {
       addLine(typedPrompt + " " + command.innerHTML, "no-animation", 0);
     }
 
