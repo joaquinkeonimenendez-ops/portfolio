@@ -33,6 +33,7 @@ const clearBeforeCommands = new Set([
   "help",
 ]);
 const commandLineDelay = 80;
+const projectsSecondItemExtraDelayMs = 120;
 const buttonPreviewDuration = 250;
 const previewedButtonKeys = new Set();
 const helpHintText =
@@ -293,6 +294,9 @@ function commander(cmd) {
       loopLines(projects, "", commandLineDelay, {
         previewClickableItems: true,
         previewDuration: buttonPreviewDuration,
+        getLineDelay: function (index) {
+          return index === projects.length - 1 ? projectsSecondItemExtraDelayMs : 0;
+        },
       });
       break;
     case "charcoal":
@@ -442,8 +446,16 @@ function applyTemporaryButtonPreview(lineNode, previewDuration) {
 function loopLines(name, style, time, options = {}) {
   const previewClickableItems = Boolean(options.previewClickableItems);
   const previewDuration = options.previewDuration || time;
+  const getLineDelay =
+    typeof options.getLineDelay === "function" ? options.getLineDelay : null;
+  let maxLineDelay = 0;
   name.forEach(function (item, index) {
-    addLine(item, style, index * time, function (lineNode) {
+    const extraDelay = getLineDelay ? Number(getLineDelay(index, item, name)) || 0 : 0;
+    const lineDelay = index * time + Math.max(0, extraDelay);
+    if (lineDelay > maxLineDelay) {
+      maxLineDelay = lineDelay;
+    }
+    addLine(item, style, lineDelay, function (lineNode) {
       if (!previewClickableItems) return;
       applyTemporaryButtonPreview(lineNode, previewDuration);
     });
@@ -452,7 +464,7 @@ function loopLines(name, style, time, options = {}) {
     function () {
       scrollToBottom();
     },
-    name.length * time + 50,
+    maxLineDelay + 50,
   );
 }
 
