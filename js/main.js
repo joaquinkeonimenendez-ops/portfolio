@@ -11,9 +11,11 @@ const magnumCardInitialDelayMs = 45;
 const magnumCardIntraDelayMs = 130;
 const magnumCardRevealDurationMs = 180;
 const magnumCardRowGapMs = 92;
+const magnumAnimationCleanupBufferMs = 40;
 let magnumVideoObserver = null;
 let magnumBackgroundPreloadStarted = false;
 const magnumBackgroundPreloaders = [];
+let magnumShowcaseAnimationTimer = null;
 
 let git = 0;
 let pw = false;
@@ -515,12 +517,30 @@ function primeMagnumVideos(showcase, maxCount = 2) {
 function triggerMagnumShowcaseAnimation(showcase) {
   if (!showcase) return;
   showcase.classList.remove("is-animating");
+  if (magnumShowcaseAnimationTimer) {
+    clearTimeout(magnumShowcaseAnimationTimer);
+    magnumShowcaseAnimationTimer = null;
+  }
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     return;
   }
   // Force reflow so stagger animation retriggers every time Magnum opens.
   void showcase.offsetWidth;
   showcase.classList.add("is-animating");
+
+  const cards = Array.from(showcase.querySelectorAll(".magnum-gif-card"));
+  const maxDelayMs = cards.reduce(function (maxDelay, card) {
+    const rawDelay = card.style.getPropertyValue("--magnum-card-delay") || "0";
+    const parsedDelay = Number.parseInt(rawDelay, 10);
+    const safeDelay = Number.isFinite(parsedDelay) ? parsedDelay : 0;
+    return Math.max(maxDelay, safeDelay);
+  }, 0);
+  const cleanupDelayMs =
+    maxDelayMs + magnumCardRevealDurationMs + magnumAnimationCleanupBufferMs;
+  magnumShowcaseAnimationTimer = setTimeout(function () {
+    showcase.classList.remove("is-animating");
+    magnumShowcaseAnimationTimer = null;
+  }, cleanupDelayMs);
 }
 
 function getMagnumShowcaseColumnCount() {
@@ -739,6 +759,10 @@ function showMagnumShowcase() {
 
 function hideMagnumShowcase() {
   const showcase = document.getElementById(magnumShowcaseId);
+  if (magnumShowcaseAnimationTimer) {
+    clearTimeout(magnumShowcaseAnimationTimer);
+    magnumShowcaseAnimationTimer = null;
+  }
   if (showcase) {
     showcase.classList.remove("is-visible");
     showcase.classList.remove("is-animating");
