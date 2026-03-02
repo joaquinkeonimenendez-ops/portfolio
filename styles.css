@@ -908,6 +908,11 @@ body.magnum-mode #cursor-cat-gif {
   color: var(--color-command);
 }
 
+.project-name,
+.project-lead {
+  color: #b8ddff;
+}
+
 .cli-run-command {
   cursor: pointer;
   border-radius: 2px;
@@ -929,12 +934,18 @@ body.magnum-mode #cursor-cat-gif {
 
 .cli-run-command:hover .command,
 .cli-run-command:focus-visible .command,
+.cli-run-command:hover .project-name,
+.cli-run-command:focus-visible .project-name,
+.cli-run-command:hover .project-lead,
+.cli-run-command:focus-visible .project-lead,
 .cli-run-command:hover .home-item-desc,
 .cli-run-command:focus-visible .home-item-desc {
   color: var(--color-primary);
 }
 
 .cli-run-command.cli-preview-active .command,
+.cli-run-command.cli-preview-active .project-name,
+.cli-run-command.cli-preview-active .project-lead,
 .cli-run-command.cli-preview-active .home-item-desc {
   color: var(--color-primary);
 }
