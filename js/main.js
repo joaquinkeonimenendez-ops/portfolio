@@ -520,6 +520,7 @@ function triggerMagnumShowcaseAnimation(showcase) {
   showcase.classList.add("is-animating");
 
   const cards = Array.from(showcase.querySelectorAll(".magnum-gif-card"));
+  const keepSpawnCaptionsVisible = window.matchMedia("(max-width: 726px)").matches;
   let previousActiveCard = null;
   while (magnumShowcaseScrollStepTimers.length) {
     clearTimeout(magnumShowcaseScrollStepTimers.pop());
@@ -533,7 +534,11 @@ function triggerMagnumShowcaseAnimation(showcase) {
     const parsedDelay = Number.parseInt(rawDelay, 10);
     const safeDelay = Number.isFinite(parsedDelay) ? parsedDelay : 0;
     const stepTimer = setTimeout(function () {
-      if (previousActiveCard && previousActiveCard !== card) {
+      if (
+        !keepSpawnCaptionsVisible &&
+        previousActiveCard &&
+        previousActiveCard !== card
+      ) {
         previousActiveCard.classList.remove("is-spawn-active");
       }
       card.classList.add("is-spawn-active");
