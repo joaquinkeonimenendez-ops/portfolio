@@ -5,6 +5,7 @@ const textarea = document.getElementById("texter");
 const terminal = document.getElementById("terminal");
 const contentscroll = document.getElementById("contentscroll");
 const asciiCatFrame = document.getElementById("ascii-cat-frame");
+const backgroundVideo = document.querySelector(".bg-video");
 const navCommandLinks = document.querySelectorAll("header [data-command]");
 const magnumShowcaseId = "magnum-showcase";
 const magnumCardInitialDelayMs = 45;
@@ -73,6 +74,56 @@ function clearTerminalLines() {
   lines.forEach((line) => line.remove());
 }
 
+function applySafariAutoplayAttributes(video, preloadValue = "auto") {
+  if (!video) return;
+  video.autoplay = true;
+  video.loop = true;
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.preload = preloadValue;
+  video.disablePictureInPicture = true;
+  video.setAttribute("autoplay", "");
+  video.setAttribute("muted", "");
+  video.setAttribute("loop", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+  video.setAttribute("preload", preloadValue);
+  video.setAttribute("disablePictureInPicture", "");
+}
+
+function initBackgroundVideoPlayback() {
+  if (!backgroundVideo) return;
+  applySafariAutoplayAttributes(backgroundVideo, "auto");
+
+  const tryPlayBackground = function () {
+    attemptPlayVideo(backgroundVideo);
+  };
+
+  if (backgroundVideo.readyState >= 2) {
+    tryPlayBackground();
+  }
+  backgroundVideo.addEventListener("loadedmetadata", tryPlayBackground);
+  backgroundVideo.addEventListener("canplay", tryPlayBackground);
+
+  const replayOnGesture = function () {
+    tryPlayBackground();
+    window.removeEventListener("pointerdown", replayOnGesture);
+    window.removeEventListener("touchstart", replayOnGesture);
+    window.removeEventListener("keydown", replayOnGesture);
+  };
+  window.addEventListener("pointerdown", replayOnGesture, { passive: true });
+  window.addEventListener("touchstart", replayOnGesture, { passive: true });
+  window.addEventListener("keydown", replayOnGesture);
+
+  window.addEventListener("pageshow", tryPlayBackground);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) {
+      tryPlayBackground();
+    }
+  });
+}
+
 function getMagnumVideoSources() {
   const fallbackSources = [
     "assets/1.mp4",
@@ -109,9 +160,7 @@ function startMagnumBackgroundPreload() {
     document.head.appendChild(preloadLink);
 
     const loader = document.createElement("video");
-    loader.preload = "auto";
-    loader.muted = true;
-    loader.playsInline = true;
+    applySafariAutoplayAttributes(loader, "auto");
     loader.src = src;
     loader.load();
     magnumBackgroundPreloaders.push(loader);
@@ -144,6 +193,7 @@ setTimeout(function () {
 
 startAsciiCatBlinkAnimation();
 queueMagnumBackgroundPreload();
+initBackgroundVideoPlayback();
 
 window.addEventListener("keyup", function (e) {
   if (mobileTypingMediaQuery.matches) return;
@@ -480,6 +530,7 @@ function hydrateMagnumVideo(video, preloadValue = "metadata") {
   if (!video || video.dataset.hydrated === "true") return;
   const src = video.dataset.src;
   if (!src) return;
+  applySafariAutoplayAttributes(video, preloadValue);
   video.preload = preloadValue;
   video.src = src;
   video.dataset.hydrated = "true";
@@ -488,7 +539,7 @@ function hydrateMagnumVideo(video, preloadValue = "metadata") {
 
 function observeMagnumVideo(video) {
   if (!video || typeof IntersectionObserver === "undefined") {
-    hydrateMagnumVideo(video, "metadata");
+    hydrateMagnumVideo(video, "auto");
     return;
   }
   if (!magnumVideoObserver) {
@@ -497,7 +548,7 @@ function observeMagnumVideo(video) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
           const targetVideo = entry.target;
-          hydrateMagnumVideo(targetVideo, "metadata");
+          hydrateMagnumVideo(targetVideo, "auto");
           attemptPlayVideo(targetVideo);
           magnumVideoObserver.unobserve(targetVideo);
         });
@@ -514,7 +565,7 @@ function primeMagnumVideos(showcase, maxCount = 2) {
   let hydrated = 0;
   videos.forEach(function (video) {
     if (hydrated >= maxCount) return;
-    hydrateMagnumVideo(video, "metadata");
+    hydrateMagnumVideo(video, "auto");
     attemptPlayVideo(video);
     hydrated += 1;
   });
@@ -646,18 +697,13 @@ function createMagnumShowcaseCard(item) {
     const video = document.createElement("video");
     video.className = "magnum-gif-video";
     video.dataset.src = src;
-    video.autoplay = true;
-    video.loop = true;
-    video.muted = true;
-    video.playsInline = true;
-    video.preload = "none";
+    applySafariAutoplayAttributes(video, "auto");
     video.controls = false;
-    video.disablePictureInPicture = true;
     video.setAttribute("aria-label", `${titleText} preview video`);
     card.appendChild(video);
 
     const forcePlay = function () {
-      hydrateMagnumVideo(video, "metadata");
+      hydrateMagnumVideo(video, "auto");
       attemptPlayVideo(video);
     };
 
