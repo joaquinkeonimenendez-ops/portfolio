@@ -27,7 +27,7 @@ const clearBeforeCommands = new Set([
 const commandLineDelay = 80;
 const buttonPreviewDuration = 250;
 const previewedButtonKeys = new Set();
-const AUTO_SCROLL_OVERFLOW_THRESHOLD_PX = 96;
+const AUTO_SCROLL_OVERFLOW_THRESHOLD_PX = 28;
 const helpHintText =
   '<span class="cli-run-command cli-run-item" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
