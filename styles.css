@@ -543,10 +543,10 @@ body.magnum-mode #cursor-cat-gif {
 
 .magnum-showcase.is-visible.is-animating .magnum-gif-card {
   opacity: 0;
-  transform: translateY(8px) scale(0.985);
-  animation: magnumCardTypeIn 180ms ease-out forwards;
+  transform: none;
+  animation: magnumCardTypeIn 1ms steps(1, end) forwards;
   animation-delay: var(--magnum-card-delay, 0ms);
-  will-change: opacity, transform;
+  will-change: opacity;
 }
 
 .magnum-showcase.is-visible.is-animating .magnum-gif-image,
@@ -558,18 +558,15 @@ body.magnum-mode #cursor-cat-gif {
 @keyframes magnumCardTypeIn {
   0% {
     opacity: 0;
-    transform: translateY(8px) scale(0.985);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .magnum-showcase.is-visible.is-animating .magnum-gif-card {
     opacity: 1;
-    transform: none;
     animation: none;
   }
 
