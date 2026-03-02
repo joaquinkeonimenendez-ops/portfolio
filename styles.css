@@ -690,25 +690,6 @@ body.magnum-mode #cursor-cat-gif {
   padding: 0.25rem 0.45rem;
 }
 
-@media (min-width: 1081px) {
-  .magnum-showcase {
-    padding: 0.7rem 0.95rem 0.78rem;
-  }
-
-  .magnum-showcase-grid {
-    gap: 0.62rem;
-  }
-
-  .magnum-gif-card {
-    aspect-ratio: 16 / 8.8;
-    min-height: 150px;
-  }
-
-  .magnum-back-hint {
-    margin-top: 0.62rem;
-  }
-}
-
 @media (max-width: 1080px) {
   .magnum-showcase-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
