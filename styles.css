@@ -543,26 +543,40 @@ body.magnum-mode #cursor-cat-gif {
 
 .magnum-showcase.is-visible.is-animating .magnum-gif-card {
   opacity: 0;
-  transform: translateY(10px) scale(0.986);
-  clip-path: inset(0 100% 0 0);
-  animation: magnumCardTypeIn 230ms steps(6, end) forwards;
+  transform: translateX(-18px) scaleX(0.84);
+  transform-origin: left center;
+  animation: magnumCardTypeIn 280ms steps(7, end) forwards;
   animation-delay: var(--magnum-card-delay, 0ms);
-  will-change: opacity, transform, clip-path;
+  will-change: opacity, transform;
+}
+
+.magnum-showcase.is-visible.is-animating .magnum-gif-image,
+.magnum-showcase.is-visible.is-animating .magnum-gif-video {
+  clip-path: inset(0 100% 0 0);
+  animation: magnumCardMediaTypeIn 280ms steps(7, end) forwards;
+  animation-delay: var(--magnum-card-delay, 0ms);
+  will-change: clip-path;
 }
 
 @keyframes magnumCardTypeIn {
   0% {
     opacity: 0;
-    transform: translateY(10px) scale(0.986);
-    clip-path: inset(0 100% 0 0);
+    transform: translateX(-18px) scaleX(0.84);
   }
-  48% {
+  45% {
     opacity: 1;
-    clip-path: inset(0 36% 0 0);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+@keyframes magnumCardMediaTypeIn {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
     clip-path: inset(0 0 0 0);
   }
 }
@@ -571,6 +585,11 @@ body.magnum-mode #cursor-cat-gif {
   .magnum-showcase.is-visible.is-animating .magnum-gif-card {
     opacity: 1;
     transform: none;
+    animation: none;
+  }
+
+  .magnum-showcase.is-visible.is-animating .magnum-gif-image,
+  .magnum-showcase.is-visible.is-animating .magnum-gif-video {
     clip-path: none;
     animation: none;
   }
