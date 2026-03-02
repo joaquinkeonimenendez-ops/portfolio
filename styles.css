@@ -538,8 +538,8 @@ body.magnum-mode #cursor-cat-gif {
   border: 1px solid rgba(157, 208, 255, 0.44);
   background: #132840;
   box-shadow: 0 12px 24px rgba(10, 19, 31, 0.45);
-  aspect-ratio: 16 / 10.5;
-  min-height: 170px;
+  aspect-ratio: 16 / 9.9;
+  min-height: 166px;
   isolation: isolate;
 }
 
@@ -704,6 +704,11 @@ body.magnum-mode #cursor-cat-gif {
   .magnum-showcase-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .magnum-gif-card {
+    aspect-ratio: 16 / 9.4;
+    min-height: 158px;
+  }
 }
 
 @media (max-width: 726px) {
@@ -727,7 +732,8 @@ body.magnum-mode #cursor-cat-gif {
   }
 
   .magnum-gif-card {
-    min-height: 185px;
+    aspect-ratio: 16 / 9.1;
+    min-height: 172px;
   }
 
   .magnum-gif-overlay {

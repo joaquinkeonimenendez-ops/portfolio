@@ -764,7 +764,7 @@ function ensureMagnumShowcase() {
   const backLabel = document.createElement("span");
   backLabel.className = "command";
   backLabel.innerHTML =
-    "<- Back (Type <u>projects</u> to return to the list of projects)";
+    "<- Back<br>(Type <u>projects</u> to return to the list of projects)";
   backHint.appendChild(backLabel);
   backHint.addEventListener("click", function (e) {
     e.preventDefault();
