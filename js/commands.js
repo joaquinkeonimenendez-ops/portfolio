@@ -58,7 +58,7 @@ const charcoalProjectBrowserMock = `
     <div class="chrome-shell">
         <div class="chrome-tabstrip">
             <div class="chrome-tab chrome-tab-active">
-                <span class="chrome-tab-favicon" aria-hidden="true"></span>
+                <img class="chrome-tab-favicon" src="favicon.png" alt="" aria-hidden="true">
                 <span class="chrome-tab-label">Charcoal notes</span>
                 <span class="chrome-tab-close" aria-hidden="true">x</span>
             </div>
