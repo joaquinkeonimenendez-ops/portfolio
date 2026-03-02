@@ -684,6 +684,10 @@ function hideMagnumShowcase() {
 function closeCharcoalOverlay() {
   const overlay = document.getElementById("charcoal-overlay");
   if (!overlay) return;
+  if (typeof overlay.__charcoalCleanup === "function") {
+    overlay.__charcoalCleanup();
+    overlay.__charcoalCleanup = null;
+  }
   overlay.classList.remove("is-open");
 }
 
@@ -695,6 +699,10 @@ function openCharcoalOverlay() {
     overlay.id = overlayId;
     overlay.className = "charcoal-overlay";
     document.body.appendChild(overlay);
+  }
+  if (typeof overlay.__charcoalCleanup === "function") {
+    overlay.__charcoalCleanup();
+    overlay.__charcoalCleanup = null;
   }
 
   overlay.innerHTML = `<div class="charcoal-overlay-panel">${charcoalProjectBrowserMock}</div>`;
@@ -713,7 +721,10 @@ function openCharcoalOverlay() {
     windowCloseButton.addEventListener("click", closeCharcoalOverlay);
   }
 
-  initCharcoalProjectJourney(charcoalProject);
+  const cleanupJourney = initCharcoalProjectJourney(charcoalProject);
+  if (typeof cleanupJourney === "function") {
+    overlay.__charcoalCleanup = cleanupJourney;
+  }
 }
 
 function initCharcoalProjectJourney(charcoalProject) {
@@ -741,6 +752,13 @@ function initCharcoalProjectJourney(charcoalProject) {
     charcoalProject.dataset.targetUrl || "charcoal-md.vercel.app";
   const targetFrameSrc =
     charcoalProject.dataset.targetSrc || "https://charcoal-md.vercel.app/";
+  const targetOrigin = (() => {
+    try {
+      return new URL(targetFrameSrc).origin;
+    } catch (error) {
+      return "";
+    }
+  })();
   const queryText = splashEl
     ? (splashEl.dataset.query || "Obsidian alternatives for web").trim()
     : "Obsidian alternatives for web";
@@ -766,7 +784,68 @@ function initCharcoalProjectJourney(charcoalProject) {
   let typingTimer = null;
   let cursorTween = null;
   let cursorRafId = null;
+  let isDisposed = false;
   const stepTimers = [];
+
+  const formatUrlForOmnibox = (rawUrl) => {
+    if (!rawUrl) return targetUrlText;
+    try {
+      const parsed = new URL(rawUrl, targetFrameSrc);
+      if (targetOrigin && parsed.origin !== targetOrigin) {
+        return targetUrlText;
+      }
+      const path = parsed.pathname === "/" ? "" : parsed.pathname;
+      return `${parsed.host}${path}${parsed.search}${parsed.hash}` || targetUrlText;
+    } catch (error) {
+      return (
+        String(rawUrl)
+          .trim()
+          .replace(/^https?:\/\//i, "")
+          .replace(/\/$/, "") || targetUrlText
+      );
+    }
+  };
+
+  const setDisplayedUrl = (rawUrl) => {
+    if (!urlEl) return;
+    urlEl.classList.remove("is-typing");
+    urlEl.textContent = formatUrlForOmnibox(rawUrl);
+  };
+
+  const extractUrlFromMessageData = (data) => {
+    if (typeof data === "string") {
+      return data;
+    }
+    if (!data || typeof data !== "object") {
+      return "";
+    }
+    if (typeof data.url === "string") {
+      return data.url;
+    }
+    if (typeof data.href === "string") {
+      return data.href;
+    }
+    if (typeof data.value === "string") {
+      return data.value;
+    }
+    return "";
+  };
+
+  const handleFrameLoad = () => {
+    if (!frameEl || isDisposed) return;
+    const frameSrc = frameEl.getAttribute("src") || frameEl.src || "";
+    if (!frameSrc || frameSrc === "about:blank") return;
+    setDisplayedUrl(frameSrc);
+  };
+
+  const handleFrameMessage = (event) => {
+    if (!frameEl || isDisposed) return;
+    if (frameEl.contentWindow && event.source !== frameEl.contentWindow) return;
+    if (targetOrigin && event.origin !== targetOrigin) return;
+    const navigatedUrl = extractUrlFromMessageData(event.data);
+    if (!navigatedUrl) return;
+    setDisplayedUrl(navigatedUrl);
+  };
 
   const selectUrlText = () => {
     if (!urlEl) return;
@@ -798,6 +877,10 @@ function initCharcoalProjectJourney(charcoalProject) {
     omniboxEl.addEventListener("pointerdown", handleUrlPointerDown);
     omniboxEl.addEventListener("click", handleUrlClick);
   }
+  if (frameEl) {
+    frameEl.addEventListener("load", handleFrameLoad);
+  }
+  window.addEventListener("message", handleFrameMessage);
 
   const queueStep = (fn, delay) => {
     const timer = setTimeout(() => {
@@ -805,6 +888,7 @@ function initCharcoalProjectJourney(charcoalProject) {
       if (timerIndex >= 0) {
         stepTimers.splice(timerIndex, 1);
       }
+      if (isDisposed) return;
       fn();
     }, delay);
     stepTimers.push(timer);
@@ -860,8 +944,7 @@ function initCharcoalProjectJourney(charcoalProject) {
 
   const loadCharcoal = () => {
     if (!urlEl || !frameEl) return;
-    urlEl.classList.remove("is-typing");
-    urlEl.textContent = targetUrlText;
+    setDisplayedUrl(targetFrameSrc);
     if (splashEl) {
       splashEl.classList.add("is-hidden");
     }
@@ -882,6 +965,10 @@ function initCharcoalProjectJourney(charcoalProject) {
     let i = 0;
 
     const step = () => {
+      if (isDisposed) {
+        typingTimer = null;
+        return;
+      }
       if (i <= queryText.length) {
         homeSearchTextEl.textContent = queryText.slice(0, i);
         i += 1;
@@ -977,7 +1064,7 @@ function initCharcoalProjectJourney(charcoalProject) {
   };
 
   const runCharcoalSequence = () => {
-    if (isSequenceRunning || !urlEl || !frameEl) return;
+    if (isDisposed || isSequenceRunning || !urlEl || !frameEl) return;
     isSequenceRunning = true;
     clearCharcoalTimers();
     urlEl.textContent = initialUrlText;
@@ -1021,6 +1108,26 @@ function initCharcoalProjectJourney(charcoalProject) {
   };
 
   runCharcoalSequence();
+
+  const cleanupCharcoalJourney = () => {
+    if (isDisposed) return;
+    isDisposed = true;
+    clearCharcoalTimers();
+    if (urlEl) {
+      urlEl.removeEventListener("pointerdown", handleUrlPointerDown);
+      urlEl.removeEventListener("click", handleUrlClick);
+    }
+    if (omniboxEl) {
+      omniboxEl.removeEventListener("pointerdown", handleUrlPointerDown);
+      omniboxEl.removeEventListener("click", handleUrlClick);
+    }
+    if (frameEl) {
+      frameEl.removeEventListener("load", handleFrameLoad);
+    }
+    window.removeEventListener("message", handleFrameMessage);
+  };
+
+  return cleanupCharcoalJourney;
 }
 
 function autoTypeAndSubmitCommand(autoCommand, options = {}) {
