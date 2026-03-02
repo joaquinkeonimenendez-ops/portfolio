@@ -674,7 +674,7 @@ body.magnum-mode #cursor-cat-gif {
   }
 
   .magnum-gif-description {
-    display: none;
+    display: block;
   }
 
   .magnum-back-hint {
