@@ -30,9 +30,9 @@ let social = [
 
 let help = [
   "<br>",
-  `<span class="cli-run-command cli-run-item" data-run-command="about" data-preview-key="help-option:about"><span class="command">about</span><br><span class="home-item-desc">&#8627; Displays who I am.</span></span>`,
-  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="help-option:projects"><span class="command">projects</span><br><span class="home-item-desc">&#8627; View coding projects.</span></span>`,
-  `<span class="cli-run-command cli-run-item" data-run-command="contact" data-preview-key="help-option:contact"><span class="command">contact</span><br><span class="home-item-desc">&#8627; Lists contact info.</span></span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="about" data-preview-key="help-option:about"><span class="command">about</span><br><span class="home-item-desc help-item-desc">&#8627; Displays who I am.</span></span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="help-option:projects"><span class="command">projects</span><br><span class="home-item-desc help-item-desc">&#8627; View coding projects.</span></span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="contact" data-preview-key="help-option:contact"><span class="command">contact</span><br><span class="home-item-desc help-item-desc">&#8627; Lists contact info.</span></span>`,
 ];
 
 let projects = [

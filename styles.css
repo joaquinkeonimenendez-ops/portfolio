@@ -972,6 +972,10 @@ body.magnum-mode #cursor-cat-gif {
   color: var(--color-command-desc);
 }
 
+.help-item-desc {
+  color: var(--color-secondary);
+}
+
 #aboutme-section .about-desc {
   display: block;
 }
