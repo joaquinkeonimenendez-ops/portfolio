@@ -34,7 +34,7 @@ const clearBeforeCommands = new Set([
 ]);
 const commandLineDelay = 80;
 const projectsSecondItemExtraDelayMs = 120;
-const buttonPreviewDuration = 250;
+const buttonPreviewDuration = 700;
 const previewedButtonKeys = new Set();
 const helpHintText =
   '<span class="cli-run-command cli-run-item" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
