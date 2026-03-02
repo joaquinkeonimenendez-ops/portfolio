@@ -7,6 +7,7 @@ const contentscroll = document.getElementById("contentscroll");
 const asciiCatFrame = document.getElementById("ascii-cat-frame");
 const navCommandLinks = document.querySelectorAll("header [data-command]");
 const magnumShowcaseId = "magnum-showcase";
+const magnumCardStaggerMs = 72;
 let magnumVideoObserver = null;
 let magnumBackgroundPreloadStarted = false;
 const magnumBackgroundPreloaders = [];
@@ -508,6 +509,17 @@ function primeMagnumVideos(showcase, maxCount = 2) {
   });
 }
 
+function triggerMagnumShowcaseAnimation(showcase) {
+  if (!showcase) return;
+  showcase.classList.remove("is-animating");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+  // Force reflow so stagger animation retriggers every time Magnum opens.
+  void showcase.offsetWidth;
+  showcase.classList.add("is-animating");
+}
+
 function createMagnumShowcaseCard(item) {
   const titleText = (item && item.title) || "Magnum Workflow";
   const descriptionText =
@@ -641,8 +653,10 @@ function ensureMagnumShowcase() {
       : fallbackItems;
   const items = sourceItems.slice(0, 6);
 
-  items.forEach(function (item) {
-    grid.appendChild(createMagnumShowcaseCard(item));
+  items.forEach(function (item, index) {
+    const card = createMagnumShowcaseCard(item);
+    card.style.setProperty("--magnum-card-delay", `${index * magnumCardStaggerMs}ms`);
+    grid.appendChild(card);
   });
 
   showcase.appendChild(grid);
@@ -676,12 +690,14 @@ function showMagnumShowcase() {
   primeMagnumVideos(showcase, 2);
   showcase.classList.add("is-visible");
   document.body.classList.add("magnum-mode");
+  triggerMagnumShowcaseAnimation(showcase);
 }
 
 function hideMagnumShowcase() {
   const showcase = document.getElementById(magnumShowcaseId);
   if (showcase) {
     showcase.classList.remove("is-visible");
+    showcase.classList.remove("is-animating");
   }
   document.body.classList.remove("magnum-mode");
 }

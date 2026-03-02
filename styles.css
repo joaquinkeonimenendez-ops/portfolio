@@ -541,6 +541,41 @@ body.magnum-mode #cursor-cat-gif {
   isolation: isolate;
 }
 
+.magnum-showcase.is-visible.is-animating .magnum-gif-card {
+  opacity: 0;
+  transform: translateY(10px) scale(0.986);
+  clip-path: inset(0 100% 0 0);
+  animation: magnumCardTypeIn 230ms steps(6, end) forwards;
+  animation-delay: var(--magnum-card-delay, 0ms);
+  will-change: opacity, transform, clip-path;
+}
+
+@keyframes magnumCardTypeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.986);
+    clip-path: inset(0 100% 0 0);
+  }
+  48% {
+    opacity: 1;
+    clip-path: inset(0 36% 0 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magnum-showcase.is-visible.is-animating .magnum-gif-card {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    animation: none;
+  }
+}
+
 .magnum-gif-image {
   width: 100%;
   height: 100%;
