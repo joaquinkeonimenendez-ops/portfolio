@@ -301,7 +301,8 @@ hr {
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
+    overscroll-behavior-y: contain;
   }
 
   .content-container,
@@ -644,6 +645,10 @@ body.magnum-mode #cursor-cat-gif {
 }
 
 @media (max-width: 726px) {
+  .content-container {
+    margin-bottom: 0.2rem;
+  }
+
   .ascii-Hero {
     margin-top: 0.05rem;
   }
@@ -707,6 +712,8 @@ body.magnum-mode #cursor-cat-gif {
     max-height: none;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: auto;
+    overscroll-behavior-y: contain;
   }
 
   #cursor-cat-gif {
