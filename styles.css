@@ -542,11 +542,10 @@ body.magnum-mode #cursor-cat-gif {
 }
 
 .magnum-showcase.is-visible.is-animating .magnum-gif-card {
-  opacity: 0;
+  opacity: 1;
   transform: none;
-  animation: magnumCardTypeIn 1ms steps(1, end) forwards;
-  animation-delay: var(--magnum-card-delay, 0ms);
-  will-change: opacity;
+  animation: none;
+  will-change: auto;
 }
 
 .magnum-showcase.is-visible.is-animating .magnum-gif-image,

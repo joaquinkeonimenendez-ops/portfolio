@@ -524,10 +524,14 @@ function triggerMagnumShowcaseAnimation(showcase) {
     clearTimeout(magnumShowcaseScrollStepTimers.pop());
   }
   cards.forEach(function (card) {
+    card.style.display = "none";
+  });
+  cards.forEach(function (card) {
     const rawDelay = card.style.getPropertyValue("--magnum-card-delay") || "0";
     const parsedDelay = Number.parseInt(rawDelay, 10);
     const safeDelay = Number.isFinite(parsedDelay) ? parsedDelay : 0;
     const stepTimer = setTimeout(function () {
+      card.style.display = "";
       scrollToBottom({ force: true });
     }, safeDelay + 12);
     magnumShowcaseScrollStepTimers.push(stepTimer);
@@ -542,6 +546,9 @@ function triggerMagnumShowcaseAnimation(showcase) {
   const cleanupDelayMs =
     maxDelayMs + magnumCardRevealDurationMs + magnumAnimationCleanupBufferMs;
   magnumShowcaseAnimationTimer = setTimeout(function () {
+    cards.forEach(function (card) {
+      card.style.display = "";
+    });
     showcase.classList.remove("is-animating");
     magnumShowcaseAnimationTimer = null;
   }, cleanupDelayMs);
@@ -771,6 +778,10 @@ function hideMagnumShowcase() {
     clearTimeout(magnumShowcaseScrollStepTimers.pop());
   }
   if (showcase) {
+    const cards = showcase.querySelectorAll(".magnum-gif-card");
+    cards.forEach(function (card) {
+      card.style.display = "";
+    });
     showcase.classList.remove("is-visible");
     showcase.classList.remove("is-animating");
   }
