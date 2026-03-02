@@ -213,6 +213,12 @@ document.addEventListener("click", function (e) {
   if (e.target && e.target.closest && e.target.closest(".charcoal-overlay")) {
     return;
   }
+  if (e.target && e.target.closest && e.target.closest(".cli-run-command")) {
+    return;
+  }
+  if (e.target && e.target.closest && e.target.closest("[data-command]")) {
+    return;
+  }
   focusInput();
 });
 
@@ -222,7 +228,7 @@ terminal.addEventListener("click", function (e) {
     e.preventDefault();
     const cmd = runCommandElement.getAttribute("data-run-command");
     if (!cmd) return;
-    runCommandFromNavigation(cmd);
+    runCommandFromNavigation(cmd, { suppressInputFocus: true });
     return;
   }
   focusInput();
@@ -233,7 +239,7 @@ navCommandLinks.forEach(function (link) {
     e.preventDefault();
     const cmd = link.getAttribute("data-command");
     if (!cmd) return;
-    runCommandFromNavigation(cmd);
+    runCommandFromNavigation(cmd, { suppressInputFocus: true });
   });
 });
 
@@ -243,6 +249,7 @@ setPromptPrefix(defaultPrompt);
 
 function enterKey(e) {
   const programmatic = Boolean(e && e.programmatic);
+  const suppressInputFocus = Boolean(e && e.suppressInputFocus);
   const keyCode = (e && (e.keyCode || e.which)) || 0;
   const isEnterPressed = (e && e.key === "Enter") || keyCode === 13;
   if (!isTypingEnabled() && !programmatic && !isEnterPressed) {
@@ -271,7 +278,9 @@ function enterKey(e) {
 
     command.innerHTML = "";
     textarea.value = "";
-    focusInput();
+    if (!suppressInputFocus) {
+      focusInput();
+    }
     if (input === "charcoal" && wasMagnumModeActive) {
       // Preserve current viewport position for the Magnum -> Charcoal exception.
     } else {
@@ -828,7 +837,10 @@ function ensureMagnumShowcase() {
   backHint.appendChild(backLabel);
   backHint.addEventListener("click", function (e) {
     e.preventDefault();
-    runCommandFromNavigation("projects", { suppressAutoTypeScroll: true });
+    runCommandFromNavigation("projects", {
+      suppressAutoTypeScroll: true,
+      suppressInputFocus: true,
+    });
   });
   showcase.appendChild(backHint);
 
@@ -1355,6 +1367,7 @@ function initCharcoalProjectJourney(charcoalProject) {
 
 function autoTypeAndSubmitCommand(autoCommand, options = {}) {
   const suppressAutoTypeScroll = Boolean(options.suppressAutoTypeScroll);
+  const suppressInputFocus = Boolean(options.suppressInputFocus);
   let index = 0;
   textarea.value = "";
   command.innerHTML = "";
@@ -1373,7 +1386,11 @@ function autoTypeAndSubmitCommand(autoCommand, options = {}) {
     }
 
     setTimeout(function () {
-      enterKey({ keyCode: 13, programmatic: true });
+      enterKey({
+        keyCode: 13,
+        programmatic: true,
+        suppressInputFocus,
+      });
     }, 140);
   };
 
