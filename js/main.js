@@ -16,6 +16,7 @@ let magnumVideoObserver = null;
 let magnumBackgroundPreloadStarted = false;
 const magnumBackgroundPreloaders = [];
 let magnumShowcaseAnimationTimer = null;
+const magnumShowcaseScrollStepTimers = [];
 
 let git = 0;
 let pw = false;
@@ -519,6 +520,19 @@ function triggerMagnumShowcaseAnimation(showcase) {
   showcase.classList.add("is-animating");
 
   const cards = Array.from(showcase.querySelectorAll(".magnum-gif-card"));
+  while (magnumShowcaseScrollStepTimers.length) {
+    clearTimeout(magnumShowcaseScrollStepTimers.pop());
+  }
+  cards.forEach(function (card) {
+    const rawDelay = card.style.getPropertyValue("--magnum-card-delay") || "0";
+    const parsedDelay = Number.parseInt(rawDelay, 10);
+    const safeDelay = Number.isFinite(parsedDelay) ? parsedDelay : 0;
+    const stepTimer = setTimeout(function () {
+      scrollToBottom({ force: true });
+    }, safeDelay + 12);
+    magnumShowcaseScrollStepTimers.push(stepTimer);
+  });
+
   const maxDelayMs = cards.reduce(function (maxDelay, card) {
     const rawDelay = card.style.getPropertyValue("--magnum-card-delay") || "0";
     const parsedDelay = Number.parseInt(rawDelay, 10);
@@ -745,10 +759,6 @@ function showMagnumShowcase() {
   showcase.classList.add("is-visible");
   document.body.classList.add("magnum-mode");
   triggerMagnumShowcaseAnimation(showcase);
-  scrollToBottom({ force: true });
-  requestAnimationFrame(function () {
-    scrollToBottom({ force: true });
-  });
 }
 
 function hideMagnumShowcase() {
@@ -756,6 +766,9 @@ function hideMagnumShowcase() {
   if (magnumShowcaseAnimationTimer) {
     clearTimeout(magnumShowcaseAnimationTimer);
     magnumShowcaseAnimationTimer = null;
+  }
+  while (magnumShowcaseScrollStepTimers.length) {
+    clearTimeout(magnumShowcaseScrollStepTimers.pop());
   }
   if (showcase) {
     showcase.classList.remove("is-visible");
