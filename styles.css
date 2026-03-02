@@ -1524,6 +1524,8 @@ a {
 
 .google-search-shell {
     width: min(100%, 700px);
+    max-width: 100%;
+    box-sizing: border-box;
     min-height: clamp(2.35rem, 5.4vw, 3.2rem);
     border: 1px solid #5f6368;
     border-radius: 999px;
