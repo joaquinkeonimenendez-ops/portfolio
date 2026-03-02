@@ -916,6 +916,18 @@ function initCharcoalProjectJourney(charcoalProject) {
   let cursorRafId = null;
   let isDisposed = false;
   const stepTimers = [];
+  const OMNIBOX_MAX_URL_DESKTOP = 36;
+  const OMNIBOX_MAX_URL_MOBILE = 24;
+
+  const clampOmniboxUrl = (value) => {
+    const normalized = String(value || "").trim();
+    if (!normalized) return targetUrlText;
+    const maxChars = window.matchMedia("(max-width: 900px)").matches
+      ? OMNIBOX_MAX_URL_MOBILE
+      : OMNIBOX_MAX_URL_DESKTOP;
+    if (normalized.length <= maxChars) return normalized;
+    return `${normalized.slice(0, Math.max(1, maxChars - 3))}...`;
+  };
 
   const formatUrlForOmnibox = (rawUrl) => {
     if (!rawUrl) return targetUrlText;
@@ -925,13 +937,15 @@ function initCharcoalProjectJourney(charcoalProject) {
         return targetUrlText;
       }
       const path = parsed.pathname === "/" ? "" : parsed.pathname;
-      return `${parsed.host}${path}${parsed.search}${parsed.hash}` || targetUrlText;
+      return clampOmniboxUrl(
+        `${parsed.host}${path}${parsed.search}${parsed.hash}` || targetUrlText,
+      );
     } catch (error) {
-      return (
+      return clampOmniboxUrl(
         String(rawUrl)
           .trim()
           .replace(/^https?:\/\//i, "")
-          .replace(/\/$/, "") || targetUrlText
+          .replace(/\/$/, "") || targetUrlText,
       );
     }
   };
