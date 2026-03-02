@@ -965,10 +965,8 @@ body.magnum-mode #cursor-cat-gif {
   color: var(--color-command-desc);
 }
 
-#aboutme-section pre.home-item-desc {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+#aboutme-section .about-desc {
+  display: block;
 }
 
 .error {
