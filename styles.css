@@ -644,6 +644,10 @@ body.magnum-mode #cursor-cat-gif {
 }
 
 @media (max-width: 726px) {
+  .ascii-Hero {
+    margin-top: 0.35rem;
+  }
+
   .magnum-showcase-grid {
     grid-template-columns: 1fr;
   }
