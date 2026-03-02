@@ -916,17 +916,10 @@ function initCharcoalProjectJourney(charcoalProject) {
   let cursorRafId = null;
   let isDisposed = false;
   const stepTimers = [];
-  const OMNIBOX_MAX_URL_DESKTOP = 36;
-  const OMNIBOX_MAX_URL_MOBILE = 24;
-
   const clampOmniboxUrl = (value) => {
     const normalized = String(value || "").trim();
     if (!normalized) return targetUrlText;
-    const maxChars = window.matchMedia("(max-width: 900px)").matches
-      ? OMNIBOX_MAX_URL_MOBILE
-      : OMNIBOX_MAX_URL_DESKTOP;
-    if (normalized.length <= maxChars) return normalized;
-    return `${normalized.slice(0, Math.max(1, maxChars - 3))}...`;
+    return normalized;
   };
 
   const formatUrlForOmnibox = (rawUrl) => {
