@@ -50,8 +50,10 @@ function setPromptPrefix(prefix) {
   liner.setAttribute("data-prompt", prefix);
 }
 
-function focusInput() {
+function focusInput(options = {}) {
   if (!textarea) return;
+  const allowMobile = Boolean(options.allowMobile);
+  if (mobileTypingMediaQuery.matches && !allowMobile) return;
   try {
     textarea.focus({ preventScroll: true });
   } catch (_err) {
