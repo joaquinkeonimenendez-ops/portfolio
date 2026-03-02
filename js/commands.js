@@ -37,7 +37,7 @@ let help = [
 
 let projects = [
   "<br>",
-  `<span class="home-item-desc project-intro">Click a project for a visual demonstration.</span>`,
+  `<span class="home-item-desc project-intro back-link">Click a project for a visual demonstration.</span>`,
   "<br>",
   `<span class="cli-run-command cli-run-item" data-run-command="charcoal" data-preview-key="project:charcoal"><span class="command project-name">1. Charcoal</span><br><span class="home-item-desc">&#8627; <span class="project-lead">A markdown based note-taking webapp inspired by Obsidian.</span> Built for people who can't install desktop apps on work/school devices or don't want to pay for Obsidian sync.</span></span>`,
   `<span class="cli-run-command cli-run-item" data-run-command="magnum" data-preview-key="project:magnum"><span class="command project-name">2. Magnum</span><br><span class="home-item-desc">&#8627; <span class="project-lead">A CLI for selling websites to small businesses.</span> Lead generation and website creation is entirely handled by AI agents. Fully integrated with OpenPhone and Stripe for a human operator to smoothly make sales calls.</span></span>`,
@@ -224,7 +224,7 @@ A markdown-based note-taking web app inspired by Obsidian.
 Built for people who can't install desktop apps on work/school devices
 or who don't want to pay for Obsidian sync.
 </pre>`,
-  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">Back to projects</span></span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command back-link">Back to projects</span></span>`,
 ];
 
 let projectMagnum = [
@@ -235,7 +235,7 @@ A CLI for selling websites to small businesses.
 Lead generation and website creation are handled by AI agents,
 with integrations for OpenPhone and Stripe to support smooth operator workflows.
 </pre>`,
-  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command">Back to projects</span></span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="projects" data-preview-key="project:back"><span class="command back-link">Back to projects</span></span>`,
 ];
 
 const magnumGalleryItems = [

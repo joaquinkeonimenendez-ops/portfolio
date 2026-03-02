@@ -38,7 +38,7 @@ const projectsSecondItemExtraDelayMs = 120;
 const buttonPreviewDuration = 700;
 const previewedButtonKeys = new Set();
 const helpHintText =
-  '<span class="cli-run-command cli-run-item" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
+  '<span class="cli-run-command cli-run-item back-link" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
 const thoughtsPrompt = "> ";
 const mobileTypingMediaQuery = window.matchMedia("(max-width: 726px)");
@@ -393,7 +393,7 @@ function commander(cmd) {
     addLine("<br>", "", (outputLines + 1) * commandLineDelay);
     addLine(
       helpHintText,
-      "tertiary",
+      "",
       (outputLines + 2) * commandLineDelay,
       function (lineNode) {
         applyTemporaryButtonPreview(lineNode, buttonPreviewDuration);
@@ -831,7 +831,7 @@ function ensureMagnumShowcase() {
   backHint.className = "magnum-back-hint cli-run-command cli-run-item";
   backHint.type = "button";
   const backLabel = document.createElement("span");
-  backLabel.className = "command";
+  backLabel.className = "command back-link";
   backLabel.innerHTML =
     "<- Back<br>(Type <u>projects</u> to return to the list of projects)";
   backHint.appendChild(backLabel);

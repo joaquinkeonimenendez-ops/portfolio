@@ -908,6 +908,10 @@ body.magnum-mode #cursor-cat-gif {
   color: var(--color-command);
 }
 
+.back-link {
+  color: var(--color-command-desc);
+}
+
 .project-name,
 .project-lead {
   color: #b8ddff;
@@ -938,6 +942,8 @@ body.magnum-mode #cursor-cat-gif {
 
 .cli-run-command:hover .command,
 .cli-run-command:focus-visible .command,
+.cli-run-command:hover .back-link,
+.cli-run-command:focus-visible .back-link,
 .cli-run-command:hover .project-name,
 .cli-run-command:focus-visible .project-name,
 .cli-run-command:hover .project-lead,
@@ -948,6 +954,7 @@ body.magnum-mode #cursor-cat-gif {
 }
 
 .cli-run-command.cli-preview-active .command,
+.cli-run-command.cli-preview-active .back-link,
 .cli-run-command.cli-preview-active .project-name,
 .cli-run-command.cli-preview-active .project-lead,
 .cli-run-command.cli-preview-active .home-item-desc {
