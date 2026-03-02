@@ -535,18 +535,31 @@ function applyMagnumShowcaseStagger(showcase) {
   if (!cards.length) return;
 
   const columns = Math.max(1, getMagnumShowcaseColumnCount());
+  const totalCards = cards.length;
+  const minIntraDelayMs = 84;
+  const intraDelayRangeMs = Math.max(0, magnumCardIntraDelayMs - minIntraDelayMs);
+  const delayByColumn = Array.from({ length: columns }, function (_, colIndex) {
+    if (colIndex === 0) return 0;
+    const localProgress = columns <= 1 ? 1 : colIndex / (columns - 1);
+    const eased = Math.pow(localProgress, 0.84);
+    return Math.round(colIndex * (magnumCardIntraDelayMs - intraDelayRangeMs * eased));
+  });
+  const maxColumnDelay = delayByColumn.length ? delayByColumn[delayByColumn.length - 1] : 0;
   const rowCycleMs =
-    (columns - 1) * magnumCardIntraDelayMs +
+    maxColumnDelay +
     magnumCardRevealDurationMs +
     magnumCardRowGapMs;
 
   cards.forEach(function (card, index) {
     const row = Math.floor(index / columns);
     const column = index % columns;
+    const globalProgress = totalCards <= 1 ? 1 : index / (totalCards - 1);
+    const perCardAccelerationMs = Math.round(globalProgress * 36);
     const delayMs =
       magnumCardInitialDelayMs +
       row * rowCycleMs +
-      column * magnumCardIntraDelayMs;
+      delayByColumn[column] -
+      perCardAccelerationMs;
     card.style.setProperty("--magnum-card-delay", `${delayMs}ms`);
   });
 }
