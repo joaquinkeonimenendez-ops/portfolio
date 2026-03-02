@@ -520,10 +520,12 @@ function triggerMagnumShowcaseAnimation(showcase) {
   showcase.classList.add("is-animating");
 
   const cards = Array.from(showcase.querySelectorAll(".magnum-gif-card"));
+  let previousActiveCard = null;
   while (magnumShowcaseScrollStepTimers.length) {
     clearTimeout(magnumShowcaseScrollStepTimers.pop());
   }
   cards.forEach(function (card) {
+    card.classList.remove("is-spawn-active");
     card.style.display = "none";
   });
   cards.forEach(function (card) {
@@ -531,6 +533,11 @@ function triggerMagnumShowcaseAnimation(showcase) {
     const parsedDelay = Number.parseInt(rawDelay, 10);
     const safeDelay = Number.isFinite(parsedDelay) ? parsedDelay : 0;
     const stepTimer = setTimeout(function () {
+      if (previousActiveCard && previousActiveCard !== card) {
+        previousActiveCard.classList.remove("is-spawn-active");
+      }
+      card.classList.add("is-spawn-active");
+      previousActiveCard = card;
       card.style.display = "";
       scrollToBottom({ force: true });
     }, safeDelay + 12);
@@ -547,6 +554,7 @@ function triggerMagnumShowcaseAnimation(showcase) {
     maxDelayMs + magnumCardRevealDurationMs + magnumAnimationCleanupBufferMs;
   magnumShowcaseAnimationTimer = setTimeout(function () {
     cards.forEach(function (card) {
+      card.classList.remove("is-spawn-active");
       card.style.display = "";
     });
     showcase.classList.remove("is-animating");
@@ -783,6 +791,7 @@ function hideMagnumShowcase() {
   if (showcase) {
     const cards = showcase.querySelectorAll(".magnum-gif-card");
     cards.forEach(function (card) {
+      card.classList.remove("is-spawn-active");
       card.style.display = "";
     });
     showcase.classList.remove("is-visible");

@@ -550,6 +550,16 @@ body.magnum-mode #cursor-cat-gif {
   will-change: auto;
 }
 
+.magnum-showcase.is-visible.is-animating .magnum-gif-overlay {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.magnum-showcase.is-visible.is-animating .magnum-gif-card.is-spawn-active .magnum-gif-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .magnum-showcase.is-visible.is-animating .magnum-gif-image,
 .magnum-showcase.is-visible.is-animating .magnum-gif-video {
   clip-path: none;
