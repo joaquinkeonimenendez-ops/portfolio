@@ -665,6 +665,20 @@ body.magnum-mode #cursor-cat-gif {
     min-height: 185px;
   }
 
+  .magnum-gif-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    background: linear-gradient(
+      180deg,
+      rgba(8, 10, 14, 0.08) 0%,
+      rgba(8, 10, 14, 0) 100%
+    );
+  }
+
+  .magnum-gif-description {
+    display: none;
+  }
+
   .magnum-back-hint {
     margin-top: 0.9rem;
   }
