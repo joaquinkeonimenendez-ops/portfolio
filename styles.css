@@ -504,6 +504,8 @@ body.magnum-mode .content-container {
 
 body.magnum-mode #terminal {
   display: block !important;
+  height: auto !important;
+  min-height: 0 !important;
 }
 
 body.magnum-mode .bottom-bar {
