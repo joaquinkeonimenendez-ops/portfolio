@@ -58,7 +58,7 @@ const charcoalProjectBrowserMock = `
     <div class="chrome-shell">
         <div class="chrome-tabstrip">
             <div class="chrome-tab chrome-tab-active">
-                <img class="chrome-tab-favicon" src="favicon.png" alt="" aria-hidden="true">
+                <img class="chrome-tab-favicon" src="assets/charcoal-tab-icon.png" alt="" aria-hidden="true">
                 <span class="chrome-tab-label">Charcoal notes</span>
                 <span class="chrome-tab-close" aria-hidden="true">x</span>
             </div>
@@ -304,5 +304,6 @@ opus + playwright is such a brilliant combo that it can automate tasks before ev
 gatekeep this tho
 </pre>`,
 ];
+
 
 
