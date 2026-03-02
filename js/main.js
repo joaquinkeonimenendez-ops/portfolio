@@ -8,6 +8,8 @@ const asciiCatFrame = document.getElementById("ascii-cat-frame");
 const navCommandLinks = document.querySelectorAll("header [data-command]");
 const magnumShowcaseId = "magnum-showcase";
 let magnumVideoObserver = null;
+let magnumBackgroundPreloadStarted = false;
+const magnumBackgroundPreloaders = [];
 
 let git = 0;
 let pw = false;
@@ -61,6 +63,63 @@ function clearTerminalLines() {
   lines.forEach((line) => line.remove());
 }
 
+function getMagnumVideoSources() {
+  const fallbackSources = [
+    "assets/1.mp4",
+    "assets/2.mp4",
+    "assets/3.mp4",
+    "assets/4.mp4",
+    "assets/5.mp4",
+    "assets/6.mp4",
+  ];
+  const items =
+    typeof magnumGalleryItems !== "undefined" &&
+    Array.isArray(magnumGalleryItems) &&
+    magnumGalleryItems.length
+      ? magnumGalleryItems
+      : fallbackSources.map((src) => ({ src }));
+
+  const videoSources = items
+    .map((item) => (item && item.src ? String(item.src) : ""))
+    .filter((src) => /\.(mp4|webm|ogg)(?:$|[?#])/i.test(src));
+
+  return Array.from(new Set(videoSources));
+}
+
+function startMagnumBackgroundPreload() {
+  if (magnumBackgroundPreloadStarted) return;
+  magnumBackgroundPreloadStarted = true;
+
+  const sources = getMagnumVideoSources();
+  sources.forEach(function (src) {
+    const preloadLink = document.createElement("link");
+    preloadLink.rel = "preload";
+    preloadLink.as = "video";
+    preloadLink.href = src;
+    document.head.appendChild(preloadLink);
+
+    const loader = document.createElement("video");
+    loader.preload = "auto";
+    loader.muted = true;
+    loader.playsInline = true;
+    loader.src = src;
+    loader.load();
+    magnumBackgroundPreloaders.push(loader);
+  });
+}
+
+function queueMagnumBackgroundPreload() {
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(function () {
+      startMagnumBackgroundPreload();
+    });
+    return;
+  }
+  setTimeout(function () {
+    startMagnumBackgroundPreload();
+  }, 800);
+}
+
 setTimeout(function () {
   loopLines(banner, "", 80);
   focusInput();
@@ -74,6 +133,7 @@ setTimeout(function () {
 }, 100);
 
 startAsciiCatBlinkAnimation();
+queueMagnumBackgroundPreload();
 
 window.addEventListener("keyup", function (e) {
   if (mobileTypingMediaQuery.matches) return;
@@ -564,7 +624,7 @@ function ensureMagnumShowcase() {
       title: "Phase 6: Sell to small businesses",
       description:
         "A human makes sales calls with one-click for OpenPhone and fully integrated Stripe payments.",
-      src: "assets/438198.webp",
+      src: "assets/6.mp4",
     },
   ];
 
