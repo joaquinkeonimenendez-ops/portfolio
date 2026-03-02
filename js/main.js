@@ -217,11 +217,7 @@ function enterKey(e) {
     command.innerHTML = "";
     textarea.value = "";
     focusInput();
-    if (input === "magnum") {
-      if (contentscroll) {
-        contentscroll.scrollTop = 0;
-      }
-    } else if (input === "charcoal" && wasMagnumModeActive) {
+    if (input === "charcoal" && wasMagnumModeActive) {
       // Preserve current viewport position for the Magnum -> Charcoal exception.
     } else {
       scrollToBottom();
@@ -749,6 +745,10 @@ function showMagnumShowcase() {
   showcase.classList.add("is-visible");
   document.body.classList.add("magnum-mode");
   triggerMagnumShowcaseAnimation(showcase);
+  scrollToBottom({ force: true });
+  requestAnimationFrame(function () {
+    scrollToBottom({ force: true });
+  });
 }
 
 function hideMagnumShowcase() {
