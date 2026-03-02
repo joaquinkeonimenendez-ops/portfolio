@@ -1931,6 +1931,12 @@ a {
     }
 
     .chrome-window-controls {
+        display: flex;
+        margin-left: auto;
+    }
+
+    .chrome-window-min,
+    .chrome-window-max {
         display: none;
     }
 
