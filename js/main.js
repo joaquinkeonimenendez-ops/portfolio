@@ -7,7 +7,8 @@ const contentscroll = document.getElementById("contentscroll");
 const asciiCatFrame = document.getElementById("ascii-cat-frame");
 const navCommandLinks = document.querySelectorAll("header [data-command]");
 const magnumShowcaseId = "magnum-showcase";
-const magnumCardIntraDelayMs = 148;
+const magnumCardInitialDelayMs = 140;
+const magnumCardIntraDelayMs = 220;
 const magnumCardRevealDurationMs = 180;
 const magnumCardRowGapMs = 92;
 let magnumVideoObserver = null;
@@ -542,7 +543,10 @@ function applyMagnumShowcaseStagger(showcase) {
   cards.forEach(function (card, index) {
     const row = Math.floor(index / columns);
     const column = index % columns;
-    const delayMs = row * rowCycleMs + column * magnumCardIntraDelayMs;
+    const delayMs =
+      magnumCardInitialDelayMs +
+      row * rowCycleMs +
+      column * magnumCardIntraDelayMs;
     card.style.setProperty("--magnum-card-delay", `${delayMs}ms`);
   });
 }
