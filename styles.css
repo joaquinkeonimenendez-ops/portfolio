@@ -681,10 +681,13 @@ body.magnum-mode #cursor-cat-gif {
   font-size: var(--step-0);
   background: transparent;
   border: 0;
-  width: fit-content;
+  width: min(100%, 44rem);
+  max-width: 100%;
+  box-sizing: border-box;
+  line-height: 1.35;
   cursor: pointer;
   font-family: inherit;
-  padding: 0.2rem 0.45rem;
+  padding: 0.25rem 0.45rem;
 }
 
 @media (max-width: 1080px) {
@@ -733,6 +736,11 @@ body.magnum-mode #cursor-cat-gif {
 
   .magnum-back-hint {
     margin-top: 0.9rem;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0.12rem;
+    padding-right: 0.12rem;
   }
 }
 
