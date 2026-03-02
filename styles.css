@@ -543,41 +543,26 @@ body.magnum-mode #cursor-cat-gif {
 
 .magnum-showcase.is-visible.is-animating .magnum-gif-card {
   opacity: 0;
-  transform: translateX(-18px) scaleX(0.84);
-  transform-origin: left center;
-  animation: magnumCardTypeIn 280ms steps(7, end) forwards;
+  transform: translateY(8px) scale(0.985);
+  animation: magnumCardTypeIn 180ms ease-out forwards;
   animation-delay: var(--magnum-card-delay, 0ms);
   will-change: opacity, transform;
 }
 
 .magnum-showcase.is-visible.is-animating .magnum-gif-image,
 .magnum-showcase.is-visible.is-animating .magnum-gif-video {
-  clip-path: inset(0 100% 0 0);
-  animation: magnumCardMediaTypeIn 280ms steps(7, end) forwards;
-  animation-delay: var(--magnum-card-delay, 0ms);
-  will-change: clip-path;
+  clip-path: none;
+  animation: none;
 }
 
 @keyframes magnumCardTypeIn {
   0% {
     opacity: 0;
-    transform: translateX(-18px) scaleX(0.84);
-  }
-  45% {
-    opacity: 1;
+    transform: translateY(8px) scale(0.985);
   }
   100% {
     opacity: 1;
-    transform: translateX(0) scaleX(1);
-  }
-}
-
-@keyframes magnumCardMediaTypeIn {
-  0% {
-    clip-path: inset(0 100% 0 0);
-  }
-  100% {
-    clip-path: inset(0 0 0 0);
+    transform: translateY(0) scale(1);
   }
 }
 
