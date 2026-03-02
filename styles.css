@@ -256,6 +256,12 @@ hr {
 }
 
 @media (max-width: 726px) {
+  .contact-type {
+    display: block;
+    min-width: 0;
+    margin-bottom: 0.15rem;
+  }
+
   body {
     overflow-y: hidden;
     overflow-x: hidden;
@@ -401,6 +407,15 @@ hr {
 
 .link-text:hover {
   color: var(--color-accent); /* optional hover to match icon */
+}
+
+.contact-line {
+  display: block;
+}
+
+.contact-type {
+  display: inline-block;
+  min-width: 11ch;
 }
 
 #contentscroll {

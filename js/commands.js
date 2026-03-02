@@ -16,15 +16,15 @@ let aboutme = [
 
 let social = [
   "<br>",
-  'github        <a href="' +
+  '<span class="contact-line"><span class="contact-type">github</span><a href="' +
     github +
-    '" target="_blank">github.com/joaquinkeonimenendez-ops</a>',
-  'instagram     <a href="' +
+    '" target="_blank">github.com/joaquinkeonimenendez-ops</a></span>',
+  '<span class="contact-line"><span class="contact-type">instagram</span><a href="' +
     instagram +
-    '" target="_blank">instagram.com/joaquinkmenendez</a>',
-  'twitter       <a href="' +
+    '" target="_blank">instagram.com/joaquinkmenendez</a></span>',
+  '<span class="contact-line"><span class="contact-type">twitter</span><a href="' +
     twitter +
-    '" target="_blank">twitter.com/joaquinkmenend</a>',
+    '" target="_blank">twitter.com/joaquinkmenend</a></span>',
 ];
 
 let help = [
