@@ -19,9 +19,9 @@
   --color-danger: #d64b83;
   --color-hover: #c4e0ffcc;
   --color-shadow: #2930439e;
-  --color-command: #9bcfff;
+  --color-command: #a4d5ff;
   --color-command-desc: #88bde8;
-  --color-output: #9bcfff;
+  --color-output: #a4d5ff;
   --color-error: #a1a6f0;
   --color-white: #fff;
   --color-spotify-bg: #0d2740a7;
@@ -909,16 +909,16 @@ body.magnum-mode #cursor-cat-gif {
 }
 
 .back-link {
-  color: var(--color-command-desc);
+  color: var(--color-secondary);
 }
 
 .project-name,
 .project-lead {
-  color: #b8ddff;
+  color: var(--color-command);
 }
 
 .project-intro {
-  color: #d4ecff;
+  color: var(--color-secondary);
 }
 
 .cli-run-command {
@@ -948,6 +948,8 @@ body.magnum-mode #cursor-cat-gif {
 .cli-run-command:focus-visible .project-name,
 .cli-run-command:hover .project-lead,
 .cli-run-command:focus-visible .project-lead,
+.cli-run-command:hover .help-item-desc,
+.cli-run-command:focus-visible .help-item-desc,
 .cli-run-command:hover .home-item-desc,
 .cli-run-command:focus-visible .home-item-desc {
   color: var(--color-primary);
@@ -957,6 +959,7 @@ body.magnum-mode #cursor-cat-gif {
 .cli-run-command.cli-preview-active .back-link,
 .cli-run-command.cli-preview-active .project-name,
 .cli-run-command.cli-preview-active .project-lead,
+.cli-run-command.cli-preview-active .help-item-desc,
 .cli-run-command.cli-preview-active .home-item-desc {
   color: var(--color-primary);
 }
@@ -972,12 +975,21 @@ body.magnum-mode #cursor-cat-gif {
   color: var(--color-command-desc);
 }
 
+.home-item-desc.project-intro {
+  color: var(--color-secondary);
+}
+
+.project-desc {
+  color: var(--color-secondary);
+}
+
 .help-item-desc {
   color: var(--color-secondary);
 }
 
-#aboutme-section .about-desc {
+.about-desc {
   display: block;
+  color: var(--color-secondary);
 }
 
 .error {

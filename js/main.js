@@ -35,7 +35,7 @@ const clearBeforeCommands = new Set([
 ]);
 const commandLineDelay = 80;
 const projectsSecondItemExtraDelayMs = 120;
-const buttonPreviewDuration = 700;
+const buttonPreviewDuration = 200;
 const previewedButtonKeys = new Set();
 const helpHintText =
   '<span class="cli-run-command cli-run-item back-link" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
@@ -264,17 +264,18 @@ function enterKey(e) {
     }
     const input = rawInput.toLowerCase();
     const typedPrompt = isThoughtsMode ? thoughtsPrompt : defaultPrompt;
-    const shouldEchoTypedLine =
-      input !== "charcoal" &&
-      input !== "magnum" &&
-      !clearBeforeCommands.has(input);
-    if (shouldEchoTypedLine) {
-      addLine(typedPrompt + " " + command.innerHTML, "no-animation", 0);
+    const shouldEchoTypedLine = input !== "charcoal" && input !== "magnum";
+    const typedLineHtml = shouldEchoTypedLine ? typedPrompt + " " + command.innerHTML : "";
+    const deferTypedLineUntilAfterClear = clearBeforeCommands.has(input);
+    if (typedLineHtml && !deferTypedLineUntilAfterClear) {
+      addLine(typedLineHtml, "no-animation", 0);
     }
 
     commands.push(command.innerHTML);
     git = commands.length;
-    commander(input);
+    commander(input, {
+      typedLineHtml: deferTypedLineUntilAfterClear ? typedLineHtml : "",
+    });
 
     command.innerHTML = "";
     textarea.value = "";
@@ -303,10 +304,11 @@ function enterKey(e) {
   }
 }
 
-function commander(cmd) {
+function commander(cmd, options = {}) {
   if (!cmd) {
     return;
   }
+  const typedLineHtml = typeof options.typedLineHtml === "string" ? options.typedLineHtml : "";
   const isMagnumModeActive = document.body.classList.contains("magnum-mode");
   const isMagnumToCharcoalException = isMagnumModeActive && cmd === "charcoal";
   if (cmd !== "magnum" && !isMagnumToCharcoalException) {
@@ -327,6 +329,9 @@ function commander(cmd) {
   const preserveTerminalHistory = cmd === "charcoal";
   if (clearBeforeCommands.has(cmd) && !preserveTerminalHistory) {
     clearTerminalLines();
+    if (typedLineHtml) {
+      addLine(typedLineHtml, "no-animation", 0);
+    }
   }
   switch (cmd) {
     case "help":
@@ -380,7 +385,7 @@ function commander(cmd) {
       showFooterHint = false;
       addLine("<br>", "", commandLineDelay);
       addLine(
-        '<span class="cli-run-command cli-run-item" data-run-command="help" data-preview-key="unknown:help-full"><span class="command">Unknown command - Type <u>help</u> to see a list of supported commands</span></span>',
+        '<span class="cli-run-command cli-run-item" data-run-command="help" data-preview-key="unknown:help-full"><span class="back-link">Unknown command - Type <u>help</u> to see a list of supported commands</span></span>',
         "output-blue",
         commandLineDelay * 2,
         function (lineNode) {
