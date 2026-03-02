@@ -913,10 +913,6 @@ body.magnum-mode #cursor-cat-gif {
   color: #b8ddff;
 }
 
-.project-intro {
-  color: #d4ecff;
-}
-
 .cli-run-command {
   cursor: pointer;
   border-radius: 2px;
