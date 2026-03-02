@@ -247,7 +247,7 @@ const magnumGalleryItems = [
   {
     title: "Phase 2: Lead qualification",
     description:
-      "Haiku agents review each business and determine if they'd benefit from a website or not.",
+      "AI agents review each business and determine if they'd benefit from a website or not.",
     src: "assets/2.mp4",
   },
   {
