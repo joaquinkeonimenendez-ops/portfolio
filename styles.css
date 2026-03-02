@@ -535,8 +535,8 @@ body.magnum-mode #cursor-cat-gif {
 .magnum-gif-card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(206, 211, 219, 0.34);
-  background: #121519;
+  border: 1px solid rgba(157, 208, 255, 0.44);
+  background: #132840;
   box-shadow: 0 12px 24px rgba(10, 19, 31, 0.45);
   aspect-ratio: 16 / 9.9;
   min-height: 166px;
@@ -628,12 +628,7 @@ body.magnum-mode #cursor-cat-gif {
   justify-content: flex-start;
   gap: 0.35rem;
   padding: 0.88rem;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 12, 16, 0.52) 0%,
-    rgba(10, 12, 16, 0.22) 44%,
-    rgba(10, 12, 16, 0) 100%
-  );
+  background: transparent;
   opacity: 1;
   transform: translateY(0);
   transition:
@@ -684,7 +679,7 @@ body.magnum-mode #cursor-cat-gif {
 }
 
 .magnum-gif-card:focus-visible {
-  outline: 2px solid rgba(230, 233, 238, 0.9);
+  outline: 2px solid rgba(157, 208, 255, 0.9);
   outline-offset: 2px;
 }
 
@@ -745,12 +740,7 @@ body.magnum-mode #cursor-cat-gif {
   .magnum-gif-overlay {
     opacity: 1;
     transform: translateY(0);
-    background: linear-gradient(
-      180deg,
-      rgba(10, 12, 16, 0.42) 0%,
-      rgba(10, 12, 16, 0.12) 50%,
-      rgba(10, 12, 16, 0) 100%
-    );
+    background: transparent;
   }
 
   .magnum-gif-description {
