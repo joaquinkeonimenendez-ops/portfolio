@@ -12,6 +12,7 @@ const magnumCardIntraDelayMs = 130;
 const magnumCardRevealDurationMs = 180;
 const magnumCardRowGapMs = 92;
 const magnumAnimationCleanupBufferMs = 40;
+const magnumDesktopCaptionFadeLagMs = 90;
 let magnumVideoObserver = null;
 let magnumBackgroundPreloadStarted = false;
 const magnumBackgroundPreloaders = [];
@@ -521,6 +522,7 @@ function triggerMagnumShowcaseAnimation(showcase) {
 
   const cards = Array.from(showcase.querySelectorAll(".magnum-gif-card"));
   const keepSpawnCaptionsVisible = window.matchMedia("(max-width: 726px)").matches;
+  const captionFadeLagMs = keepSpawnCaptionsVisible ? 0 : magnumDesktopCaptionFadeLagMs;
   let previousActiveCard = null;
   while (magnumShowcaseScrollStepTimers.length) {
     clearTimeout(magnumShowcaseScrollStepTimers.pop());
@@ -539,7 +541,11 @@ function triggerMagnumShowcaseAnimation(showcase) {
         previousActiveCard &&
         previousActiveCard !== card
       ) {
-        previousActiveCard.classList.remove("is-spawn-active");
+        const cardToFade = previousActiveCard;
+        const fadeTimer = setTimeout(function () {
+          cardToFade.classList.remove("is-spawn-active");
+        }, captionFadeLagMs);
+        magnumShowcaseScrollStepTimers.push(fadeTimer);
       }
       card.classList.add("is-spawn-active");
       previousActiveCard = card;
