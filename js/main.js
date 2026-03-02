@@ -568,8 +568,8 @@ function applyMagnumShowcaseStagger(showcase) {
   const isMobileWidth = window.matchMedia("(max-width: 726px)").matches;
   const columns = Math.max(1, getMagnumShowcaseColumnCount());
   const totalCards = cards.length;
-  const intraDelayMs = isMobileWidth ? Math.max(54, magnumCardIntraDelayMs - 52) : magnumCardIntraDelayMs;
-  const rowGapMs = isMobileWidth ? Math.max(24, magnumCardRowGapMs - 44) : magnumCardRowGapMs;
+  const intraDelayMs = isMobileWidth ? Math.max(34, magnumCardIntraDelayMs - 78) : magnumCardIntraDelayMs;
+  const rowGapMs = isMobileWidth ? Math.max(6, magnumCardRowGapMs - 68) : magnumCardRowGapMs;
   const minIntraDelayMs = 84;
   const intraDelayRangeMs = Math.max(0, intraDelayMs - minIntraDelayMs);
   const delayByColumn = Array.from({ length: columns }, function (_, colIndex) {
