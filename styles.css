@@ -257,21 +257,19 @@ hr {
 
 @media (max-width: 726px) {
   body {
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
   }
 
   .terminal-window {
-    position: relative;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
+    position: fixed;
+    top: var(--frame-gap-top);
+    right: var(--frame-gap-right);
+    bottom: var(--frame-gap-bottom);
+    left: var(--frame-gap-left);
     width: auto;
     height: auto;
-    min-height: calc(
-      100vh - var(--frame-gap-top) - var(--frame-gap-bottom)
-    );
+    min-height: 0;
   }
 
   header {
@@ -304,7 +302,7 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: visible;
+    overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
     -webkit-overflow-scrolling: touch;
@@ -707,7 +705,7 @@ body.magnum-mode #cursor-cat-gif {
   #contentscroll {
     height: auto;
     max-height: none;
-    overflow-y: visible;
+    overflow-y: auto;
     overflow-x: hidden;
   }
 
