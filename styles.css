@@ -1350,6 +1350,12 @@ a {
     font-size: 0.86rem;
     font-weight: 500;
     letter-spacing: 0.01em;
+    flex: 1;
+    min-width: 0;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .chrome-url.is-typing::after {
