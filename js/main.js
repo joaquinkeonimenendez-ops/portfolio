@@ -27,6 +27,7 @@ const clearBeforeCommands = new Set([
 const commandLineDelay = 80;
 const buttonPreviewDuration = 250;
 const previewedButtonKeys = new Set();
+const AUTO_SCROLL_OVERFLOW_THRESHOLD_PX = 96;
 const helpHintText =
   '<span class="cli-run-command cli-run-item" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
@@ -51,10 +52,14 @@ function focusInput() {
   }
 }
 
-function scrollToBottom() {
-  if (contentscroll) {
-    contentscroll.scrollTop = contentscroll.scrollHeight;
+function scrollToBottom(options = {}) {
+  if (!contentscroll) return;
+  const force = Boolean(options.force);
+  const overflowPx = contentscroll.scrollHeight - contentscroll.clientHeight;
+  if (!force && overflowPx <= AUTO_SCROLL_OVERFLOW_THRESHOLD_PX) {
+    return;
   }
+  contentscroll.scrollTop = contentscroll.scrollHeight;
 }
 
 function clearTerminalLines() {
@@ -407,7 +412,7 @@ function addLine(text, style, time, onRendered) {
     next.innerHTML = t;
     next.className = style;
     before.parentNode.insertBefore(next, before);
-    contentscroll.scrollTop = contentscroll.scrollHeight;
+    scrollToBottom();
     if (typeof onRendered === "function") {
       onRendered(next);
     }
