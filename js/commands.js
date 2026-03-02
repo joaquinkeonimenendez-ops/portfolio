@@ -267,7 +267,7 @@ const magnumGalleryItems = [
   {
     title: "Phase 5: Deploy full websites",
     description:
-      "Each website is deployed on Cloudflare Pages with real photos, hours, and contact info.",
+      "Each website is deployed on Cloudflare Pages with real photos, hours, reviews, and contact info.",
     src: "assets/5.mp4",
   },
   {
