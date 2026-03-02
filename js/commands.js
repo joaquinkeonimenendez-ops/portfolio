@@ -43,16 +43,16 @@ let projects = [
 ];
 
 const charcoalProjectBrowserMock = `
-<div class="charcoal-project project-card" data-initial-url="google.com" data-target-url="charcoal-md.vercel.app"
-    data-target-src="https://charcoal-md.vercel.app/">
+<div class="charcoal-project project-card" data-initial-url="google.com" data-target-url="charcoal.keoni.me"
+    data-target-src="https://charcoal.keoni.me/">
     <div class="projects-header block-left">
         <h2 class="section-title">Charcoal.md</h2>
         <p class="section-subtitle">
             Charcoal.md is a markdown-first note-taking web app inspired by Obsidian: simple, fast,
             and file-first. It's built for people who can't install desktop apps on work or school
             devices and want a cleaner, faster alternative to Notion. You can try it at <a
-                href="https://charcoal-md.vercel.app/" target="_blank"
-                rel="noopener noreferrer">https://charcoal-md.vercel.app/</a> or in the iframe below.
+                href="https://charcoal.keoni.me/" target="_blank"
+                rel="noopener noreferrer">https://charcoal.keoni.me/</a> or in the iframe below.
         </p>
     </div>
     <div class="chrome-shell">
@@ -150,7 +150,7 @@ const charcoalProjectBrowserMock = `
                             </div>
                         </div>
                         <div class="google-result">
-                            <div class="google-result-url">charcoal-md.vercel.app</div>
+                            <div class="google-result-url">charcoal.keoni.me</div>
                             <div class="google-result-title">Charcoal.md - A real Obsidian alternative
                                 for the web</div>
                             <div class="google-result-snippet">A browser-native markdown workspace with

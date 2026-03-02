@@ -879,9 +879,9 @@ function initCharcoalProjectJourney(charcoalProject) {
   const cursorEl = splashEl ? splashEl.querySelector(".google-mock-cursor") : null;
   const initialUrlText = charcoalProject.dataset.initialUrl || "google.com";
   const targetUrlText =
-    charcoalProject.dataset.targetUrl || "charcoal-md.vercel.app";
+    charcoalProject.dataset.targetUrl || "charcoal.keoni.me";
   const targetFrameSrc =
-    charcoalProject.dataset.targetSrc || "https://charcoal-md.vercel.app/";
+    charcoalProject.dataset.targetSrc || "https://charcoal.keoni.me/";
   const targetOrigin = (() => {
     try {
       return new URL(targetFrameSrc).origin;
