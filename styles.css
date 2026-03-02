@@ -293,10 +293,24 @@ hr {
   }
 
   .top-nav {
-    display: none;
+    position: absolute;
+    top: 0.1rem;
+    right: 0.35rem;
+    width: auto;
+    margin-left: 0;
+    gap: 0;
   }
 
   .top-nav .nav-close {
+    display: inline-flex;
+    min-width: 1.1rem;
+    justify-content: center;
+    font-size: var(--step-0);
+    line-height: 1;
+    padding: 0.2rem 0.32rem;
+  }
+
+  .top-nav a[data-command] {
     display: none;
   }
 
