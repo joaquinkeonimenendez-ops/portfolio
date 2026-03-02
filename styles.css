@@ -630,8 +630,8 @@ body.magnum-mode #cursor-cat-gif {
     rgba(8, 10, 14, 0.1) 46%,
     rgba(8, 10, 14, 0) 100%
   );
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 0;
+  transform: translateY(-10px);
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
@@ -673,8 +673,8 @@ body.magnum-mode #cursor-cat-gif {
 
 .magnum-gif-card:hover .magnum-gif-overlay,
 .magnum-gif-card:focus-visible .magnum-gif-overlay {
-  opacity: 0;
-  transform: translateY(-10px);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .magnum-gif-card:focus-visible {
