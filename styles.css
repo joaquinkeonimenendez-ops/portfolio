@@ -1040,8 +1040,17 @@ a {
     margin-top: 5rem;
 }
 
+.charcoal-project .section-title {
+    margin: 0 0 0.85rem;
+    font-size: var(--step-0);
+    line-height: 1.35;
+    font-weight: 400;
+}
+
 .charcoal-project .section-subtitle {
-    margin-bottom: 2rem;
+    margin: 0 0 2rem;
+    font-size: var(--step-0);
+    line-height: 1.35;
     width: 100%;
     max-width: 100%;
 }
