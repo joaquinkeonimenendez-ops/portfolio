@@ -565,21 +565,24 @@ function applyMagnumShowcaseStagger(showcase) {
   const cards = Array.from(showcase.querySelectorAll(".magnum-gif-card"));
   if (!cards.length) return;
 
+  const isMobileWidth = window.matchMedia("(max-width: 726px)").matches;
   const columns = Math.max(1, getMagnumShowcaseColumnCount());
   const totalCards = cards.length;
+  const intraDelayMs = isMobileWidth ? Math.max(54, magnumCardIntraDelayMs - 52) : magnumCardIntraDelayMs;
+  const rowGapMs = isMobileWidth ? Math.max(24, magnumCardRowGapMs - 44) : magnumCardRowGapMs;
   const minIntraDelayMs = 84;
-  const intraDelayRangeMs = Math.max(0, magnumCardIntraDelayMs - minIntraDelayMs);
+  const intraDelayRangeMs = Math.max(0, intraDelayMs - minIntraDelayMs);
   const delayByColumn = Array.from({ length: columns }, function (_, colIndex) {
     if (colIndex === 0) return 0;
     const localProgress = columns <= 1 ? 1 : colIndex / (columns - 1);
     const eased = Math.pow(localProgress, 0.84);
-    return Math.round(colIndex * (magnumCardIntraDelayMs - intraDelayRangeMs * eased));
+    return Math.round(colIndex * (intraDelayMs - intraDelayRangeMs * eased));
   });
   const maxColumnDelay = delayByColumn.length ? delayByColumn[delayByColumn.length - 1] : 0;
   const rowCycleMs =
     maxColumnDelay +
     magnumCardRevealDurationMs +
-    magnumCardRowGapMs;
+    rowGapMs;
 
   cards.forEach(function (card, index) {
     const row = Math.floor(index / columns);
