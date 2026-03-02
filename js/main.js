@@ -7,7 +7,9 @@ const contentscroll = document.getElementById("contentscroll");
 const asciiCatFrame = document.getElementById("ascii-cat-frame");
 const navCommandLinks = document.querySelectorAll("header [data-command]");
 const magnumShowcaseId = "magnum-showcase";
-const magnumCardStaggerMs = 72;
+const magnumCardIntraDelayMs = 96;
+const magnumCardRevealDurationMs = 180;
+const magnumCardRowGapMs = 92;
 let magnumVideoObserver = null;
 let magnumBackgroundPreloadStarted = false;
 const magnumBackgroundPreloaders = [];
@@ -520,6 +522,31 @@ function triggerMagnumShowcaseAnimation(showcase) {
   showcase.classList.add("is-animating");
 }
 
+function getMagnumShowcaseColumnCount() {
+  if (window.matchMedia("(max-width: 726px)").matches) return 1;
+  if (window.matchMedia("(max-width: 1080px)").matches) return 2;
+  return 3;
+}
+
+function applyMagnumShowcaseStagger(showcase) {
+  if (!showcase) return;
+  const cards = Array.from(showcase.querySelectorAll(".magnum-gif-card"));
+  if (!cards.length) return;
+
+  const columns = Math.max(1, getMagnumShowcaseColumnCount());
+  const rowCycleMs =
+    (columns - 1) * magnumCardIntraDelayMs +
+    magnumCardRevealDurationMs +
+    magnumCardRowGapMs;
+
+  cards.forEach(function (card, index) {
+    const row = Math.floor(index / columns);
+    const column = index % columns;
+    const delayMs = row * rowCycleMs + column * magnumCardIntraDelayMs;
+    card.style.setProperty("--magnum-card-delay", `${delayMs}ms`);
+  });
+}
+
 function createMagnumShowcaseCard(item) {
   const titleText = (item && item.title) || "Magnum Workflow";
   const descriptionText =
@@ -653,9 +680,8 @@ function ensureMagnumShowcase() {
       : fallbackItems;
   const items = sourceItems.slice(0, 6);
 
-  items.forEach(function (item, index) {
+  items.forEach(function (item) {
     const card = createMagnumShowcaseCard(item);
-    card.style.setProperty("--magnum-card-delay", `${index * magnumCardStaggerMs}ms`);
     grid.appendChild(card);
   });
 
@@ -688,6 +714,7 @@ function showMagnumShowcase() {
   const showcase = ensureMagnumShowcase();
   if (!showcase) return;
   primeMagnumVideos(showcase, 2);
+  applyMagnumShowcaseStagger(showcase);
   showcase.classList.add("is-visible");
   document.body.classList.add("magnum-mode");
   triggerMagnumShowcaseAnimation(showcase);
