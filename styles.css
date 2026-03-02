@@ -287,11 +287,7 @@ hr {
   }
 
   .top-nav {
-    width: 100%;
-    margin-left: 0;
-    justify-content: center;
-    gap: 1rem;
-    font-size: var(--step--1);
+    display: none;
   }
 
   .top-nav .nav-close {
