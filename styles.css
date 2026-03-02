@@ -1823,7 +1823,7 @@ a {
     }
 
     .google-wordmark {
-        font-size: clamp(2.15rem, 14.2vw, 3.15rem);
+        font-size: clamp(2.55rem, 17vw, 3.8rem);
         letter-spacing: -0.015em;
     }
 
