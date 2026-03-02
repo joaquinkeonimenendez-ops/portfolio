@@ -913,6 +913,10 @@ body.magnum-mode #cursor-cat-gif {
   color: #b8ddff;
 }
 
+.project-intro {
+  color: #b8ddff;
+}
+
 .cli-run-command {
   cursor: pointer;
   border-radius: 2px;
@@ -959,10 +963,6 @@ body.magnum-mode #cursor-cat-gif {
 
 .home-item-desc {
   color: var(--color-command-desc);
-}
-
-.home-item-desc.project-intro {
-  color: #b8ddff;
 }
 
 #aboutme-section pre.home-item-desc {
