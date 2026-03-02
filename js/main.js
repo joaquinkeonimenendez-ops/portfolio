@@ -916,10 +916,36 @@ function initCharcoalProjectJourney(charcoalProject) {
   let cursorRafId = null;
   let isDisposed = false;
   const stepTimers = [];
+  const omniboxMeasureCanvas = document.createElement("canvas");
+  const omniboxMeasureContext = omniboxMeasureCanvas.getContext("2d");
+  const getOmniboxTextWidth = (text) => {
+    if (!urlEl || !omniboxMeasureContext) return String(text || "").length * 8;
+    const computed = window.getComputedStyle(urlEl);
+    omniboxMeasureContext.font = `${computed.fontWeight} ${computed.fontSize} ${computed.fontFamily}`;
+    return omniboxMeasureContext.measureText(String(text || "")).width;
+  };
   const clampOmniboxUrl = (value) => {
     const normalized = String(value || "").trim();
     if (!normalized) return targetUrlText;
-    return normalized;
+    if (!urlEl) return normalized;
+    const availableWidth = urlEl.clientWidth - 2;
+    if (availableWidth <= 40) return normalized;
+    if (getOmniboxTextWidth(normalized) <= availableWidth) return normalized;
+    const suffix = "...";
+    let low = 1;
+    let high = normalized.length;
+    let best = 1;
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+      const candidate = `${normalized.slice(0, mid)}${suffix}`;
+      if (getOmniboxTextWidth(candidate) <= availableWidth) {
+        best = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+    return `${normalized.slice(0, best)}${suffix}`;
   };
 
   const formatUrlForOmnibox = (rawUrl) => {
