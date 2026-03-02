@@ -4,6 +4,7 @@ var github = "https://github.com/joaquinkeonimenendez-ops";
 
 let banner = [];
 
+
 let aboutme = [
   "<br>",
   `<div id="aboutme-section">`,
