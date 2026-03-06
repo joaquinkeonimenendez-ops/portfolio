@@ -12,7 +12,7 @@ let aboutme = [
   `<span class="home-item-desc about-desc">I'm a CS student at UC Irvine. In my spare time I work on AI projects. I've been interested in coding since childhood- fun fact, I was awarded my first cash bug bounty (stored XSS) at age 12!</span>`,
   "<br>",
   `<span class="command">What I do</span>`,
-  `<span class="home-item-desc about-desc">I'm currently building Magnum a CLI tool for selling websites to small businesses, and Charcoal a web alternative for Obsidian.md out of personal necessity. Use the projects command to explore further.</span>`,
+  `<span class="home-item-desc about-desc">I'm currently building Magnum an AI tool for selling websites to small businesses, and Charcoal a web alternative for Obsidian.md out of personal necessity. Use the projects command to explore further.</span>`,
   "</div>",
 ];
 
@@ -41,7 +41,7 @@ let projects = [
   `<span class="home-item-desc project-intro back-link">Click a project for a visual demonstration.</span>`,
   "<br>",
   `<span class="cli-run-command cli-run-item" data-run-command="charcoal" data-preview-key="project:charcoal"><span class="command project-name">1. Charcoal</span><br><span class="home-item-desc project-desc">&#8627; <span class="project-lead">A markdown based note-taking webapp inspired by Obsidian.</span> Built for people who can't install desktop apps on work/school devices or don't want to pay for Obsidian sync.</span></span>`,
-  `<span class="cli-run-command cli-run-item" data-run-command="magnum" data-preview-key="project:magnum"><span class="command project-name">2. Magnum</span><br><span class="home-item-desc project-desc">&#8627; <span class="project-lead">A CLI for selling websites to small businesses.</span> Lead generation and website creation is entirely handled by AI agents. Fully integrated with OpenPhone and Stripe for a human operator to smoothly make sales calls.</span></span>`,
+  `<span class="cli-run-command cli-run-item" data-run-command="magnum" data-preview-key="project:magnum"><span class="command project-name">2. Magnum</span><br><span class="home-item-desc project-desc">&#8627; <span class="project-lead">An AI tool for selling websites to small businesses.</span> Lead generation and website creation is entirely handled by AI agents. Fully integrated with OpenPhone and Stripe for a human operator to smoothly make sales calls.</span></span>`,
 ];
 
 const charcoalProjectBrowserMock = `
@@ -232,7 +232,7 @@ let projectMagnum = [
   "<br>",
   `<span class="output-blue">Magnum</span>`,
   `<pre class="indent-8 whitespace-pre-wrap break-words overflow-x-auto">
-A CLI for selling websites to small businesses.
+An AI tool for selling websites to small businesses.
 Lead generation and website creation are handled by AI agents,
 with integrations for OpenPhone and Stripe to support smooth operator workflows.
 </pre>`,
