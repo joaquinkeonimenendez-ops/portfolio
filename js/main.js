@@ -37,6 +37,10 @@ const commandLineDelay = 80;
 const projectsSecondItemExtraDelayMs = 120;
 const buttonPreviewDuration = 200;
 const previewedButtonKeys = new Set();
+const directProjectRoutes = new Map([
+  ["/magnum", "magnum"],
+  ["/charcoal", "charcoal"],
+]);
 const helpHintText =
   '<span class="cli-run-command cli-run-item back-link" data-run-command="help">← Back<br>(Type <u>help</u> to return to the list of supported commands)</span>';
 const defaultPrompt = "[keoni@me]~$";
@@ -72,6 +76,34 @@ function clearTerminalLines() {
   if (!terminal) return;
   const lines = terminal.querySelectorAll(":scope > p");
   lines.forEach((line) => line.remove());
+}
+
+function normalizePathname(pathname) {
+  const normalized = String(pathname || "/").trim().toLowerCase();
+  if (!normalized || normalized === "/") return "/";
+  const withLeadingSlash = normalized.startsWith("/") ? normalized : `/${normalized}`;
+  return withLeadingSlash.replace(/\/+$/, "") || "/";
+}
+
+function getDirectRouteCommand(pathname = window.location.pathname) {
+  return directProjectRoutes.get(normalizePathname(pathname)) || "";
+}
+
+function getPathnameForCommand(cmd) {
+  if (cmd === "magnum") return "/magnum";
+  if (cmd === "charcoal") return "/charcoal";
+  return "/";
+}
+
+function syncLocationForCommand(cmd) {
+  if (!window.history || typeof window.history.replaceState !== "function") {
+    return;
+  }
+  const nextPathname = getPathnameForCommand(cmd);
+  if (normalizePathname(window.location.pathname) === nextPathname) {
+    return;
+  }
+  window.history.replaceState({}, "", nextPathname);
 }
 
 function applySafariAutoplayAttributes(video, preloadValue = "auto") {
@@ -179,22 +211,6 @@ function queueMagnumBackgroundPreload() {
   }, 800);
 }
 
-setTimeout(function () {
-  loopLines(banner, "", 80);
-  focusInput();
-  scrollToBottom();
-
-  setTimeout(function () {
-    const initialCommand = "help";
-    setActiveNavCommand(initialCommand);
-    autoTypeAndSubmitCommand(initialCommand);
-  }, banner.length * 80 + 250);
-}, 100);
-
-startAsciiCatBlinkAnimation();
-queueMagnumBackgroundPreload();
-initBackgroundVideoPlayback();
-
 window.addEventListener("keyup", function (e) {
   if (mobileTypingMediaQuery.matches) return;
   enterKey(e);
@@ -246,6 +262,39 @@ navCommandLinks.forEach(function (link) {
 textarea.value = "";
 command.innerHTML = "Loading...";
 setPromptPrefix(defaultPrompt);
+
+function initializeTerminalExperience() {
+  const directRouteCommand = getDirectRouteCommand();
+
+  startAsciiCatBlinkAnimation();
+  queueMagnumBackgroundPreload();
+  initBackgroundVideoPlayback();
+
+  textarea.value = "";
+  command.innerHTML = "";
+
+  if (directRouteCommand) {
+    setActiveNavCommand("projects");
+    commander(directRouteCommand);
+    focusInput();
+    scrollToBottom();
+    return;
+  }
+
+  setTimeout(function () {
+    loopLines(banner, "", 80);
+    focusInput();
+    scrollToBottom();
+
+    setTimeout(function () {
+      const initialCommand = "help";
+      setActiveNavCommand(initialCommand);
+      autoTypeAndSubmitCommand(initialCommand);
+    }, banner.length * 80 + 250);
+  }, 100);
+}
+
+initializeTerminalExperience();
 
 function enterKey(e) {
   const programmatic = Boolean(e && e.programmatic);
@@ -324,6 +373,7 @@ function commander(cmd, options = {}) {
     }
     return;
   }
+  syncLocationForCommand(cmd);
   let outputLines = 0;
   let showFooterHint = true;
   const preserveTerminalHistory = cmd === "charcoal";

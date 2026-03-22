@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/magnum",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/magnum/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/charcoal",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/charcoal/",
+      "destination": "/index.html"
+    }
+  ]
+}
